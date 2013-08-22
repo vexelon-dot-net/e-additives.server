@@ -14,6 +14,12 @@ A RESTful API implementation will provide access to the data which may later be 
 
 # Getting Started
 
+Install required PHP extensions:
+
+  * mcrypt.so
+  * openssl.so
+  * phar.so
+
 Install composer:
 
     curl -s https://getcomposer.org/installer | php
