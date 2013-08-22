@@ -1,9 +1,9 @@
 {
 	"name": "e-additives.server",
-    "description": "e-additives server RESTful API",
-    "require": {
-        "predis/predis": "0.8.*@dev",
-		"slim/slim": "2.*",
+	"description": "e-additives server RESTful API",
+	"require": {
+		"predis/predis": "0.8.*@dev",
+		"slim/slim": "2.3.*",
 		"entomb/slim-json-api": "dev-master"
-    }
+	}
 }
