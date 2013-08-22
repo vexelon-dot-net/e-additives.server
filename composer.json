@@ -1,6 +1,17 @@
 {
 	"name": "e-additives.server",
+	"type": "object",
 	"description": "e-additives server RESTful API",
+	"keywords": ["additives","food", "health", "rest", "server"],
+	"homepage": "http://github.com/petarov/e-additives.server",
+	"license": "GPLv2",
+	"authors": [ 
+	{
+		"name": "Petar Petrov",
+		"email": "",
+		"homepage": ""
+	}
+	],	
 	"require": {
 		"predis/predis": "0.8.*@dev",
 		"slim/slim": "2.3.*",
