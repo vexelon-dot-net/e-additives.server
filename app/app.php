@@ -19,19 +19,18 @@
 */
 
 $app = new \Slim\Slim(array(
-    'debug' => true
+    'debug' => DEBUG,
+    'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
+    'log.enabled' => true,
+    'http.version' => '1.1'
     ));
 
+$app->setName('E-additives Server');
 $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 	
 // Add API calls
 require 'app/api.php';
-
-// Add other calls
-$app->get('/', function () {
-    echo "Hello World";
-});
 
 $app->run();
 

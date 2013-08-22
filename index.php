@@ -21,7 +21,7 @@
 // define site path location
 define('__SITE_PATH', realpath(dirname(__FILE__)) );
 
-require 'config.php'
+require 'config.php';
 require 'vendor/autoload.php';
 require 'app/app.php';
 

@@ -18,8 +18,32 @@
  *
 */
 
+// General errors
+$app->error(function (\Exception $e) use ($app) {
+	$app->render(500, array(
+		'error' => TRUE,
+		'msg' => 'Unknown error. Check server logs.',
+		));	
+});
 
-$app->get('/hello/:name', function ($name) use ($app) {
+$app->notFound(function () use ($app) {
+	$app->render(404, array(
+		'error' => TRUE,
+		'msg' => 'Not found.',
+		));	
+});
+
+// Index - Display list of available API calls - TODO:
+$app->get('/', function () use ($app) {
+	$app->render(200, array(
+		'urls' => array(
+			'additives_url' => BASE_URL . '/additives'
+			),
+		));	
+});
+
+// Get list of additives
+$app->get('/additives/:name', function ($name) use ($app) {
 	$app->render(200, array(
 		'msg' => 'Welcome ' . $name,
 		));	
