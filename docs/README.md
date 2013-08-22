@@ -1,6 +1,6 @@
 Documentation
 ==================
 
-  * [Requirements](requirements.md) - Project requirements and goal.
-  * [Architecture](architecture.md) - Components architecture and communication.
+  * [Requirements](Requirements.md) - Project requirements and goal.
+  * [Architecture](Architecture.md) - Components architecture and communication.
 
