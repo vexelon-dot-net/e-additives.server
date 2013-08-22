@@ -1,3 +1,4 @@
 # ignore
 vendor
 composer.lock
+config.php
