@@ -5,6 +5,8 @@ The goal of the E-additives project is to provide detailed information about foo
 
 A RESTful API implementation will provide access to the data which may later be consumed by web or mobile apps.
 
+Check the [documentation](docs/).
+
 # Requirements
 
   * Apache >= 2.2
