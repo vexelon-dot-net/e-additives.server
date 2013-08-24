@@ -5,6 +5,7 @@ DELETE FROM Additive;
 DELETE FROM Locale;
 DELETE FROM AdditiveCategory;
 
+### Insert BG localized data
 SET @default_category_id = 1;
 
 INSERT INTO Locale(code, enabled) VALUES('bg', TRUE);
