@@ -1,0 +1,2267 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<locale language="en" author="p.petrov;d.petrov" created="2/1/2010 6:57:00 AM" lastchange="5/31/2010 8:46:33 PM">
+  <strings>
+    <item key="about">Относно</item>
+    <item key="about_title">E-additives / относно</item>
+    <item key="additive">Добавка</item>
+    <item key="animorg">Животински произход</item>
+    <item key="antibiotics">Антибиотици</item>
+    <item key="antibiotics_nfo">Антибиотиците са вещества или съединения, които убиват бактериите или потискат техния растеж. Те принадлежат към по-широката група на антимикробни съединения, използвани за лечение на инфекции, причинени от микроорганизми, включително гъби и протозои.</item>
+    <item key="antioxidants">Антиоксиданти, Киселинни регулатори</item>
+    <item key="antioxidants_nfo">Окислителните реакции могат да увредят хранителните молекули и по-специалнo да направят мазнините граниви. Антиоксидантите помагат да се предотврати това.</item>
+    <item key="app_title">E-additives / хранителни добавки</item>
+    <item key="back">Назад</item>
+    <item key="build">Компилирано на:</item>
+    <item key="chemicals">Други химикали</item>
+    <item key="code">Код</item>
+    <item key="colors">Оцветители</item>
+    <item key="colors_nfo">Цветовете понякога биват влагани в храната за подобряване на външния й вид, и за да я направи по-апетитна.</item>
+    <item key="danger">Статус</item>
+    <item key="details">Какво представлява</item>
+    <item key="details_title">E-additives / детайли</item>
+    <item key="download">Сваляне</item>
+    <item key="enhancers">Aроматизатори</item>
+    <item key="enhancers_nfo">Овкусителите засиливат съществуващия вкус на храната. Те могат да бъдат извлечени от природни източници (чрез дестилация, екстракция с разтворител, накисване, наред с други методи) или изкуствено създадени.</item>
+    <item key="foods">Намира се в</item>
+    <item key="func">Функция</item>
+    <item key="groups_title">E-additives / групи</item>
+    <item key="iconsnfo">Икони от http://www.famfamfam.com/lab/icons/silk</item>
+    <item key="license">Този софтуер е под GNU GPL лиценз.</item>
+    <item key="miscellaneous">Разни</item>
+    <item key="miscellaneous_nfo">Разнообразие от други добавки, като подсладители, които се използват на мястото на захари; могат да се добавят към храни.</item>
+    <item key="name">Наименование</item>
+    <item key="next">Следващ</item>
+    <item key="open">Отвори</item>
+    <item key="opts">Настройки</item>
+    <item key="opts_title">E-additives / настройки</item>
+    <item key="preservatives">Консерванти</item>
+    <item key="preservatives_nfo">Консервантите предотвратяват или потискат развалянето на храната поради гъбички, бактерии или други микроорганизми.</item>
+    <item key="quit">Изход</item>
+    <item key="regulators">Киселинни регулатори, Противовтвърдители</item>
+    <item key="regulators_nfo">Регулатори на киселинността се използват за промяна или друг начин за контрол на киселинността и алкалността на храната. Противослепващи вещества предпазват прахообразни продукти като мляко на прах от слепване или залепване.</item>
+    <item key="search">Търси</item>
+    <item key="search_by_name">Търси по име</item>
+    <item key="search_by_num">Търси по код</item>
+    <item key="show_additive_groups">Групи на добавките</item>
+    <item key="splash_title">Зареждане...</item>
+    <item key="srchint">Въведете код или име на добавката в полето, за да търсите.</item>
+    <item key="srchnf">Добавка с този код или име не е намерена в базата от данни !</item>
+    <item key="srchtype">Метод за търсене:</item>
+    <item key="stabilizers">Сгъстители, Стабилизатори, Емулгатори</item>
+    <item key="stabilizers_nfo">Сгъстителите са вещества, които биват добавени към сместа, за да увеличат вискозитета й без съществено да изменят другите й качества. Стабилизатори, сгъстители и желиращи вещества, като агар или пектин (използван в конфитюр, например) придават на храните по-твърда консистенция. Макар и да не са истински емулгатори, те помагат да се стабилизират емулсиите. Емулгаторите позволяват водата и маслото да останат смесени заедно в една емулсия в продукти като майонеза, сладолед или кондензирано мляко.</item>
+    <item key="total_addt">Общо заредени добавки:</item>
+    <item key="update">Обновяване</item>
+    <item key="update_err_title">E-additives / грешка обновяване</item>
+    <item key="update_error_msg">Грешка при свързване със сървъра!</item>
+    <item key="update_new_version">Налична е нова версия -</item>
+    <item key="update_no_new_version">Няма нова версия на приложението!</item>
+    <item key="update_title">E-additives / обновяване</item>
+    <item key="vwchanges">Виж новости</item>
+    <item key="warn">Предупреждения</item>
+    <item key="web">Web</item>
+  </strings>
+  <items>
+    <item key="E100" name="Curcuma (turmeric)" status="Безопасен" veg="">
+      <data key="function">оцветител (жълто-оранжево)</data>
+      <data key="food"><![CDATA[Мазнини и масла, къри, обработени сирена (кашкавал), пържени рибни хапки.]]></data>
+      <data key="warn"><![CDATA[Безопасен в препоръчани дози. Да не се взимат големи дози при камъни в жлъчния мехур, жълтеница, остри болки в жлъчката или проблеми с бъбреците.]]></data>
+      <data key="info"><![CDATA[Orange-yellow colouring extracted from the rhizomes of the turmeric plant.]]></data>
+    </item>
+    <item key="E101" name="Riboflavin (Vitamin B2)" status="Безопасен" veg="Не">
+      <data key="function">оцветител (жълто-оранжево)</data>
+      <data key="food"><![CDATA[Подправки, обработени сирена (кашкавал) и храни с добавени витамини, като например хляб.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Riboflavin is also known as vitamin B2. Obtained by fermenting yeast or synthesised artificially.]]></data>
+    </item>
+    <item key="E101a" name="Riboflavin-5'-Phosphate" status="" veg="">
+      <data key="function">оцветител (жълто-оранжево)</data>
+      <data key="food"><![CDATA[Намира се в много храни за бебета и малки деца, както и в конфитюр, млечни продукти, бонбони, и захарни изделия.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Consists mainly of the monosodium salt of the 5'-monophosphate ester of riboflavin dihydrate obtained from chemical action on E101 Riboflavin. It is rapidly turned to free riboflavin after ingestion.]]></data>
+    </item>
+    <item key="E102" name="Tartrazine (FD&amp;C Yellow 5)" status="Непозволен (Забранен в Белгия и Австрия)." veg="Не">
+      <data key="function">оцветител (лимонено жълто)</data>
+      <data key="food"><![CDATA[Плодов скуаш, плодови напитки, оцветени газирани напитки, бърз пудинг (разтваря се), торти, супи, подправки, сладолед, замразени захарни изделия, бонбони, дъвки, марципан, конфитюр, желе, мармалад, горчица, йогурт и много полуфабрикати с глицерин, лимон и медни продукти]]></data>
+      <data key="warn"><![CDATA[Provokes asthma attacks, urticaria in children, linked to thyroid tumors, chromosomal damage. Tartrazine appears to cause the most allergic and/or intolerance reactions of all the azo dyes, particularly amongst those with an aspirin intolerance and asthmatics. Other reactions can include migraine, blurred vision, itching, rhinitis and purple skin patches. In conjunction with E210 tartrazine appears to create an over-activity in children.]]></data>
+      <data key="info"><![CDATA[Yellow coloured synthetic azo colour.]]></data>
+    </item>
+    <item key="E103" name="Chrysoine resorcinol" status="Забранен (Не се допуска в Европа от 1984г. В САЩ е забранен през 1988г. )" veg="">
+      <data key="function">оцветител (златно)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E104" name="Quinoline Yellow" status="Непозволен. Забранен в Австралия, Япония, Норвегия и САЩ." veg="Не">
+      <data key="function">оцветител (матово или жълто-зелено)</data>
+      <data key="food"><![CDATA[Пушена риба, сладолед, яйца по шотландски, пушена Треска (риба). Използва се в червила, продукти за коса, одеколони, широко използван за медикаменти.]]></data>
+      <data key="warn"><![CDATA[Поражда обриви. Не се препоръчва за консумация от деца. HACSG препоръчва да се избягва.]]></data>
+      <data key="info"><![CDATA[The disodium salt of disulphonic acid. A synthetic 'coal tar' dye.]]></data>
+    </item>
+    <item key="E105" name="Fast Yellow AB" status="Забранен" veg="">
+      <data key="function">оцветител (жълто)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[An azo dye.]]></data>
+    </item>
+    <item key="E106" name="Riboflavin-5-Sodium Phosphate" status="" veg="">
+      <data key="function">оцветител (жълто)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Similar to E101a.]]></data>
+    </item>
+    <item key="E107" name="Yellow 2G" status="Забранен в Австрия, Япония, Норвегия, Швеция, Швейцария и САЩ." veg="Не">
+      <data key="function">оцветител (жълто)</data>
+      <data key="food"><![CDATA[Използва се предимно в леките напитки (сода, кола, студен чай и др.).]]></data>
+      <data key="warn"><![CDATA[People who suffer Asthma may also show an allergic reaction to it. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[It has the appearance of a yellow powder, soluble in water. It is a synthetic coal tar and yellow azo dye.]]></data>
+    </item>
+    <item key="E110" name="Sunset Yellow FCF (Orange Yellow S)" status="Забранен във Финландия, Норвегия, Великобритания(планирано). Продуктите в Европа трябва да имат предупреждение, а използването му се преустановява постепенно." veg="Да">
+      <data key="function">оцветител (жълто-оранжево)</data>
+      <data key="food"><![CDATA[Среща се в портокаловия скуаш, портокалово желе, марципан, руло, кайсиев конфитюр, цитрусов мармалад, лимонов крем, бонбони, горещ шоколад и пакетирани супи, галета, сосове от сирена (кашкавал), сладолед, консервирана риба и много медикаменти.]]></data>
+      <data key="warn"><![CDATA[Urticaria (hives), rhinitis (runny nose), nasal congestion, allergies, hyperactivity, kidney tumors, chromosomal damage, abdominal pain, nausea and vomiting, indigestion, distaste for food; increased incidence of tumors in animals. It appears to cause allergic and/or intolerance reactions, particularly amongst those with an aspirin intolerance. Not recommended for consumption by children. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A synthetic 'coal tar' and azo yellow dye used in fermented foods which must be heat treated.]]></data>
+    </item>
+    <item key="E111" name="Orange GGN" status="Забранен" veg="">
+      <data key="function">оцветител (оранжево)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Orange GGN, also known as alpha-naphthol orange, is a food dye.]]></data>
+    </item>
+    <item key="E120" name="Cochineal; Carminic acid; Carmines" status="" veg="Да">
+      <data key="function">оцветител (пурпурен)</data>
+      <data key="food"><![CDATA[Алкохолни напитки, печени продукти и глазури, бисквити, десерти, пълнеж за пайове, напитки, някой видове Чедър (сирене), подправки и бонбони.]]></data>
+      <data key="warn"><![CDATA[May cause allergic reactions. Not recommended for consumption by children. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[An expensive red colouring, not suitable for vegetarians as it is extracted from the crushed carcasses of the female Dactylopius coccus, a cactus-feeding scale insect, which are killed by either immersion in hot water or by exposure to sunlight, steam, or the heat of an oven.]]></data>
+    </item>
+    <item key="E121" name="Citrus Red 2" status="Забранен (Позволен в САЩ.)" veg="">
+      <data key="function">оцветител (тъмно червено)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Carcinogen]]></data>
+      <data key="info"><![CDATA[It is an orange to yellow solid or a dark red powder with a melting point of 156 °C.]]></data>
+    </item>
+    <item key="E122" name="Carmoisine; Azorubine" status="Планирано преустановяване на използването му във Великобритания и забранен в Канада, Япония, Норвегия, САЩ и Швеция. За момента ЕС оценява здравните рискове." veg="Не">
+      <data key="function">оцветител (червено)</data>
+      <data key="food"><![CDATA[Храни които трябва да бъдат притопляни след ферментация. Понякога използван в Бламанж, марципан, рула, консервати, конфитюри, бонбони, кафяви подправки, овкусени йогурти, пакетирани супи, желета, галета, чийзкейк.]]></data>
+      <data key="warn"><![CDATA[It appears to cause allergic and/or intolerance reactions, particularly amongst those with an aspirin intolerance. Other reactions can include a rash similar to nettle rash and water retention. Not recommended for consumption by children. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[Red coloured synthetic azo colour.]]></data>
+    </item>
+    <item key="E123" name="Amaranth; FD&amp;C Red 2" status="Забранен (Не се допуска в САЩ от 1976г. Няколко страни все още го използват!)" veg="Не">
+      <data key="function">оцветител (синьо)</data>
+      <data key="food"><![CDATA[Сладоледи, сос на гранули, конфитюри, желета, консервирани плодови пълнежи за пай и скариди, пакетирани кейк-разтворители, супи, дребни сладкиши.]]></data>
+      <data key="warn"><![CDATA[It appears to cause allergic and/or intolerance reactions, similar to nettle rash, particularly amongst those with an aspirin intolerance or asthmatics. can provoke asthma, eczema and hyperactivity; it caused birth defects and foetal deaths in some animal tests, possibly also cancer. Not recommended for consumption by children.]]></data>
+      <data key="info"><![CDATA[Derived from the small herbaceous plant of the same name. A purplish-red (blackcurrant) synthetic coal tar or azo dye.]]></data>
+    </item>
+    <item key="E124" name="Ponceau 4R; Cochineal Red A, Brilliant Scarlet 4R" status="Непозволен (Не се допуска в Норвегия и САЩ.)" veg="Не">
+      <data key="function">оцветител (червено)</data>
+      <data key="food"><![CDATA[Десертни глазури, желета, салами, пълнежи за морска храна, консервирани ягоди, плодови пълнежи за пайове, пакетирани кейк-миксове, чийзкейкове, супи и дребни сладкиши.]]></data>
+      <data key="warn"><![CDATA[It appears to cause allergic and/or intolerance reactions particularly amongst those with an aspirin intolerance or asthmatics. Carcinogen in animals. Not recommended for consumption by children. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A red synthetic coal tar or azo dye.]]></data>
+    </item>
+    <item key="E125" name="Ponceau SX; Scarlet GN" status="Забранен" veg="">
+      <data key="function">оцветител (червено)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A red azo dye.]]></data>
+    </item>
+    <item key="E126" name="Ponceau 6R" status="Забранен" veg="">
+      <data key="function">оцветител (червено)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A red azo dye. It is soluble in water and slightly soluble in ethanol.]]></data>
+    </item>
+    <item key="E127" name="Erythrosine (FD&amp;C Red 3)" status="Непозволен (Не се допуска в Норвегия и САЩ.)" veg="Не">
+      <data key="function">оцветител (червено)</data>
+      <data key="food"><![CDATA[Коктейли, консервирани череши, плодове компоти, хлебни изделия, бонбони, яйчни кремове, бързи храни, бисквити, шоколади, пълнен рак, чеснови сосове (подправки), паста от сьомга, патешки дроб, яйца по шотландски, шунка, пълнени маслини.]]></data>
+      <data key="warn"><![CDATA[Because food processing at temperatures above 200°c partly degrades Erythrosine, releasing iodide, there are fears that it could affect thyroid activity, can increase thyroid hormone levels and lead to hyperthyroidism, was shown to cause thyroid cancer in rats in a study in 1990. It is toxic to some strains of yeast cells and is also implicated in phototoxicity (a sensitivity to light). Not recommended for consumption by children. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A cherry-pink/red synthetic coal tar dye.]]></data>
+    </item>
+    <item key="E128" name="Red 2G" status="Забранен (Използва се в Британия.)" veg="Не">
+      <data key="function">оцветител (червено)</data>
+      <data key="food"><![CDATA[Месни продукти, наденици, някои конфитюри и напитки.]]></data>
+      <data key="warn"><![CDATA[Concerns that it can interfere with blood haemoglobin. Not recommended for consumption by children.]]></data>
+      <data key="info"><![CDATA[A red synthetic coal tar or azo dye.]]></data>
+    </item>
+    <item key="E129" name="Allura Red AC (FD&amp;C Red 40)" status="Позволен в САЩ и ЕС (Забранен в Дания, Белгия, Франция, Швейцария, Швеция. Пред преустановяване във Великобритания.)" veg="Не">
+      <data key="function">оцветител (червено)</data>
+      <data key="food"><![CDATA[Бонбони, напитки, подправки, медикаменти и козметика.]]></data>
+      <data key="warn"><![CDATA[May have slightly less allergy/intolerance reaction by aspirin intolerant people and asthmatics than most of the azo dyes, although those with skin sensitivities should be careful. Allura red has also been connected with cancer in mice. Not recommended for consumption by children.]]></data>
+      <data key="info"><![CDATA[A red synthetic azo dye introduced in the early eighties to replace Amaranth, E123, in USA where E123 is prohibited.]]></data>
+    </item>
+    <item key="E130" name="Indanthrene blue RS" status="Забранен" veg="">
+      <data key="function">оцветител (синьо)</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Indanthrene Blue RS was patented in 1901 by Rene Bohn as the first anthraquinone vat dye, one of the dyes with very good fastness to light and washing. It is used to dye unmordanted cotton and as a pigment in quality paints and enamels.]]></data>
+    </item>
+    <item key="E131" name="Patent Blue V" status="Опасен (Забранен в Австралия, САЩ и Норвегия.)" veg="Не">
+      <data key="function">оцветител (тъмно синьо)</data>
+      <data key="food"><![CDATA[Използва се понякога в яйца по шотландски и при диагностиката за оцветяване на лимфните възели.]]></data>
+      <data key="warn"><![CDATA[Best avoided by people with allergy reactions as it can cause skin sensitivity, a rash similar to nettle rash, itching, nausea, low blood pressure, tremors and breathing problems.]]></data>
+      <data key="info"><![CDATA[A dark bluish-violet synthetic coal tar dye.]]></data>
+    </item>
+    <item key="E132" name="Indigo carmine; FD&amp;C Blue 2" status="Забранен в Норвегия." veg="Да">
+      <data key="function">оцветител (червеникаво-синьо)</data>
+      <data key="food"><![CDATA[Обикновенно добавян в таблетки и капсули, използва се в сладолед, бонбони, печени изделия, бисквити и сладкарството. Използва се също за диагностика при проверка за оцветена урина в тестовете за функциониране на бъбреците.]]></data>
+      <data key="warn"><![CDATA[People with allergies should avoid it. May cause nausea, vomiting, high blood pressure, skin rashes, breathing problems and other allergic reactions.]]></data>
+      <data key="info"><![CDATA[A blue synthetic coal tar dye, normally produced by a synthesis of indoxyl by fusion of sodium phenylglycinate in a mixture of caustic soda and sodamide.]]></data>
+    </item>
+    <item key="E133" name="Brilliant Blue FCF (FD&amp;C Blue 1)" status="Забранен в Белгия, Дания, Франция, Германия, Гърция, Италия, Норвегия, Испания, Швеция и Швейцария." veg="Не">
+      <data key="function">оцветител (червеникаво-синьо)</data>
+      <data key="food"><![CDATA[Може да се открие в консервиран преработен грах, млечни продукти, бонбони и напитки.]]></data>
+      <data key="warn"><![CDATA[Not recommended for consumption by children. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A blue synthetic coal tar dye often used in conjunction with E102, Tartrazine, to produce various shades of green.]]></data>
+    </item>
+    <item key="E140" name="Chlorophylls and chlorophyllins" status="" veg="Не">
+      <data key="function">оцветител (зелено)</data>
+      <data key="food"><![CDATA[Използва се за оцветяващи вакси и масла, в медицината и козметиката, дъвки, мазнини, масла, сладоледи, сапуни, супи, бонбони и зелени зеленчуци.]]></data>
+      <data key="warn"><![CDATA[Has no maximum recommended daily intake and is not subject to any prohibitions.]]></data>
+      <data key="info"><![CDATA[A fairly unstable dye, which tends to fade easily.]]></data>
+    </item>
+    <item key="E141" name="Copper complexes of chlorophylls and chlorophyllins" status="" veg="Не">
+      <data key="function">оцветител (зелено)</data>
+      <data key="food"><![CDATA[Използва се в някои видове сирена (кашкавал), дъвки, сладолед, подправки с магданоз, зелени зеленчуци и плодове консервирани в течности.]]></data>
+      <data key="warn"><![CDATA[No adverse effects are known.]]></data>
+      <data key="info"><![CDATA[Derived from Chlorophyll, E140, by substitution of copper for the magnesium, which increases stability.]]></data>
+    </item>
+    <item key="E142" name="Green S" status="Непозволен (Забранен в Канада, Финландия, Япония, Норвегия, Швеция и САЩ.)" veg="Не">
+      <data key="function">оцветител (зелено)</data>
+      <data key="food"><![CDATA[Десерти, гранулирани сосове, сладолед, ментова подправка, бонбони, пакетирани галети, кейк-миксове и консервиран грах.]]></data>
+      <data key="warn"><![CDATA[Known to cause hyperactivity, asthma, uticaria, and insomnia. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A green synthetic coal tar dye.]]></data>
+    </item>
+    <item key="E143" name="Fast Green FCF (FD&amp;C Green 3)" status="" veg="">
+      <data key="function">оцветител (морско зелено)</data>
+      <data key="food"><![CDATA[Може да се използва при консервиран зелен грах и други зеленчуци, желета, подправки, риба, десерти и сухи хлебни смеси до 100мг/кг.]]></data>
+      <data key="warn"><![CDATA[Found to have Tumorigenic effects in experimental animals, as well as Mutagenic effects in both experimental animals and humans. It furthermore risks irritation of eyes, skin, digestive tract, and respiratory tract in its undiluted form.]]></data>
+      <data key="info"><![CDATA[A sea green triarylmethane food dye.]]></data>
+    </item>
+    <item key="E150a" name="Plain caramel" status="" veg="Не">
+      <data key="function">оцветител (варира от тъмно кафяво до черно)</data>
+      <data key="food"><![CDATA[Бира, ръжен хляб, кифли, шоколад, бисквити, бренди, шоколадово брашно за сладкарството, облицовки, декорация, пълнежи и глазури, десертни смеси, чипс, риба, понички, пастет/паста от ракообразни риби, замразени десерти, таблетки глюкоза,сладолед, конфитюри, млечни десерти, палачинки, марината, подправки и декорации, леки напитки, бонбони, оцет, тъмна бира, уиски, вино.]]></data>
+      <data key="warn"><![CDATA[HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[Made by controlled heat treatment of sugar beet or sugar cane (with or without the presence of alkalis or acids). The caramel group of colours are the most widely used group of colours, comprising some 98% of all colours used.]]></data>
+    </item>
+    <item key="E150b" name="Caustic sulphite caramel" status="" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Виж E150a.]]></data>
+      <data key="warn"><![CDATA[See E150a]]></data>
+      <data key="info"><![CDATA[See E150a]]></data>
+    </item>
+    <item key="E150c" name="Ammonia caramel" status="" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Виж E150a.]]></data>
+      <data key="warn"><![CDATA[See E150a]]></data>
+      <data key="info"><![CDATA[See E150a]]></data>
+    </item>
+    <item key="E150d" name="Sulphite ammonia caramel" status="" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Виж E150a.]]></data>
+      <data key="warn"><![CDATA[See E150a]]></data>
+      <data key="info"><![CDATA[See E150a]]></data>
+    </item>
+    <item key="E151" name="Black PN; Brilliant Black BN" status="Забранен в Дания, Австрия, Белгия, Канада, Финландия, Франция, Германия, Япония, Норвегия, Швейцария, Швеция и САЩ." veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Използва се за декорация и облицоване, рибна паста/пастет, млечни напитки, сладолед, горчица, червени плодови конфитюри, подправки, леки напитки, супи, бонбони.]]></data>
+      <data key="warn"><![CDATA[Not recommended for consumption by children. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A violet/black synthetic coal tar and azo dye.]]></data>
+    </item>
+    <item key="E153" name="Vegetable carbon" status="Забранен в САЩ. Все още се използва в Австралия." veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Концентрирани плодови сокове, конфитюри, желета и женско биле.]]></data>
+      <data key="warn"><![CDATA[Suspected as a carcinogenic agent. Vegetarians should note that it can be of animal origin.]]></data>
+      <data key="info"><![CDATA[It is normally derived from burnt vegetable matter.]]></data>
+    </item>
+    <item key="E154" name="Brown FK" status="Непозволен (Позволен във Великобритания.)" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Намира се предимно в пушената сьомга и скумрия, но и понякога в приготвената шунка и чипс.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A highly suspect brown mixture of six synthetic azo dyes together with other colourings and sodium chloride and/or sodium sulphate.]]></data>
+    </item>
+    <item key="E155" name="Brown HT" status="Забранен в Австралия, Австрия, Белгия, Дания, Франция, Германия, Норвегия, Швеция, Швейцария и САЩ." veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Шоколадови смеси за торта.]]></data>
+      <data key="warn"><![CDATA[Bad reactions in asthmatics and people allergic to aspirin, also known to induce skin sensitivity. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A brown synthetic 'coal tar' and azo dye found mainly in chocolate flavour cakes.]]></data>
+    </item>
+    <item key="E160a" name="Carotenes" status="" veg="Да">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Масло и леки мазнини, торти с вкус на кафе, млечни продукти и леки напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Orange or yellow plant pigments. Converts to vitamin A in the body.]]></data>
+    </item>
+    <item key="E160b" name="Annatto; Bixin; Norbixin" status="Опасен" veg="Да">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Сирене, сурово зеле, чипс, крем карамел, плодове, пълнежи от крем и глазури, сладолед, близалки, ликьори, маргарин, кюфтета, майонеза, пушена риба, леки напитки, пудинги, пайове, йогурт, ниско калорични пасти/пастет, олио за пържене.]]></data>
+      <data key="warn"><![CDATA[Known to cause urticaria (nettle rash), the HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[A yellow, peach or red vegetable dye obtained from the seed coat of the fruit of the Annatto tree, Bixa orellana.]]></data>
+    </item>
+    <item key="E160c" name="Paprika extract; Capsanthian; Capsorubin" status="Непозволен в Канада" veg="Да">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Използва се широко в храненето на птици за по-дълбок жълтък на яйцата (виж също E161b). Може да се открие в сиренето (кашкавал) и пилешки пайове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[An orange to red color extracted from the fruit pod and seeds of the red pepper, Capsicum annuum.]]></data>
+    </item>
+    <item key="E160d" name="Lycopene" status="Непозволен в Австралия" veg="Да">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Консервирани домати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A red colour extracted from tomatoes and pink grapefruit.]]></data>
+    </item>
+    <item key="E160e" name="Beta-apo-8' carotenal (C30)" status="" veg="Да">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Преработено сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Orange-yellow synthetic colour.]]></data>
+    </item>
+    <item key="E160f" name="Ethyl ester of beta-apo-8'-carotenic acid (C 30)" status="" veg="Да">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Сирене, кашкавал.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Synthesised version of a naturally-occuring orange colour.]]></data>
+    </item>
+    <item key="E161b" name="Lutein" status="" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Яйца.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Yellow-red colour extracted from plants. related to the carotenes (E160a). Can be added to chicken feed to enhance colour of egg yolk.]]></data>
+    </item>
+    <item key="E161g" name="Canthaxanthin" status="" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Използва се в продукти като пилешки или рибни хапки, бисквити и консерви, подправки/сосове и бонбони. Използва се за храна на снасящи кокошки за оцветяване на жълтъка в яйцата.]]></data>
+      <data key="warn"><![CDATA[Found to accumulate on the retina, having a detrimental effect on eyesight.]]></data>
+      <data key="info"><![CDATA[Yellow color possibly derived from animal sources (retinol).]]></data>
+    </item>
+    <item key="E162" name="Beetroot Red; Betanin" status="" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Бургер с бекон, десерти, сладолед, конфитюр, желета, женско биле, говежди бульон, подправки и бонбони.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[purple color derived from beets]]></data>
+    </item>
+    <item key="E163" name="Anthocyanins" status="Безопасен" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Йогурт от черни череши, млечни продукти, сладолед, желета, глазирани череши, марината, леки напитки, домати, моркови или зеленчукови супи и бонбони.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Red-blue colours that are obtained from a variety of plant sources, especially grapes and red cabbage.]]></data>
+    </item>
+    <item key="E170" name="Calcium carbonate" status="" veg="Да">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Бисквити, хляб, торти, сладолед, бонбони, витамини, таблетки, консервирани плодове и зеленчуци, и за де окисляване на вино. Изпозлва се също в пасти за зъби, бяла боя и почистващи прахове.]]></data>
+      <data key="warn"><![CDATA[Toxic at 'high doses'.]]></data>
+      <data key="info"><![CDATA[Chalk. Used as a white colour. As it is an alkali, it may be also used to regulate the pH of foods such as canned fruits and vegetables.]]></data>
+    </item>
+    <item key="E171" name="Titanium dioxide" status="" veg="">
+      <data key="function">оцветител (чисто бяло)</data>
+      <data key="food"><![CDATA[Таблетки и капсули, сирене Моцарела, крем и подправки от хрян, лимонов крем, паста за зъби, бяла боя, бонбони.]]></data>
+      <data key="warn"><![CDATA[Safe but pollutes waterways.]]></data>
+      <data key="info"><![CDATA[White, mineral-based colour.]]></data>
+    </item>
+    <item key="E172" name="Iron oxides and hydroxides" status="Забранен в Германия." veg="">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Торти и смес за десерти, пастет/паста от месо, сьомга и паста от скариди.]]></data>
+      <data key="warn"><![CDATA[Toxic at 'high doses'.]]></data>
+      <data key="info"><![CDATA[Naturally occurring pigments of iron, which can be yellow, red, orange, brown or black in colour.]]></data>
+    </item>
+    <item key="E173" name="Aluminium" status="Непозволен" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Използва се само външна декорация.]]></data>
+      <data key="warn"><![CDATA[Potentially toxic.]]></data>
+      <data key="info"><![CDATA[Silvery-white metal smelted from the ore, Bauxite.]]></data>
+    </item>
+    <item key="E174" name="Silver" status="Непозволен" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Използва се само външна декорация.]]></data>
+      <data key="warn"><![CDATA[Long, regular consumption can lead to kidney damage and a blue-grey discoloration of the eyes, nose and nasal septum, throat and skin.]]></data>
+      <data key="info"><![CDATA[Silver coloured surface coating.]]></data>
+    </item>
+    <item key="E175" name="Gold" status="Непозволен в Австралия." veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Използва се само външна декорация.]]></data>
+      <data key="warn"><![CDATA[Harmless, but best avoided.]]></data>
+      <data key="info"><![CDATA[Gold coloured surface coating.]]></data>
+    </item>
+    <item key="E180" name="Pigment Rubine; Lithol Rubine BK" status="Непозволен" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Външна част на кашкавал.]]></data>
+      <data key="warn"><![CDATA[People who suffer from asthma, rhinitis or the skin disease urticaria may find their symptoms become worse following consumption of azo dyes.]]></data>
+      <data key="info"><![CDATA[Red synthetic colour.]]></data>
+    </item>
+    <item key="E181" name="Tannin" status="" veg="Не">
+      <data key="function">оцветител</data>
+      <data key="food"><![CDATA[Рафинирана добавка в алкохола.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from the nutgalls and twigs of oak trees; occurs naturally in tea.]]></data>
+    </item>
+    <item key="E200" name="Sorbic acid" status="Забранен в Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Напитки, млечни продукти, риба, морска храна, храни с много мазнин, сладкарски изделия, печени храни.]]></data>
+      <data key="warn"><![CDATA[A possible skin irritant.]]></data>
+      <data key="info"><![CDATA[Either obtained from berries or synthesised from ketene.]]></data>
+    </item>
+    <item key="E201" name="Sodium sorbate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E202" name="Potassium sorbate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Сладолед, йогурт, сирене (кашкавал), вино.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent the growth of microbes on food. Related to Sorbic acid (E200). Effective in a wide range of foods. Does not have any flavour or taste.]]></data>
+    </item>
+    <item key="E203" name="Calcium sorbate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Сладолед, йогурт, плодов сок.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent the growth of microbes on food. Related to Sorbic acid (E200). Effective in a wide range of foods. Does not have any flavour or taste.]]></data>
+    </item>
+    <item key="E210" name="Benzoic acid" status="Непозволен" veg="Да">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, йогурт, леки напитки.]]></data>
+      <data key="warn"><![CDATA[Can cause asthma, hyperactivity in children. The HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes in acidic environments.]]></data>
+    </item>
+    <item key="E211" name="Sodium benzoate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, йогурт, леки напитки.]]></data>
+      <data key="warn"><![CDATA[Known to causes nettle rash and aggravate asthma. HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes in acidic environments.]]></data>
+    </item>
+    <item key="E212" name="Potassium benzoate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Плодов сок (концентрати) и маргарин.]]></data>
+      <data key="warn"><![CDATA[People with a history of allergies may show allergic reactions.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes in acidic environments.]]></data>
+    </item>
+    <item key="E213" name="Calcium benzoate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Сок от ананас (концентрати).]]></data>
+      <data key="warn"><![CDATA[See E212.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E214" name="Ethyl p-hydroxybenzoate" status="Опасен (Непозволен във Франция и Австралия.)" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, консервирани храни.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E215" name="Sodium ethyl p-hydroxybenzoate" status="Непозволен в Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Плодови сокове.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E216" name="Propyl p-hydroxybenzoate" status="Забранен" veg="">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, подправки, крем за салата.]]></data>
+      <data key="warn"><![CDATA[Possible contact allergen.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E217" name="Sodium propyl p-hydroxybenzoate" status="Забранен (Непозволен в Австралия.)" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Плодов сок.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E218" name="Methyl p-hydroxybenzoate" status="Не се допуска във Франция и Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, консервирани храни.]]></data>
+      <data key="warn"><![CDATA[Allergic reactions possible, mainly affecting the skin.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E219" name="Sodium methyl p-hydroxybenzoate" status="Не се допуска във Франция и Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, консервирани храни.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes, especially fungi.]]></data>
+    </item>
+    <item key="E220" name="Sulphur dioxide" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, вина, изсушени зеленчуци, подправки.]]></data>
+      <data key="warn"><![CDATA[Known to provoke asthma attacks, difficult to metabolize, destroys vitamin B1. The HACSG recommends to avoid it.]]></data>
+      <data key="info"><![CDATA[One of the earliest preservatives known to humans. Sulfur dioxide has been used for centuries to prevent the growth of bacteria in beers and wines. It can be used in many situations to prevent microbial growth.]]></data>
+    </item>
+    <item key="E221" name="Sodium sulphite" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Месо, бира, вино.]]></data>
+      <data key="warn"><![CDATA[Dangerous additives for health. See 220.]]></data>
+      <data key="info"><![CDATA[Similar in action to sulfur dioxide. Sodium sulfite is regularly used in brewing and wine making to sterilise equipment. In foods it prevents microbial growth (especially salmonella). It also prevents the discolouration of meat, peeled apples and potatoes.]]></data>
+    </item>
+    <item key="E222" name="Sodium hydrogen sulphite" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, вино, замразени нарязани картофи.]]></data>
+      <data key="warn"><![CDATA[Dangerous additives for health. See 220.]]></data>
+      <data key="info"><![CDATA[Used to prevent the growth of bacteria in beers and wines. It can be used in many situations to prevent microbial growth.]]></data>
+    </item>
+    <item key="E223" name="Sodium metabisuiphite" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок, изсушени картофи.]]></data>
+      <data key="warn"><![CDATA[Dangerous additives for health. See 220.]]></data>
+      <data key="info"><![CDATA[Prevents microbial growth.]]></data>
+    </item>
+    <item key="E224" name="Potassium metabisulphite" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, вино, замразени нарязани картофи.]]></data>
+      <data key="warn"><![CDATA[Dangerous additives for health. See 220.]]></data>
+      <data key="info"><![CDATA[Prevents microbial growth, especially used in home brewing and wine making.]]></data>
+    </item>
+    <item key="E226" name="Calcium sulphite" status="Не се допуска в Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, плодов сок.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used in brewing and wine making to sterilise equipment and prevent microbial growth.]]></data>
+    </item>
+    <item key="E227" name="Calcium hydrogen sulphite" status="Не се допуска в Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бира, конфитюр.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used in brewing and wine making to sterilise equipment and prevent microbial growth.]]></data>
+    </item>
+    <item key="E228" name="Potassium hydrogen sulphite" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хамбургери, подправки, бира, изсушени картофи.]]></data>
+      <data key="warn"><![CDATA[Dangerous additives for health. See 220.]]></data>
+      <data key="info"><![CDATA[Slows the growth of food-spoiling micro-organisms.]]></data>
+    </item>
+    <item key="E230" name="Biphenyl; diphenyl" status="Опасен (Не се допуска в Австралия.)" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Плодове.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of moulds such as Penicillium sp. on the surface of fruits.]]></data>
+    </item>
+    <item key="E231" name="Orthophenyl phenol" status="Опасен (Не се допуска в Австралия.)" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Портокали, лимони, зелен лимон.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes. Applied to the surface of fruits or their wrappings.]]></data>
+    </item>
+    <item key="E232" name="Sodium orthophenyl phenol" status="Опасен" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Портокали, лимони, зелен лимон.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries. See 231.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes. Applied to the surface of fruits or their wrappings.]]></data>
+    </item>
+    <item key="E233" name="Thiabendazole" status="Не се допуска в Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Цитрусови плодове, ябълки, круши, картофи, банани, гъби, месо, мляко.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E234" name="Nisin" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E235" name="Natamycin" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[Can cause nausea, vomiting, anorexia, diarrhea and skin irritation.]]></data>
+      <data key="info"><![CDATA[Antimicrobial that prevents the growth of fungi in cheeses.]]></data>
+    </item>
+    <item key="E236" name="Formic acid" status="Не се допуска в Австралия." veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E237" name="Sodium formate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E238" name="Calcium formate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E239" name="Hexamethylene tetramine" status="Опасен (Не се допуска в Австралия.)" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Пушена риба.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E242" name="Dimethyl dicarbonate" status="" veg="">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Плодов сок, бира, вино.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Prevents the growth of microbes.]]></data>
+    </item>
+    <item key="E249" name="Potassium nitrite" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Приготвено месо.]]></data>
+      <data key="warn"><![CDATA[Dangerous additives for health. May cause dizzynesss, headaches, difficult breathing,potential carcinogen.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of the botulism bacteria (Clostridium botulinum) in meat.]]></data>
+    </item>
+    <item key="E250" name="Sodium nitrite" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Готвено месо.]]></data>
+      <data key="warn"><![CDATA[Potentially carcinogenic, restricted in many countries. The HACSG recommends to avoid it (see 249).]]></data>
+      <data key="info"><![CDATA[Prevents the growth of the botulism bacteria (Clostridium botulinum) in meat.]]></data>
+    </item>
+    <item key="E251" name="Sodium nitrate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Преработено месо, сирене (кашкавал), пица.]]></data>
+      <data key="warn"><![CDATA[Dangerous for health.]]></data>
+      <data key="info"><![CDATA[Reduces the growth of toxic micro-organisms in meat.]]></data>
+    </item>
+    <item key="E252" name="Potassium nitrate" status="" veg="Да">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Месо.]]></data>
+      <data key="warn"><![CDATA[May provoke hyperactivity and other adverse reactions; potentially carcinogenic; restricted in many countries (see 249).]]></data>
+      <data key="info"><![CDATA[Prevents the growth of the bacteria that causes botulism (Clostridium botulinum).]]></data>
+    </item>
+    <item key="E260" name="Acetic acid" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Марината, хляб, крем за салата, преработено сирена (кашкавал), бира.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Reduces the growth of bacteria and can also be used to regulate the acidity of foods.]]></data>
+    </item>
+    <item key="E261" name="Potassium acetate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Подправки, марината, печени продукти.]]></data>
+      <data key="warn"><![CDATA[Should be avoided by people with impaired kidney function.]]></data>
+      <data key="info"><![CDATA[Food acid.]]></data>
+    </item>
+    <item key="E262" name="Sodium acetate; Sodium diacetate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хляб, чипс.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Food acid, регулатор на киселинността.]]></data>
+    </item>
+    <item key="E263" name="Calcium acetate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хляб.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Calcium salt of acetic acid. Reduces the growth of fungi in bread.]]></data>
+    </item>
+    <item key="E264" name="Ammonium acetate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Can cause nausea and vomiting.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E270" name="Lactic acid" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Бонбони, декорации, леки напитки (понякога и в бира), сладкарски изделия и храни за деца под 6 месеца.]]></data>
+      <data key="warn"><![CDATA[Difficult for babies to metabolize.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E280" name="Propionic acid" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хляб, йогурт, сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[Dangerous for health.]]></data>
+      <data key="info"><![CDATA[Naturally-occuring fatty acid. Reduces the growth of fungi.]]></data>
+    </item>
+    <item key="E281" name="Sodium propionate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хляб, сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[Linked to migraines.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of bacteria in breads.]]></data>
+    </item>
+    <item key="E282" name="Calcium propionate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хляб, сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[Linked to migraines.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of bacteria in breads.]]></data>
+    </item>
+    <item key="E283" name="Potassium propionate" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хляб, сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[Linked to migraines.]]></data>
+      <data key="info"><![CDATA[Prevents the growth of bacteria in breads.]]></data>
+    </item>
+    <item key="E284" name="Boric acid" status="" veg="">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хайвер.]]></data>
+      <data key="warn"><![CDATA[Ingestion is harmful and may be fatal. Harmful by inhalation. An irritant. May cause congenital malformation in the foetus. Laboratory tests with animals suggest this material may cause reproductive disorders.]]></data>
+      <data key="info"><![CDATA[Used on the surface to prevent spoilage.]]></data>
+    </item>
+    <item key="E285" name="Sodium tetraborate; borax" status="" veg="">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Хайвер.]]></data>
+      <data key="warn"><![CDATA[Possible risk that this may cause reproductive disorders, based on tests with laboratory animals. Eye and skin irritant. Harmful by ingestion. May be harmful by inhalation.]]></data>
+      <data key="info"><![CDATA[Used on the surface to prevent spoilage.]]></data>
+    </item>
+    <item key="E290" name="Carbon dioxide" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Вино, леки напитки, сладкарски изделия.]]></data>
+      <data key="warn"><![CDATA[May increase the effect of alcohol.]]></data>
+      <data key="info"><![CDATA[Gas. Propellant, coolant, derived from lime manufacture.]]></data>
+    </item>
+    <item key="E296" name="Malic acid" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Газирани напитки, замразени нарязани картофи, преработен грах, консериврани супи.]]></data>
+      <data key="warn"><![CDATA[Infants and young children should avoid it.]]></data>
+      <data key="info"><![CDATA[Derived from fruit or synthetic.]]></data>
+    </item>
+    <item key="E297" name="Fumaric acid" status="" veg="Не">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Йогурт, конфитюр.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Naturally occuring compound. Derived from plants of the genus Fumaria.]]></data>
+    </item>
+    <item key="E300" name="Ascorbic acid" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Бира, нарязани плодове, конфитюр, изсушени картофи.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent cut and pulped foods from going brown by preventing the oxidation reactions that cause the discolouration. Can be added to foods, such as potato, to replace vitamin C lost in processing.]]></data>
+    </item>
+    <item key="E301" name="Sodium ascorbate" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Преработени меса, наденици, храни за деца.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent oxidation reactions that can discolour foods. Sodium salt of vitamin C.]]></data>
+    </item>
+    <item key="E302" name="Calcium ascorbate" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Преработени меса, супи.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent oxidation reactions that can discolour foods. Vitamin C, may increase the formation of calcium oxalate stones.]]></data>
+    </item>
+    <item key="E303" name="Potassium ascorbate" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Potassium salt of vitamin C.]]></data>
+    </item>
+    <item key="E304" name="Fatty acid esters of ascorbic acid" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Мазнини и готварско олио.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent oxidation reactions that can discolour foods.]]></data>
+    </item>
+    <item key="E306" name="Tocopherols" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Изобилства в доста храни, месо, мляко, жълтък, олио от царевица или памук, зърнени закуски.]]></data>
+      <data key="warn"><![CDATA[May come from Genetically Modified sources.]]></data>
+      <data key="info"><![CDATA[Vitamin E, known as the anti-sterility vitamin. Reduces oxidation of fatty acids and some vitamins. Commercially it can be extracted, by distillation in a vacuum, from cottonseed, maize, rice germ, soya been oil, wheat germ, or green leaves.]]></data>
+    </item>
+    <item key="E307" name="Alpha-tocopherol" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Наденици.]]></data>
+      <data key="warn"><![CDATA[May come from Genetically Modified sources.]]></data>
+      <data key="info"><![CDATA[Vitamin E, known as the anti-sterility vitamin. Reduces oxidation of fatty acids and some vitamins. Commercially it can be extracted, by distillation in a vacuum, from cottonseed, maize, rice germ, soya been oil, wheat germ, or green leaves.]]></data>
+    </item>
+    <item key="E308" name="Gamma-tocopherol" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Изобилства в доста храни, месо, мляко, жълтък, олио от царевица или памук, зърнени закуски.]]></data>
+      <data key="warn"><![CDATA[May come from Genetically Modified sources.]]></data>
+      <data key="info"><![CDATA[Vitamin E, known as the anti-sterility vitamin. E308 is an антиоксидант for polyunsaturated fatty acids as well as a vitamin.]]></data>
+    </item>
+    <item key="E309" name="Delta-tocopherol" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Изобилства в доста храни, месо, мляко, жълтък, олио от царевица или памук, зърнени закуски.]]></data>
+      <data key="warn"><![CDATA[May come from Genetically Modified sources.]]></data>
+      <data key="info"><![CDATA[Vitamin E, known as the anti-sterility vitamin. E309 is an антиоксидант for polyunsaturated fatty acids as well as a vitamin. Reported to be the most effective антиоксидант of all the tocopherols in non-biological matter. It also protects other nutrients, such as Vitamin A, from oxidation but is largely destroyed by freezing.]]></data>
+    </item>
+    <item key="E310" name="Propyl gallate" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Олио, маргарин, масло.]]></data>
+      <data key="warn"><![CDATA[May cause gastric or skin irritation, blood disorder, methemoglobinemia.]]></data>
+      <data key="info"><![CDATA[Helps to prevent oxidation reactions that can cause oils and fats to become spoiled.]]></data>
+    </item>
+    <item key="E311" name="Octyl gallate" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Олио, маргарин, масло.]]></data>
+      <data key="warn"><![CDATA[See E310.]]></data>
+      <data key="info"><![CDATA[See E310.]]></data>
+    </item>
+    <item key="E312" name="Dodecyl gallate" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Виж E310.]]></data>
+      <data key="warn"><![CDATA[See E310.]]></data>
+      <data key="info"><![CDATA[See E310.]]></data>
+    </item>
+    <item key="E315" name="Erythorbic acid" status="" veg="">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Варене на бира.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from ascorbic acid (vitamin C).]]></data>
+    </item>
+    <item key="E316" name="Sodium erythorbate" status="" veg="">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Олио, маргарин, масло, сирене (кашкавал), бисквити.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent oxidations that cause oils and fats to become rancid.]]></data>
+    </item>
+    <item key="E317" name="Erythorbic acid" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Produced from sucrose.]]></data>
+    </item>
+    <item key="E318" name="Sodium erythorbate" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Produced from E317.]]></data>
+    </item>
+    <item key="E319" name="Tert-ButylHydroQuinone (TBHQ)" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Мазнини, олио, маргарин.]]></data>
+      <data key="warn"><![CDATA[May cause nausea, vomiting, delirium. A dose of 5g is considered fatal.]]></data>
+      <data key="info"><![CDATA[Petroleum based.]]></data>
+    </item>
+    <item key="E320" name="Butylated hydroxyanisole (BHA)" status="Забранен в Япония." veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Използван в олио, дъвки, мазни храни, маргарин, ядки, полиетиленови опаковки за храна.]]></data>
+      <data key="warn"><![CDATA[Not permitted in infant foods, allergic reaction, may trigger hyperactivity, concerns over carcinogenicity and estrogenic effects.]]></data>
+      <data key="info"><![CDATA[Petroleum derivative, retards spoilage due to oxidation; helps to prevent oxidations that cause oils and fats to become rancid.]]></data>
+    </item>
+    <item key="E321" name="Butylated hydroxytoluene (BHT)" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Олио, маргарин, сирене (кашкавал), чипс.]]></data>
+      <data key="warn"><![CDATA[See E320.]]></data>
+      <data key="info"><![CDATA[Petroleum derivative; see E320.]]></data>
+    </item>
+    <item key="E322" name="Lecithins" status="Безопасен" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Шоколад, крем за салата, майонезе.]]></data>
+      <data key="warn"><![CDATA[Non toxic but overdose can upset the stomach, kill the appetite and cause profuse sweating.]]></data>
+      <data key="info"><![CDATA[Obtained from soya beans, maize, peanuts and egg yolk. As an емулгатор it helps fats and oils to mix. This prevents their separation into separate parts in foods such as chocolate, salad creams and mayonnaise.]]></data>
+    </item>
+    <item key="E325" name="Sodium lactate" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Млечни продукти.]]></data>
+      <data key="warn"><![CDATA[Young children with lactose intolerance may show adverse reactions.]]></data>
+      <data key="info"><![CDATA[Derived from milk (lactic acid). Helps to increase the anti-oxidant activity of other substances.]]></data>
+    </item>
+    <item key="E326" name="Potassium lactate" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюр, сладолед.]]></data>
+      <data key="warn"><![CDATA[See E325.]]></data>
+      <data key="info"><![CDATA[Helps to increase the anti-oxidant effects of other substances. Can also be used to regulate pH in jams and jellies. See E325.]]></data>
+    </item>
+    <item key="E327" name="Calcium lactate" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюр, консерирани плодове.]]></data>
+      <data key="warn"><![CDATA[See E325.]]></data>
+      <data key="info"><![CDATA[Helps to increase the anti-oxidant effects of other substances. Helps to reduce the reactions that can discolour fruits. May also be used to regulate pH in jams and jellies. See E325.]]></data>
+    </item>
+    <item key="E328" name="Ammonium lactate" status="" veg="Да">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Виж E325.]]></data>
+      <data key="info"><![CDATA[Виж E325.]]></data>
+    </item>
+    <item key="E329" name="Magnesium lactate" status="" veg="Да">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Виж E325.]]></data>
+      <data key="info"><![CDATA[Виж E325.]]></data>
+    </item>
+    <item key="E330" name="Citric acid" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Бисквити, консервирана риба, сирене (кашкавал) също и в преработено, формули за малки деца, леки напитки, ферментирали месни продукти, супи, кейк миксове, ръжен хляб.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Naturally-occuring in citrus fruits like lemons. Helps to increase the anti-oxidant effects of other substances. Helps to reduce the reactions that can discolour fruits. May also be used to regulate pH in jams and jellies.]]></data>
+    </item>
+    <item key="E331" name="Sodium citrates" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюр, консервирани плодове, бисквити, алкохолни напитки, сирене (кашкавал), супа на прах.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to increase the anti-oxidant effects of other substances. Reduces the reactions that can discolour fruits. May also be used to regulate pH in jams and jellies. Assists in retaining the 'fizz' of carbonated drinks.]]></data>
+    </item>
+    <item key="E332" name="Potassium citrates" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Торти, сирена (кашкавал), газирани напитки, конфитюр, бисквити.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Reduces the reactions that can discolour fruits. May also be used to regulate pH.]]></data>
+    </item>
+    <item key="E333" name="Calcium citrates" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Газирани напитки, сирене (кашкавал), консериврани плодове, вино.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to regulate pH. Added to flour to give more consistent baking of bread. Reduces reaction that discolour fruits.]]></data>
+    </item>
+    <item key="E334" name="Tartaric acid" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюри, газирани напитки, консервирани плодове, торти.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Acid that occurs naturally in many fruits. Commercially obtained from grapes during the wine-making process. Reduces the reactions that cause fruits to discolour.]]></data>
+    </item>
+    <item key="E335" name="Sodium tartrates" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюри, газирани напитки, консервирани плодове, торти.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Acid that occurs naturally in many fruits. Commercially obtained from grapes during the wine-making process. Reduces the reactions that cause fruits to discolour.]]></data>
+    </item>
+    <item key="E336" name="Potassium tartrates" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Вино, в производството на хляб, плодови пайове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Commercially obtained from grapes during the wine-making process. Used to regulate the pH of wine and also to help flour rise consistently.]]></data>
+    </item>
+    <item key="E337" name="Sodium potassium tartrate" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор; стабилизатор</data>
+      <data key="food"><![CDATA[Маргарин, преработени месо, сирене (кашкавал), сладкарски изделия.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to increase the effcts of other antioxidants. Regulates pH in cakes and jams.]]></data>
+    </item>
+    <item key="E338" name="Phosphoric acid" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор; flavour</data>
+      <data key="food"><![CDATA[Бира, сладкарски изделия, наденици, зеленчуково олио.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to increase the effcts of other antioxidants. Regulates pH in cakes and sweets. Used as a flavour to carbonated drinks.]]></data>
+    </item>
+    <item key="E339" name="Sodium phosphates" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор; стабилизатор</data>
+      <data key="food"><![CDATA[Наденици, сирене (кашкавал), свински пайове.]]></data>
+      <data key="warn"><![CDATA[High intakes may upset the calcium/phosphorus equilibrium.]]></data>
+      <data key="info"><![CDATA[Helps to improve the texture of foods and also increase the effects of other antioxidants.]]></data>
+    </item>
+    <item key="E340" name="Potassium phosphates" status="" veg="Не">
+      <data key="function">антиоксидант; pH регулатор</data>
+      <data key="food"><![CDATA[Крем карамел на прах, желе миксове, сухо мляко, готвени меса, супи.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Range of phosphate salts of potassium. Can help to increase the effect of other antioxidants.]]></data>
+    </item>
+    <item key="E341" name="Calcium phosphates" status="" veg="Да">
+      <data key="function">антиоксидант; firming agent</data>
+      <data key="food"><![CDATA[Напитки със сухо мляко, кейк миксове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to improve the action of other antioxidants. Added to baking flour to improve the consistency and texture of bread.]]></data>
+    </item>
+    <item key="E343" name="Magnesium phosphates" status="" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Зеленчукови протеинови напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Used in beverages to prevent oxidation reactions that will spoil the drink.]]></data>
+    </item>
+    <item key="E350" name="Sodium malates" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюри.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to maintain the pH in foods containing processed fruits such as jams and marmalade.]]></data>
+    </item>
+    <item key="E351" name="Potassium malate" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюри.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to maintain the pH in foods containing processed fruits such as jams and marmalade.]]></data>
+    </item>
+    <item key="E352" name="Calcium malate" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Конфитюри.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to maintain the pH in foods containing processed fruits such as jams and marmalade.]]></data>
+    </item>
+    <item key="E353" name="Metatartaric acid" status="" veg="Не">
+      <data key="function">sequestrant</data>
+      <data key="food"><![CDATA[Вино.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Used in the production of wine to remove suspended particles and make the wine clear.]]></data>
+    </item>
+    <item key="E354" name="Calcium tartrate" status="Безопасен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Печени продукти.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Calcium salt of tartaric acid. Prevents oxidation.]]></data>
+    </item>
+    <item key="E355" name="Adipic acid" status="" veg="Не">
+      <data key="function">acidulant; pH регулатор</data>
+      <data key="food"><![CDATA[Напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to give fruit drinks the characteristic sharp flavour.]]></data>
+    </item>
+    <item key="E356" name="Sodium adipate" status="" veg="">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Глазури за торти, десертни миксове на прах.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to maintin the correct level of acidity for the food.]]></data>
+    </item>
+    <item key="E357" name="Potassium adipate" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Пълнежи за торти и глазури, десертни миксове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to maintain the correct level of acidity for the food.]]></data>
+    </item>
+    <item key="E363" name="Succinic acid" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Десерти и супи.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Naturally occuring weak organic acid.]]></data>
+    </item>
+    <item key="E370" name="Heptonolactone" status="Не се допуска в Австралия." veg="Не">
+      <data key="function">регулатор на киселинността</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E375" name="Niacin" status="" veg="Не">
+      <data key="function">colour retention agent</data>
+      <data key="food"><![CDATA[В природата се среща в боб, грах и други бобови растения, мляко, яйца, месо, риба и птици.]]></data>
+      <data key="warn"><![CDATA[At doses in excess of 1,000 mg per day can cause liver damage, diabetes, gastritis, eye damage, and elevated blood levels of uric acid (which can cause gout); at amounts as low as 50-100 mg may cause flushing (harmless but painful), headache, and stomach-ache especially if taken on an empty stomach.]]></data>
+      <data key="info"><![CDATA[Vitamin B3.]]></data>
+    </item>
+    <item key="E380" name="Triammonium citrate" status="" veg="Не">
+      <data key="function">pH регулатор; емулгатор</data>
+      <data key="food"><![CDATA[Паста/пастет от сирене (кашкавал).]]></data>
+      <data key="warn"><![CDATA[May interfere with liver and pancreas function.]]></data>
+      <data key="info"><![CDATA[Helps to keep maintain the correct consistency of cheese spreads.]]></data>
+    </item>
+    <item key="E381" name="Ammonium ferric citrates" status="" veg="Не">
+      <data key="function">регулатор на киселинността</data>
+      <data key="food"><![CDATA[Използван като диетична добавка в зърнените закуски и диетични формули.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Essential mineral, food acid derived from citric acid.]]></data>
+    </item>
+    <item key="E385" name="Calcium disodium EDTA" status="" veg="Не">
+      <data key="function">sequestrant</data>
+      <data key="food"><![CDATA[Консервирана риба.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Chelating agents attract ions such as copper, zinc and iron. They trap the ions and prevent them from reacting which could make the food go rancid.]]></data>
+    </item>
+    <item key="E400" name="Alginic acid" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Леки напитки, йогурт, конфитюр.]]></data>
+      <data key="warn"><![CDATA[Large quantities can inhibit the absorption of some nutrients.]]></data>
+      <data key="info"><![CDATA[Obtained from brown sea weed.]]></data>
+    </item>
+    <item key="E401" name="Sodium alginate" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сиропи, наденица, сладолед, плодови напитки, пълнежи за плодов пай.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from brown sea weed.]]></data>
+    </item>
+    <item key="E402" name="Potassium alginate" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сиропи, наденица, сладолед, плодови напитки, пълнежи за плодов пай.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from brown sea weed. More often, sodium alginate (E401) is used in foods.]]></data>
+    </item>
+    <item key="E403" name="Ammonium alginate" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Кристализирана захар.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from brown sea weed.]]></data>
+    </item>
+    <item key="E404" name="Calcium alginate" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Йогурт, крем сирене, консервирани зеленчуци, пастеризиран крем.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from brown sea weed.]]></data>
+    </item>
+    <item key="E405" name="Propane-1,2-diol alginate" status="Не се допуска във Франция." veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сладолед, подправки за салати, плодови напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from brown sea weed.]]></data>
+    </item>
+    <item key="E406" name="Agar" status="" veg="Не">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Сладолед, напитки, торти, йогурт.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Polysaccharide obtained from certain varieties of sea weed.]]></data>
+    </item>
+    <item key="E407" name="Carrageenan" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Млечни напитки, сладолед, бисквити, конфитюр, обработени меса, пасти.]]></data>
+      <data key="warn"><![CDATA[Linked to toxic hazards, including ulcers and cancer.]]></data>
+      <data key="info"><![CDATA[Mixture of polysaccharides produced from a variety of red sea weeds.]]></data>
+    </item>
+    <item key="E407a" name="Processed eucheuma seaweed" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Млечни напитки, сладолед, бисквити, конфитюр, обработени меса, печени сладки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Mixture of polysaccharides produced from a variety of sea weeds.]]></data>
+    </item>
+    <item key="E410" name="Locust bean gum; carob gum" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Консервирани зеленчуци, обработен крем, торти, пълнежи за плодов пай, крем за салата.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Polysaccharide obtained from the seeds of the Carob tree. Frequently used as a caffeine-free chocolate substitute; may lower cholesterol levels.]]></data>
+    </item>
+    <item key="E412" name="Guar gum" status="" veg="Не">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Супи на прах, сладолед, плодови напитки, йогурт. сурово зеле, сок за печено месо.]]></data>
+      <data key="warn"><![CDATA[Can cause nausea, flatulence and cramps.]]></data>
+      <data key="info"><![CDATA[Polysaccharide obtained from the seeds of the Cluster bean plant. Can be used in foods for diabetics to assist in the control of blood sugar levels.]]></data>
+    </item>
+    <item key="E413" name="Tragacanth" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Обработено сирене (кашкавал), сладкарски изделия, подправки за салата, конфитюр, йогурт.]]></data>
+      <data key="warn"><![CDATA[Possible contact allergy.]]></data>
+      <data key="info"><![CDATA[A naturally occuring polysaccharide that is collected from the stems of the tragacanth bush.]]></data>
+    </item>
+    <item key="E414" name="Acacia gum; gum arabic" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Бира, сладки, консервирани зеленчуци.]]></data>
+      <data key="warn"><![CDATA[Possible allergen, soothes irritations of mucous membranes.]]></data>
+      <data key="info"><![CDATA[A naturally occuring polysaccharide that is collected from the stems of the acacia bush. Helps to prevent the formation of large sugar crystals in sweets and also retains the froth on beer.]]></data>
+    </item>
+    <item key="E415" name="Xanthan gum" status="" veg="">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Подправки за салата, млечни продукти, сурово зеле, кейк миксове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Obtained by the fermentation of sugar by the bacteria Xanthomonas campestris.]]></data>
+    </item>
+    <item key="E416" name="Karaya gum" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сок за печено месо, сладкарски изделия, сладолед.]]></data>
+      <data key="warn"><![CDATA[Possible allergen.]]></data>
+      <data key="info"><![CDATA[A naturally occuring polysaccharide obtained from the stems of the karaya tree. Major producing regions are North and Central India.]]></data>
+    </item>
+    <item key="E417" name="Tara gum" status="" veg="Не">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Polysaccharide which is a good стабилизатор for use in dairy products. Derived from the Tara bush, Caesalpinia Spinosa is indigenous to Ecuador and Peru and is grown in Kenya.]]></data>
+    </item>
+    <item key="E418" name="Gellan gum" status="" veg="">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Желе, сладкарски изделия, нискокалорични напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A polysaccharide obtained by fermentation using the bacteria Sphingomonas elodea.]]></data>
+    </item>
+    <item key="E420" name="Sorbitol; Sorbitol syrup" status="" veg="Не">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Сладки, сладолед, торти, шоколад, някои изкуствено подсладени напитки.]]></data>
+      <data key="warn"><![CDATA[Not permitted in foods for infants and young children, can cause gastric disturbance.]]></data>
+      <data key="info"><![CDATA[Sorbitol syrup is produced commercially from glucose. It can help to reduce the formation of sugar crystals in food and maintain the texture of chewy sweets.]]></data>
+    </item>
+    <item key="E421" name="Mannitol" status="" veg="Не">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Сладки, сладолед.]]></data>
+      <data key="warn"><![CDATA[Possible allergen, not permitted in infant foods, may cause nausea, vomiting.]]></data>
+      <data key="info"><![CDATA[Carbohydrate prepared from the sea weed Manna ash or commercially from glucose.]]></data>
+    </item>
+    <item key="E422" name="Glycerol" status="" veg="Да">
+      <data key="function">подсладител; humectant</data>
+      <data key="food"><![CDATA[Сладкарски изделия, напитки, десерти.]]></data>
+      <data key="warn"><![CDATA[Large quantities can cause headaches, thirst, nausea and high blood sugar levels.]]></data>
+      <data key="info"><![CDATA[Glycerol is a humectant. That means it is added to foods like fruit gums to prevent them from drying out. It can also be used to dissolve other flavours before adding them to the food.]]></data>
+    </item>
+    <item key="E425" name="Konjac" status="Непозволен" veg="">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E430" name="" status="" veg="Да">
+      <data key="function">
+      </data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E431" name="Polyoxyethylene (40) stearate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Хляб]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Used to give bread a soft texture.]]></data>
+    </item>
+    <item key="E432" name="Polysorbate 20" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Торти, десерти, млечни заместители.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Emulsifiers help to prevent fats from separating out of solutions. This property is useful in artificial milks such as coffee creamers.]]></data>
+    </item>
+    <item key="E433" name="Polysorbate 80" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Хляб, печени сладки, сладолед.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Complex mixture of esters of sorbitol.]]></data>
+    </item>
+    <item key="E434" name="Polysorbate 40" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сладкарски изделия, сладолед.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Complex mixture of esters of sorbitol.]]></data>
+    </item>
+    <item key="E435" name="Polysorbate 60" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сладкарски изделия, сладолед, хляб, сладки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Complex mixture of esters of sorbitol.]]></data>
+    </item>
+    <item key="E436" name="Polysorbate 65" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Хляб, печени сладки, замразени десерти.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Complex mixture of esters of sorbitol.]]></data>
+    </item>
+    <item key="E440" name="Pectins" status="" veg="">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Конфитюри, йогурт, сладолед, диетични напитки.]]></data>
+      <data key="warn"><![CDATA[E440a - large quantities may cause temporary flatulence or intestinal discomfort.]]></data>
+      <data key="info"><![CDATA[Polysaccharide that is naturally found as a component of plant cell walls.]]></data>
+    </item>
+    <item key="E441" name="Gelatine" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Possible allergen. Asthmatics and people allergic to sulphites beware!]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E442" name="Ammonium phosphatides" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Шоколад.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Synthetically-produced стабилизатор.]]></data>
+    </item>
+    <item key="E444" name="Sucrose acetate isobutyrate" status="" veg="">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Безалкохолни, ароматни и мътни напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from cane sugar.]]></data>
+    </item>
+    <item key="E445" name="Glycerol esters of wood rosins" status="" veg="">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E450" name="Diphosphates" status="" veg="Не">
+      <data key="function">pH регулатор; емулгатор</data>
+      <data key="food"><![CDATA[Торти, сирене (кашкавал), доматено пюре.]]></data>
+      <data key="warn"><![CDATA[High intakes may upset the calcium/phosphate equilibrium.]]></data>
+      <data key="info"><![CDATA[Can also be used to improve the colour of foods and as a raising agent in baking.]]></data>
+    </item>
+    <item key="E451" name="Triphosphates" status="" veg="Не">
+      <data key="function">pH регулатор; емулгатор</data>
+      <data key="food"><![CDATA[Рибни хапки.]]></data>
+      <data key="warn"><![CDATA[See E450.]]></data>
+      <data key="info"><![CDATA[Can also be used to improve the colour of foods.]]></data>
+    </item>
+    <item key="E452" name="Polyphosphates" status="" veg="Не">
+      <data key="function">pH регулатор; емулгатор; стабилизатор</data>
+      <data key="food"><![CDATA[Сухи храни, десерти.]]></data>
+      <data key="warn"><![CDATA[Can alter the metabolytical activity in humans; in addition to modified starch, they may cause calcification of the pelvic region in rats; they intensify the activity of heavy metals making them easier to cross the intestine wall; they may contain a lot of impurities; in Japan, a group of children were intoxicated with arsine as impurity of ortophosphate used in food]]></data>
+      <data key="info"><![CDATA[Can also be used to improve the colour of foods and as a raising agent in baking.]]></data>
+    </item>
+    <item key="E459" name="Beta-cyclodextrin" status="" veg="">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Храни във вид на таблетки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Starch-based material used as a tableting excipient.]]></data>
+    </item>
+    <item key="E460" name="Cellulose" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Хляб с фибри, диетични бързи храни, сухи храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Main component of plant cell walls. It is not digestible by humans and so adds bulk to the food. Also known as fibre or roughoage. Used in brewing to clarify beers.]]></data>
+    </item>
+    <item key="E461" name="Methyl cellulose" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Обработен картофен чипс, леки напитки, торти.]]></data>
+      <data key="warn"><![CDATA[Can cause flatulence, distension, intestinal obstruction.]]></data>
+      <data key="info"><![CDATA[Derived from cellulose, the main component of plant cell walls. It is not digestible by humans and so adds bulk to the food. Also known as fibre or roughage. Can be used in special diets for diabetics or lactose intolerant people.]]></data>
+    </item>
+    <item key="E463" name="Hydroxypropyl cellulose" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Торти.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prepared from cellulose. Used to produce the glazed effect on cakes.]]></data>
+    </item>
+    <item key="E464" name="Hydroxypropyl methyl cellulose" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Обработени картофени чипсове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from cellulose, the main component of plant cell walls.]]></data>
+    </item>
+    <item key="E465" name="Ethyl methyl cellulose" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Обработени картофени храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from cellulose, the main component of plant cell walls.]]></data>
+    </item>
+    <item key="E466" name="Carboxy methyl cellulose" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Замразени нарязани картофи, сирене (кашкавал), пълнежи за торти, диетични леки напитки, изсушени картофи.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from cellulose, the main component of plant cell walls.]]></data>
+    </item>
+    <item key="E467" name="Sodium carboxy methyl cellulose" status="" veg="">
+      <data key="function">сгъстител</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E468" name="Croscarmellose" status="Тази добавка се обсъжда в момента и може да бъде променена в бъдеще." veg="">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Подсладители и добавки към храни,]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from cellulose, which cannot be digested in the body.]]></data>
+    </item>
+    <item key="E469" name="Sodium caseinate" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Нискокалорични напитки, пълнежи за торти.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from cellulose, the main constituent of plant cell walls.]]></data>
+    </item>
+    <item key="E470a" name="Fatty acids salts" status="" veg="Да">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Чипс, кейк миксове.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Derivatives of fatty acids.]]></data>
+    </item>
+    <item key="E470b" name="Magnesium salts of fatty acids" status="Не се допуска в Австралия." veg="Да">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Тесто за пекарството, чипс.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derivatives of fatty acids.]]></data>
+    </item>
+    <item key="E471" name="Mono- and diglycerides of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Торти, изсушени картофи.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Products that fats are broken down into during the digestive process. Produced commercially as an additive.]]></data>
+    </item>
+    <item key="E472a" name="Fatty acid esters of glycerol" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E472b" name="Lactic acid esters of mono- and diglycerides of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E472c" name="Citric acid esters of mono- and diglycerides of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E472d" name="Tartaric acid esters of mono- and diglycerides of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E472e" name="Mono- and diacetyltartaric acid esters of mono- and diglycerides of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E472f" name="Mixed acetic and tartaric acid esters of mono- and diglycerides of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E473" name="Sucrose esters of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Консервирано течно кафе, топлинно обработени месни продукти, сладкарски изделия, дъвки, безалкохолни напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Reaction products of sucrose with animal and vegetable fats.]]></data>
+    </item>
+    <item key="E474" name="Sucroglycerides" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Консервирано течно кафе, топлинно обработени месни продукти, сладкарски изделия, дъвки, безалкохолни напитки.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Prepared from sources of plant and animal fats.]]></data>
+    </item>
+    <item key="E475" name="Polyglycerol esters of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Торти и кейк миксове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Synthetically produced from fatty acids.]]></data>
+    </item>
+    <item key="E476" name="Polyglycerol polyricinoleate" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Шоколад.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Obtained from plant oils.]]></data>
+    </item>
+    <item key="E477" name="Propylene glycol esters of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Кейк миксове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from petroleum.]]></data>
+    </item>
+    <item key="E478" name="Lactylated fatty acid esters of glycerol and propane" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E479b" name="Thermally oxidised soya bean oil interacted with mono and diglycerides of fatty acids" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Мазнина за пържене.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Emulsifiers prevent fats from separating out when in a solution.]]></data>
+    </item>
+    <item key="E480" name="Dioctyl sodium sulphosuccinate" status="Очакват се резултати от изследвания." veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E481" name="Sodium stearoyl-2-lactylate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Хляб.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from lactic acid.]]></data>
+    </item>
+    <item key="E482" name="Calcium stearoyl-2-lactylate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сок от печено месо за бърза употреба.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from lactic acid.]]></data>
+    </item>
+    <item key="E483" name="Stearyl tartrate" status="Забранен в Австралия." veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Брашно.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Derived from tartaric acid.]]></data>
+    </item>
+    <item key="E491" name="Sorbitan monostearate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Кейк миксове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Can be used to give confectionery a shiny appearance.]]></data>
+    </item>
+    <item key="E492" name="Sorbitan tristearate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Сладкарски изделия.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Synthetic additive.]]></data>
+    </item>
+    <item key="E493" name="Sorbitan monolaurate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Концентрати на билкови чайове.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Emulsifiers help to prevent fats from separating out when in a solution.]]></data>
+    </item>
+    <item key="E494" name="Sorbitan monooleate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Концентрати на билкови чайове.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Emulsifiers help to prevent fats from separating out when in a solution.]]></data>
+    </item>
+    <item key="E495" name="Sorbitan monopalmitate Sorbitan monopalmitate" status="" veg="Да">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Концентрати на билкови чайове.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Emulsifiers help to prevent fats from separating out when in a solution.]]></data>
+    </item>
+    <item key="E500" name="Sodium carbonates" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Бира, хляб и торти.]]></data>
+      <data key="warn"><![CDATA[No known adverse effects in small quantities.]]></data>
+      <data key="info"><![CDATA[Used in the brewing process. Sodium hydrogen carbonate (sodium bicarbonate) used as a raising agent in baking. Generates carbon dioxide gas during the baking process and this causes cakes and bread to rise.]]></data>
+    </item>
+    <item key="E501" name="Potassium carbonate" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Пудра за пекарството, печени продукти, какао и шоколадови продукти.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Regulates the acididty of foods.]]></data>
+    </item>
+    <item key="E503" name="Ammonium carbonate" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Пудра за пекарството, торти, хляб.]]></data>
+      <data key="warn"><![CDATA[Irritant to mucous membranes.]]></data>
+      <data key="info"><![CDATA[Generates carbon dioxide gas during the baking process and this causes cakes and bread to rise.]]></data>
+    </item>
+    <item key="E504" name="Magnesium carbonate" status="" veg="Не">
+      <data key="function">pH регулатор; противослепващо вещество</data>
+      <data key="food"><![CDATA[Масло, бисквити.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[May be added to table salt to help it flow smoothly when poured. Medically used as an antacid and laxative.]]></data>
+    </item>
+    <item key="E507" name="Hydrochloric acid" status="" veg="Не">
+      <data key="function">acid</data>
+      <data key="food"><![CDATA[При приготвянето на бира.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Used in the early stages of the brewing process to reduce the loss of sugars from barley. Safe in small quantities. Aids in processing of barley.]]></data>
+    </item>
+    <item key="E508" name="Potassium chloride" status="" veg="Не">
+      <data key="function">gelling agent</data>
+      <data key="food"><![CDATA[Трапезна сол, при приготвяне на бира.]]></data>
+      <data key="warn"><![CDATA[Large quantities can cause gastric ulceration.]]></data>
+      <data key="info"><![CDATA[Used as a low sodium alternative to table salt. Also in the early stages of the brewing process.]]></data>
+    </item>
+    <item key="E509" name="Calcium chloride" status="" veg="Не">
+      <data key="function">sequestrant</data>
+      <data key="food"><![CDATA[При приготвянето на бира.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Added to water in the brewing process to obtain consistent quality of beer.]]></data>
+    </item>
+    <item key="E510" name="Ammonium chloride" status="" veg="Не">
+      <data key="function">improving agent</data>
+      <data key="food"><![CDATA[Продукти от брашно.]]></data>
+      <data key="warn"><![CDATA[Should be avoided by people with impaired liver or kidney function.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E511" name="Magnesium chloride" status="" veg="Не">
+      <data key="function">firming agent</data>
+      <data key="food"><![CDATA[Консервирани зеленчуци.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Magnesium is an essential mineral. Complexes with pectins in vegetables to retain and firm structure during heat processing.]]></data>
+    </item>
+    <item key="E512" name="Stannous chloride" status="Непозволен" veg="Не">
+      <data key="function">антиоксидант</data>
+      <data key="food"><![CDATA[Консервирани аспержи.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Improves антиоксидант effects (synergist). Synergists are compounds that improve the effects of other additives.]]></data>
+    </item>
+    <item key="E513" name="Sulfuric acid" status="" veg="Не">
+      <data key="function">acid</data>
+      <data key="food"><![CDATA[При приготвянето на бира.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used in the brewing process to reduce the loss of sugars from the barley. The acid does not remain in the final product.]]></data>
+    </item>
+    <item key="E514" name="Sodium sulfate" status="" veg="Не">
+      <data key="function">acid</data>
+      <data key="food"><![CDATA[При приготвянето на бира.]]></data>
+      <data key="warn"><![CDATA[May upset the body's water balance.]]></data>
+      <data key="info"><![CDATA[Used in the brewing process to modify water and ensure consistency of taste.]]></data>
+    </item>
+    <item key="E515" name="Potassium sulfate" status="" veg="Не">
+      <data key="function">
+      </data>
+      <data key="food"><![CDATA[Заместители на трапезната сол.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[May be used to replace table salt (sodium chloride) in diet products.]]></data>
+    </item>
+    <item key="E516" name="Calcium sulfate" status="" veg="Не">
+      <data key="function">firming agent; sequestrant</data>
+      <data key="food"><![CDATA[При приготвянето на бира.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Naturally occuring mineral. May be added to water in the brewing process to regulate water consistency.]]></data>
+    </item>
+    <item key="E517" name="Ammonium sulfate" status="" veg="">
+      <data key="function">improving agent</data>
+      <data key="food"><![CDATA[Зависи от друга добавка.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Carriers are substances that can be used to hold other additives.]]></data>
+    </item>
+    <item key="E518" name="Magnesium sulphate" status="" veg="Не">
+      <data key="function">firming agent</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[a laxative]]></data>
+    </item>
+    <item key="E519" name="" status="" veg="Не">
+      <data key="function">
+      </data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E520" name="Aluminium sulphate" status="" veg="">
+      <data key="function">firming agent</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E521" name="Aluminium sodium sulfate" status="" veg="">
+      <data key="function">firming agent</data>
+      <data key="food"><![CDATA[Белтък и кристализирани (желирани) плодове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to ensure food has the desired texture.]]></data>
+    </item>
+    <item key="E522" name="Aluminium potassium sulfate" status="" veg="">
+      <data key="function">регулатор на киселинността</data>
+      <data key="food"><![CDATA[Белтък и кристализирани (желирани) плодове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to ensure food has the desired texture.]]></data>
+    </item>
+    <item key="E523" name="Aluminium ammonium sulfate" status="" veg="">
+      <data key="function">регулатор на киселинността</data>
+      <data key="food"><![CDATA[Белтък и кристализирани (желирани) плодове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to ensure that the food has the desired texture.]]></data>
+    </item>
+    <item key="E524" name="Sodium hydroxide" status="" veg="Не">
+      <data key="function">регулатор на киселинността</data>
+      <data key="food"><![CDATA[При приготвянето на бира и в трапезно олио.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used in the processing of many foods. In the brewing process it is use to remove acids from barley. Used in the production of edible oils.]]></data>
+    </item>
+    <item key="E525" name="Potassium hydroxide" status="" veg="Не">
+      <data key="function">регулатор на киселинността</data>
+      <data key="food"><![CDATA[При производството на храни на основата на какао.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used in the processing of foods.]]></data>
+    </item>
+    <item key="E526" name="Calcium hydroxide" status="" veg="Не">
+      <data key="function">firming agent</data>
+      <data key="food"><![CDATA[При приготвянето на бира.]]></data>
+      <data key="warn"><![CDATA[No adverse effects in small quantities.]]></data>
+      <data key="info"><![CDATA[Used to remove acids from barley in the brewing process.]]></data>
+    </item>
+    <item key="E527" name="Ammonium hydroxide" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Оцветители добавяни към храните.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used in the processing of foods.]]></data>
+    </item>
+    <item key="E528" name="Magnesium hydroxide" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Използвана в обработката на различни храни.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used as a processing aid and is not found in significant amounts in the final product.]]></data>
+    </item>
+    <item key="E529" name="Calcium oxide" status="" veg="Не">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Използвана в обработката на различни храни.]]></data>
+      <data key="warn"><![CDATA[Safe in small quantities.]]></data>
+      <data key="info"><![CDATA[Used as a processing aid and is not found in significant amounts in the final product.]]></data>
+    </item>
+    <item key="E530" name="Magnesium oxide" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Храни съдържащи какао на прах.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Absorbs water and so helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E535" name="Sodium ferrocyanide" status="" veg="">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Заместители на трапезната сол.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Absorbs water and so helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E536" name="Potassium ferrocyanide" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Трапезна сол.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Absorbs water and so helps to prevent salt from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E538" name="Calcium ferrocyanide" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Заместители на трапезната сол.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Absorbs water and so helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E540" name="Dicalcium diphosphate" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E541" name="Sodium aluminium phosphate" status="" veg="Не">
+      <data key="function">емулгатор</data>
+      <data key="food"><![CDATA[Торти.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Aerates cakes as they are baking to give them a light texture.]]></data>
+    </item>
+    <item key="E542" name="Bone phosphate" status="" veg="Да">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from bones; used in dried milk for coffee machines.]]></data>
+    </item>
+    <item key="E544" name="Calcium polyphosphates" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E545" name="Ammonium polyphosphates" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E551" name="Silicon dioxide" status="" veg="Не">
+      <data key="function">противослепващо вещество; сгъстител</data>
+      <data key="food"><![CDATA[При приготвянето на бира или вино.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Used in beer and wine making to remove cloudiness during the production process.]]></data>
+    </item>
+    <item key="E552" name="Calcium silicate" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Готварска сол, сладки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A naturally occuring mineral. When processed, it absorbs water and so helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E553a" name="Magnesium silicate" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Готварска сол, сладки.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[When processed, it absorbs water and so helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E553b" name="Talc" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Дъвки, шоколад, сладкарски изделия.]]></data>
+      <data key="warn"><![CDATA[Linked to stomach cancer.]]></data>
+      <data key="info"><![CDATA[A naturally-occuring mineral. Helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E554" name="Sodium aluminium silicate" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Сол, сухи заместители на мляко и брашно.]]></data>
+      <data key="warn"><![CDATA[Known to cause placental problems in pregnancy and has been linked to Alzheimer's.]]></data>
+      <data key="info"><![CDATA[A naturally-occuring mineral. Helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E555" name="Potassium aluminium silicate" status="" veg="">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Заместители на трапезната сол, храни на прах, нарязано сирене (кашкавал) на .]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Absorbs water and so helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E556" name="Aluminium calcium silicate" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Виж E554.]]></data>
+      <data key="warn"><![CDATA[See E554.]]></data>
+      <data key="info"><![CDATA[Absorbs water and so helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E558" name="Bentonite" status="" veg="Не">
+      <data key="function">противослепващо вещество; clarifier</data>
+      <data key="food"><![CDATA[При приготвянето на бира или вино.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A naturally-occuring mineral. Used to help reduce the cloudiness of beers and wines in their production.]]></data>
+    </item>
+    <item key="E559" name="Aluminium silicate, kaolin" status="" veg="Не">
+      <data key="function">противослепващо вещество; clarifier.</data>
+      <data key="food"><![CDATA[При приготвянето на бира или вино.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A naturally-occuring mineral. Used to help reduce the cloudiness of beers and wines in their production.]]></data>
+    </item>
+    <item key="E570" name="Fatty acids" status="" veg="Да">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[В много различни сухи храни или храни на прах, миксове на супи и кейк миксове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent powders from forming clumps and being difficult to pour.]]></data>
+    </item>
+    <item key="E574" name="Gluconic acid" status="" veg="">
+      <data key="function">pH регулатор</data>
+      <data key="food"><![CDATA[Алкохолни и безалкохолни напитки, и сухи храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to maintain the correct acid-balance.]]></data>
+    </item>
+    <item key="E575" name="Glucono delta lactone" status="" veg="Не">
+      <data key="function">sequestrant</data>
+      <data key="food"><![CDATA[Млечни стерилизатори и при приготвяне на бира.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Prevents the formation of salt deposits in the brewing process and when milk is heated to high temperatures.]]></data>
+    </item>
+    <item key="E576" name="Sodium gluconate" status="" veg="Не">
+      <data key="function">sequestrant</data>
+      <data key="food"><![CDATA[Алкохолни и безалкохолни напитки, и сухи храни.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Sequestrants combine with positive ions to form a soluble salt which improves the stability of the food.]]></data>
+    </item>
+    <item key="E577" name="Potassium gluconate" status="" veg="Не">
+      <data key="function">sequestrant</data>
+      <data key="food"><![CDATA[Алкохолни и безалкохолни напитки, и сухи храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Sequestrants combine with positive ions to form a soluble salt which improves the stability of the food.]]></data>
+    </item>
+    <item key="E578" name="Calcium gluconate" status="" veg="Не">
+      <data key="function">pH регулатор; sequestrant</data>
+      <data key="food"><![CDATA[Алкохолни и безалкохолни напитки, и сухи храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Sequestrants combine with positive ions to form a soluble salt which improves the stability of the food.]]></data>
+    </item>
+    <item key="E579" name="Ferrous gluconate" status="" veg="Не">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Маслини и хранителни добавки желязо.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent food spoilage. Used with darkened olives.]]></data>
+    </item>
+    <item key="E585" name="Ferrous lactate" status="" veg="Не">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Маслини.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent food spoilage. Used with darkened olives.]]></data>
+    </item>
+    <item key="E620" name="Glutamic acid" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[В различни храни за подсилване на вкуса или аромата.]]></data>
+      <data key="warn"><![CDATA[Young children should avoid it.]]></data>
+      <data key="info"><![CDATA[A naturally-occuring amino acid. Commercially produced by the fermentation of bacteria.]]></data>
+    </item>
+    <item key="E621" name="Monosodium glutamate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[В различни храни за подсилване на вкуса или аромата. При консервирани и обработени меса, юфка.]]></data>
+      <data key="warn"><![CDATA[Adverse effects appear in some asthmatic people, not permitted in foods for infants and young children; typical products are canned vegetables.]]></data>
+      <data key="info"><![CDATA[Derived from a naturally-occuring amino acid. Commercially produced by the fermentation of bacteria or by its isolation from plant proteins.]]></data>
+    </item>
+    <item key="E622" name="Monopotassium glutamate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[В различни храни за подсилване на вкуса или аромата, заместител на сол.]]></data>
+      <data key="warn"><![CDATA[Can cause nausea, vomiting, diarrhea, abdominal cramps.]]></data>
+      <data key="info"><![CDATA[Derived from a naturally-occuring amino acid. Commercially produced by the fermentation of bacteria.]]></data>
+    </item>
+    <item key="E623" name="Calcium diglutamate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Супи с месо.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Salt substitute. See E622.]]></data>
+    </item>
+    <item key="E624" name="Monoammonium glutamate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Може да бъде използван във всякакви храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[See E623. Helps to bring out the flavours of many foods.]]></data>
+    </item>
+    <item key="E625" name="Magnesium diglutamate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Може да бъде използван във всякакви храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[See E623.]]></data>
+    </item>
+    <item key="E626" name="Guanylic acid" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Сезонни храни.]]></data>
+      <data key="warn"><![CDATA[May trigger gout.]]></data>
+      <data key="info"><![CDATA[Derived from a naturally-occuring amino acid. Helps to bring out the flavours of many foods.]]></data>
+    </item>
+    <item key="E627" name="Disodium guanylate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Консервирани и приготвени меса, супи с месо, гранулиран сок за печено месо.]]></data>
+      <data key="warn"><![CDATA[May trigger gout, not permitted in foods for infants and young children.]]></data>
+      <data key="info"><![CDATA[Derived from a naturally-found nucleotide (component of DNA) that is commercially synthesised for use as a food additive.]]></data>
+    </item>
+    <item key="E628" name="Dipotassium guanylate" status="" veg="">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Може да бъде използван във всякакви храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from a naturally-found nuceotide (component of DNA) that is commercially synthesised for use as a food additive.]]></data>
+    </item>
+    <item key="E629" name="Calcium guanylate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Може да бъде използван във всякакви храни.]]></data>
+      <data key="warn"><![CDATA[May trigger gout.]]></data>
+      <data key="info"><![CDATA[Derived from a naturally-found nuceotide (component of DNA) that is commercially synthesised for use as a food additive.]]></data>
+    </item>
+    <item key="E630" name="Inosinic acid" status="" veg="">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Консервирани и приготвени меса, супи с месо, гранулиран сок за печено месо.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Component of muscle that can be obtained from meat extract and dried sardines.]]></data>
+    </item>
+    <item key="E631" name="Disodium inosinate" status="" veg="Да">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Консервирани и приготвени меса, супи с месо, гранулиран сок за печено месо.]]></data>
+      <data key="warn"><![CDATA[May trigger gout, not permitted in foods for infants and young children.]]></data>
+      <data key="info"><![CDATA[Component of muscle that can be obtained from meat extract and dried sardines.]]></data>
+    </item>
+    <item key="E632" name="Dipotassium inosinate" status="" veg="">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Консервирани и приготвени меса, супи с месо, гранулиран сок за печено месо.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Component of muscle that can be obtained from meat extract and dried sardines.]]></data>
+    </item>
+    <item key="E633" name="Calcium inosinate" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Консервирани и приготвени меса, супи с месо, гранулиран сок за печено месо.]]></data>
+      <data key="warn"><![CDATA[May trigger gout.]]></data>
+      <data key="info"><![CDATA[Component of muscle that can be obtained from meat extract and dried sardines.]]></data>
+    </item>
+    <item key="E634" name="Calcium 5'-ribonucleotides" status="" veg="">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Може да бъде използван във всякакви храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Similar to the molecules that make up DNA.]]></data>
+    </item>
+    <item key="E635" name="Disodium 5'-ribonucleotides" status="" veg="Да">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Преработени дехидратирани картофени продукти.]]></data>
+      <data key="warn"><![CDATA[May be associated with itchy skin rashes up to 30 hours after ingestion. Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Similar to the molecules that make up DNA.]]></data>
+    </item>
+    <item key="E636" name="Maltol" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from the bark of larch trees, pine needles, chicory wood, oils and roasted malt; it may be produced synthetically.]]></data>
+    </item>
+    <item key="E637" name="Ethyl maltol" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from maltol.]]></data>
+    </item>
+    <item key="E640" name="Glycine and its sodium salt" status="" veg="Да">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Може да бъде използван във всякакви храни.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Naturally-occuring amino acid.]]></data>
+    </item>
+    <item key="E650" name="Zinc acetate" status="" veg="">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Дъвки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Zinc salt of acetic acid. Acts as a breth-freshener.]]></data>
+    </item>
+    <item key="E710" name="Spiramycins" status="" veg="">
+      <data key="function">антибиотик</data>
+      <data key="food"><![CDATA[Млечни продукти, месо, яйчни продукти. Позволено за ползване само със специално разрешение]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Spiramycins are a class of antibiotics, produced by the mould Streptomyces ambofaciens.]]></data>
+    </item>
+    <item key="E713" name="Tylosin" status="" veg="">
+      <data key="function">антибиотик</data>
+      <data key="food"><![CDATA[Млечни продукти, месо, яйчни продукти. Позволено за ползване само със специално разрешение.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Tylosin is an antibiotic, produced by the mould Streptomyces fradiae.]]></data>
+    </item>
+    <item key="E900" name="Dimethylpolysiloxane" status="" veg="Не">
+      <data key="function">противослепващо вещество</data>
+      <data key="food"><![CDATA[Конфитюри. леки напитки, супи, при приготвяне на бира.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Silicone based. Helps to prevent powders from clumping together and becoming difficult to pour.]]></data>
+    </item>
+    <item key="E901" name="Beeswax" status="" veg="Да">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[Торти и сладкарски изделия. Използва се още за лъскавина на плодовете.]]></data>
+      <data key="warn"><![CDATA[Occasionally causes allergic reactions.]]></data>
+      <data key="info"><![CDATA[Purified from honey-bee hives.]]></data>
+    </item>
+    <item key="E902" name="Candelilla wax" status="" veg="">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[Шоколад, ядки, кефени зърна, плодове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Glazing agents help to give the food an appealing appearance.]]></data>
+    </item>
+    <item key="E903" name="Carnauba wax" status="" veg="Не">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[Шоколадови сладкарски изделия. Използва се в козметиката и мастилото и за лъскавина на плодовете.]]></data>
+      <data key="warn"><![CDATA[Occasionally causes allergic reactions.]]></data>
+      <data key="info"><![CDATA[Derived from a South American palm.]]></data>
+    </item>
+    <item key="E904" name="Shellac" status="" veg="">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[Сладки, декорации за торти.]]></data>
+      <data key="warn"><![CDATA[Occasionally causes irritations of the skin.]]></data>
+      <data key="info"><![CDATA[Obtained from a resin produced by 'lac' insects and scale insects.]]></data>
+    </item>
+    <item key="E905" name="Microcrystalline wax" status="" veg="Да">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[Сладкарски изделия, изсушени плодове.]]></data>
+      <data key="warn"><![CDATA[May be a link to bowel cancer.]]></data>
+      <data key="info"><![CDATA[Synthetically-produced waxes.]]></data>
+    </item>
+    <item key="E907" name="Refined microcrystalline wax" status="" veg="Да">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E912" name="Montan acid esters" status="" veg="">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[Плодове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Glazing agents help to give the food an appealing appearance.]]></data>
+    </item>
+    <item key="E913" name="Lanolin" status="" veg="Да">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from sheep wool.]]></data>
+    </item>
+    <item key="E914" name="Oxidised polyethylene wax" status="" veg="">
+      <data key="function">glazing agent</data>
+      <data key="food"><![CDATA[Плодове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Glazing agents help to give the food an appealing appearance.]]></data>
+    </item>
+    <item key="E920" name="L-cysteine" status="" veg="Да">
+      <data key="function">improving agent</data>
+      <data key="food"><![CDATA[Торти, пилешки супи.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Flour treatment agent derived from animal hair and chicken feathers.]]></data>
+    </item>
+    <item key="E921" name="L-Cystin" status="" veg="Да">
+      <data key="function">improving agent</data>
+      <data key="food"><![CDATA[Виж E920.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[See E920.]]></data>
+    </item>
+    <item key="E924" name="Potassium bromate" status="" veg="Не">
+      <data key="function">improving agent</data>
+      <data key="food"><![CDATA[Продукти с брашно.]]></data>
+      <data key="warn"><![CDATA[Can cause nausea, vomiting, diarrhea, pain.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E925" name="Chlorine" status="" veg="Не">
+      <data key="function">консервант; bleach; improving agent</data>
+      <data key="food"><![CDATA[Продукти с брашно.]]></data>
+      <data key="warn"><![CDATA[Destroys nutrients, carcinogen, in some areas tab water is contaminated with it, to make it 'safer' to drink.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E926" name="Chlorine dioxide" status="" veg="Не">
+      <data key="function">bleach</data>
+      <data key="food"><![CDATA[Виж E925.]]></data>
+      <data key="warn"><![CDATA[See E925.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E927b" name="Carbamide" status="" veg="Не">
+      <data key="function">improving agent</data>
+      <data key="food"><![CDATA[Торти.]]></data>
+      <data key="warn"><![CDATA[Avoid it, banned in some countries.]]></data>
+      <data key="info"><![CDATA[Used in cakes to improve the flour during baking conditions.]]></data>
+    </item>
+    <item key="E928" name="Benzoyl peroxide" status="" veg="Не">
+      <data key="function">bleach</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Asthmatics and people with a history of allergies must beware.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E931" name="Nitrogen" status="Safe" veg="Не">
+      <data key="function">
+      </data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Used in freezing and vacuum packing.]]></data>
+    </item>
+    <item key="E932" name="Nitrous oxide" status="Safe" veg="Не">
+      <data key="function">
+      </data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Safe in small quantities]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E938" name="Argon" status="" veg="">
+      <data key="function">packaging gas</data>
+      <data key="food"><![CDATA[В различни храни по време на пакетирането им или транспорта.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Inert gas that helps to prevent oxidation and microbials growth.]]></data>
+    </item>
+    <item key="E939" name="Helium" status="" veg="">
+      <data key="function">packaging gas</data>
+      <data key="food"><![CDATA[В различни храни по време на пакетирането им или транспорта.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Inert gas that helps to prevent oxidation and microbials growth.]]></data>
+    </item>
+    <item key="E941" name="Nitrogen" status="" veg="">
+      <data key="function">propellant</data>
+      <data key="food"><![CDATA[В различни храни по време на пакетирането им или транспорта. Използва се при замразяване и вакуумиране на продукти.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Inert gas that helps to prevent oxidation and microbials growth.]]></data>
+    </item>
+    <item key="E942" name="Nitrous oxide" status="" veg="">
+      <data key="function">propellant</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[Seems quite safe in small quantities.]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E943a" name="Butane" status="" veg="">
+      <data key="function">propellant</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E943b" name="Iso-butane" status="" veg="">
+      <data key="function">propellant</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[]]></data>
+    </item>
+    <item key="E944" name="Propane" status="" veg="">
+      <data key="function">propellant</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Hydrocarbon gas.]]></data>
+    </item>
+    <item key="E948" name="Oxygen" status="" veg="">
+      <data key="function">packaging gas</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Atmospheric gas.]]></data>
+    </item>
+    <item key="E949" name="Hydrogen" status="" veg="">
+      <data key="function">packaging gas</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Gas.]]></data>
+    </item>
+    <item key="E950" name="Acesulphane potassium" status="" veg="Не">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Подсладители, диетични напитки, десерти, печени храни и пудинги.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Artificial подсладител discovered in 1967. It is approximately 200 times sweeter than sucrose and used in many low-calorie products.]]></data>
+    </item>
+    <item key="E951" name="Aspartame" status="" veg="Да">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Подсладители, диетични напитки, десерти, печени храни и пудинги.]]></data>
+      <data key="warn"><![CDATA[Adverse effects, migraine headaches.]]></data>
+      <data key="info"><![CDATA[Artificial подсладител which is composed of aspartic acid and the methyl ester of phenylalanine (both amino acids). Used as a low-calorie подсладител in thousands of different products.]]></data>
+    </item>
+    <item key="E952" name="Cyclamic acid and its Na and Ca salts" status="Забранен в САЩ и Великобритания." veg="Не">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Нискокалорични и безалкохолни напитки.]]></data>
+      <data key="warn"><![CDATA[Migraines, can be carcinogenic.]]></data>
+      <data key="info"><![CDATA[Artificial подсладител that is approximately 30 times sweeter than sucrose (table sugar).]]></data>
+    </item>
+    <item key="E953" name="lsomalt" status="" veg="">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Десерти, сладолед, сладкарски изделия, подправки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from naturally-occuring sugars.]]></data>
+    </item>
+    <item key="E954" name="Saccharin and its Na, K and Ca salts" status="" veg="Не">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Леки напитки и заместители на захар.]]></data>
+      <data key="warn"><![CDATA[May be hazardous to your health, determined to cause cancer in laboratory animals.]]></data>
+      <data key="info"><![CDATA[One of the first artificial sweeteners.]]></data>
+    </item>
+    <item key="E955" name="Sucralose" status="" veg="">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Използва се в храни, като заместител на захарта.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from sugar (sucrose) but modified so that it is not absorbed into the body. Used as a low calorie подсладител and substitute for sugar.]]></data>
+    </item>
+    <item key="E957" name="Thaumatin" status="" veg="Не">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Използва се за подсладяване на вина, хляб и плодове.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Plant protein extracted from a fruit native to West Africa.]]></data>
+    </item>
+    <item key="E959" name="Neohesperidine DC" status="" veg="">
+      <data key="function">aроматизатор</data>
+      <data key="food"><![CDATA[Някои напитки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Plant material extracted and purified from grapefruit skin.]]></data>
+    </item>
+    <item key="E965" name="Maltitol; Maltitol syrup" status="" veg="Не">
+      <data key="function">humectant</data>
+      <data key="food"><![CDATA[Десерти, сладолед, сладкарски изделия, подправки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from naturally-occuring sugars.]]></data>
+    </item>
+    <item key="E966" name="Lactitol" status="" veg="Да">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Десерти, сладолед, сладкарски изделия, подправки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from naturally-occuring sugars.]]></data>
+    </item>
+    <item key="E967" name="Xylitol" status="" veg="Не">
+      <data key="function">подсладител</data>
+      <data key="food"><![CDATA[Десерти, сладолед, сладкарски изделия, подправки.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from naturally-occuring sugars.]]></data>
+    </item>
+    <item key="E999" name="Quillaia extract" status="" veg="Не">
+      <data key="function">foaming agent</data>
+      <data key="food"><![CDATA[Бира и сода.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Extracted from the bark of the soap tree (Quillaia saponaria). The tree is native to China and Peru and is commercially cultivated in southern California. Known to promote healing and reduce excessive oiliness in the skin.]]></data>
+    </item>
+    <item key="E1100" name="Amylase" status="" veg="Да">
+      <data key="function">стабилизатор; ароматизатор</data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Derived from mould mushroom or pig pancreas.]]></data>
+    </item>
+    <item key="E1103" name="Invertase" status="" veg="">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Сладкарски изделия, шоколади с течен шоколад в тях.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Enzyme that breaks down sucrose. Commercially derived from the fermentation of yeast.]]></data>
+    </item>
+    <item key="E1105" name="Lysozyme" status="" veg="Да">
+      <data key="function">консервант</data>
+      <data key="food"><![CDATA[Узрели сирена.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[A naturally occuring enzyme that kills bacteria.]]></data>
+    </item>
+    <item key="E1200" name="Polydextrose" status="" veg="Не">
+      <data key="function">стабилизатор; сгъстител</data>
+      <data key="food"><![CDATA[Печени продукти, дъвки, млечни десерти, бонбони.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Polydextrose is a low-calorie сгъстител that can help to replace sugars and fats.]]></data>
+    </item>
+    <item key="E1201" name="Polyvinylpyrrolidone" status="" veg="Не">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Диетични добавки в храна.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Carriers are substances that can be used to contain another additive.]]></data>
+    </item>
+    <item key="E1202" name="Polyvinylpolypyrrolidone" status="" veg="Не">
+      <data key="function">стабилизатор</data>
+      <data key="food"><![CDATA[Диетични добавки в храна.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Carriers are substances that can be used to contain another additive.]]></data>
+    </item>
+    <item key="E1404" name="Oxidised starch" status="" veg="Не">
+      <data key="function">сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1410" name="Monostarch phosphate" status="" veg="Не">
+      <data key="function">стабилизатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1412" name="Distarch phosphate" status="" veg="Не">
+      <data key="function">стабилизатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1413" name="Phosphated distarch phosphate" status="" veg="Не">
+      <data key="function">стабилизатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1414" name="Acetylated distarch phosphate" status="" veg="Не">
+      <data key="function">емулгатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1420" name="Acetylated starch" status="" veg="Не">
+      <data key="function">стабилизатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it.]]></data>
+    </item>
+    <item key="E1422" name="Acetylated distarch adipate" status="" veg="Не">
+      <data key="function">стабилизаторсгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it.]]></data>
+    </item>
+    <item key="E1440" name="Hydroxyl propyl starch" status="" veg="Не">
+      <data key="function">емулгатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1442" name="Hydroxyl propyl distarch phosphate" status="" veg="Не">
+      <data key="function">стабилизатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1450" name="Starch sodium octenyl succinate" status="" veg="Не">
+      <data key="function">стабилизатор; емулгатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1451" name="Acetylated oxidised starch" status="" veg="">
+      <data key="function">емулгатор; сгъстител</data>
+      <data key="food"><![CDATA[Сладолед, пица, начукана риба, декорация на салати.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Modified starches form gels when added to foods. This thickens the food without having to heat it. They can also be used to help stabilise oily foods. The starch helps to emulsify the fats and so prevent the fat separating out.]]></data>
+    </item>
+    <item key="E1505" name="Triethyl citrate" status="" veg="Не">
+      <data key="function">foam стабилизатор</data>
+      <data key="food"><![CDATA[Изсушени яйца на прах.]]></data>
+      <data key="warn"><![CDATA[Part becomes alcohol in the body.]]></data>
+      <data key="info"><![CDATA[Used in dried egg whites to allow them to foam correctly when beaten.]]></data>
+    </item>
+    <item key="E1510" name="Ethanol" status="" veg="Не">
+      <data key="function">
+      </data>
+      <data key="food"><![CDATA[]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Alcohol.]]></data>
+    </item>
+    <item key="E1518" name="Glyceryl triacetate, triacetin" status="" veg="Да">
+      <data key="function">humectant</data>
+      <data key="food"><![CDATA[Хлебни храни, смеси, леки напитки, дъвки и бонбони.]]></data>
+      <data key="warn"><![CDATA[]]></data>
+      <data key="info"><![CDATA[Helps to prevent the food it is added to from drying out.]]></data>
+    </item>
+    <item key="E1520" name="Propylene glycol" status="" veg="Не">
+      <data key="function">humectant; противослепващо вещество</data>
+      <data key="food"><![CDATA[Замразени млечни продукти.]]></data>
+      <data key="warn"><![CDATA[Has been linked with fatal heart attacks, central nervous system depression, contact dermatitis.]]></data>
+      <data key="info"><![CDATA[Helps to prevent the food it is added to from drying out.]]></data>
+    </item>
+  </items>
+</locale>
