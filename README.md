@@ -29,6 +29,11 @@ Install composer:
 Install dependencies via composer:
 
     php composer.phar install
+
+Create database structure and Import data:
+
+    $ cd tools
+    $ ./db_create.sh [mysql user] [password] [datbase name]
     
 # Configuration
 
