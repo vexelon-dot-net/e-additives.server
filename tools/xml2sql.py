@@ -112,7 +112,7 @@ def toSQL(dataList, inFile):
 			f.write(sql)
 			f.write("\n")
 
-		sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @category_id, {});"\
+		sql = "INSERT INTO {}(code, category_id, visible, last_update) VALUES('{}', @category_id, {}, Now());"\
 			.format(TABLE_ADDITIVE, key, 'TRUE')
 		f.write(sql)
 		f.write("\n")
