@@ -21,10 +21,12 @@ ATTRIB_FUNCTION = 'function'
 ATTRIB_FOOD = 'food'
 ATTRIB_WARN = 'warn'
 ATTRIB_INFO = 'info'
-
+# Database constants
 TABLE_ADDITIVE = "Additive"
 TABLE_ADDITIVEPROPS = "AdditiveProps"
+TABLE_ADDITIVECATEGORY = "AdditiveCategory"
 TABLE_ADDITIVELOCALE = "Locale"
+
 
 # Parse xml data and put it into a structure
 def parse(fileName):
@@ -83,19 +85,34 @@ def toSQL(dataList, inFile):
 
 	# Insert language ISO 639-1 code
 	langName = os.path.splitext(os.path.basename(inFile))[0]
+	f.write("# Additives data for locale: {} \n".format(langName))
 
-	sql = "INSERT INTO {}(code, enabled) VALUES('{}', {});"\
-		.format(TABLE_ADDITIVELOCALE, langName, 'TRUE')
+	# sql = "INSERT INTO {}(code, enabled) VALUES('{}', {});"\
+	# 	.format(TABLE_ADDITIVELOCALE, langName, 'TRUE')
+	# f.write(sql)
+	# f.write("\n")
+	# last_insert_id = 'SET @locale_id = LAST_INSERT_ID();'
+	# f.write(last_insert_id)
+	# f.write("\n")
+
+	sql = "SELECT id FROM {} WHERE code='{}' INTO @locale_id;"\
+		.format(TABLE_ADDITIVELOCALE, langName)
 	f.write(sql)
-	f.write("\n")
-	last_insert_id = 'SET @locale_id = LAST_INSERT_ID();'
-	f.write(last_insert_id)
 	f.write("\n")	
 	
+	lastKeyChar = ''
 	for s in dataList:
 		# insert additive #############
 		key = s[ATTRIB_KEY][1:]
-		sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @default_category_id, {});"\
+		curKeyChar = key[0:1]
+		if lastKeyChar != curKeyChar:
+			lastKeyChar = curKeyChar
+			sql = "SELECT id FROM {} WHERE category='{}' INTO @category_id;"\
+				.format(TABLE_ADDITIVECATEGORY, "{}{}".format(curKeyChar, "".zfill(len(key) - 1)))
+			f.write(sql)
+			f.write("\n")
+
+		sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @category_id, {});"\
 			.format(TABLE_ADDITIVE, key, 'TRUE')
 		f.write(sql)
 		f.write("\n")
@@ -112,7 +129,7 @@ def toSQL(dataList, inFile):
 			f.write(sql)
 			f.write("\n")
 
-		# vegan
+		# vegan or vegetarian ...unclear. This must be checked later.
 		veg = -1
 		if not s[ATTRIB_VEG] or s[ATTRIB_VEG] == "":
 			veg = -1
@@ -123,7 +140,7 @@ def toSQL(dataList, inFile):
 				veg = 0
 
 		sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_int) VALUES(@last_additive_id, @locale_id, '{}', {});"\
-			.format(TABLE_ADDITIVEPROPS, "vegan", veg)
+			.format(TABLE_ADDITIVEPROPS, "veg", veg)
 		f.write(sql)
 		f.write("\n")			
 
@@ -163,7 +180,6 @@ def escape(str):
 try:
 	if len(sys.argv) < 2:
 		raise Exception('Missing XML <file path> command line argument!')
-
 
 	fileName = sys.argv[1]
 
