@@ -35,6 +35,7 @@ Database schema is relatively simple. There are currently 3 tables:
 Table | Description
 ------|------------
 **Additive** | Holds info about additive code and last updates.
-**AdditiveProp** | Currently the longest table. Holds **key/value** additive properties. Each property is assigned to an **Additive** and **Locale**
+**AdditiveProps** | Currently the longest table. Holds **key/value** additive properties. Each property is assigned to an **Additive** and **Locale**
 **Locale** | Available service localizations. Locales can be disabled which means they will be temporary invisible for clients. There is a database constraint that will NOT allow a locale to be deleted until additive properties for that locale still exist.
-
+**AdditiveCategory** | Additives are grouped into categories, e.g., colors, antioxidants, etc.
+**AdditiveCategoryProps** | Name and texts for each locale of the existing additive categories.
