@@ -10,6 +10,8 @@ CUR_DIR=$(dirname $(readlink -f $0))
 DATA_DIR=$(readlink -f "$CUR_DIR/../data")
 MODEL_DATA="$DATA_DIR/db_schema.sql"
 DB_DATA="$DATA_DIR/db_app_data.sql"
+DB_DATA_EN="$DATA_DIR/db_app_data.additives.en.sql"
+DB_DATA_BG="$DATA_DIR/db_app_data.additives.bg.sql"
 
 usage() {
         echo "Create E-additives database structure."
@@ -60,5 +62,11 @@ if [ "x$CHOICE" = "xy" ];
 then
     echo Importing MySQL data ... Please wait ...
     mysql -u$USER -p$PASS -D$DBNAME < $DB_DATA
+    sleep 3
+    echo Importing EN additives data ... Please wait ...
+    mysql -u$USER -p$PASS -D$DBNAME < $DB_DATA_EN
+    sleep 3
+    echo Importing BG additives data ... Please wait ...
+    mysql -u$USER -p$PASS -D$DBNAME < $DB_DATA_BG
     echo Done.
 fi
