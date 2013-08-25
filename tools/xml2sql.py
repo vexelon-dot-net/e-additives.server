@@ -112,7 +112,7 @@ def toSQL(dataList, inFile):
 			f.write(sql)
 			f.write("\n")
 
-		sql = "INSERT INTO {}(code, category_id, visible, last_update) VALUES('{}', @category_id, {}, Now());"\
+		sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @category_id, {});"\
 			.format(TABLE_ADDITIVE, key, 'TRUE')
 		f.write(sql)
 		f.write("\n")
@@ -124,7 +124,7 @@ def toSQL(dataList, inFile):
 
 		# status
 		if s[ATTRIB_STATUS]:
-			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text) VALUES(@last_additive_id, @locale_id, '{}', '{}');"\
+			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
 				.format(TABLE_ADDITIVEPROPS, ATTRIB_STATUS, s[ATTRIB_STATUS])
 			f.write(sql)
 			f.write("\n")
@@ -139,35 +139,35 @@ def toSQL(dataList, inFile):
 			else:
 				veg = 0
 
-		sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_int) VALUES(@last_additive_id, @locale_id, '{}', {});"\
+		sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_int, last_update) VALUES(@last_additive_id, @locale_id, '{}', {}, NOW());"\
 			.format(TABLE_ADDITIVEPROPS, "veg", veg)
 		f.write(sql)
 		f.write("\n")			
 
 		# function
 		if s[ATTRIB_FUNCTION]:
-			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str) VALUES(@last_additive_id, @locale_id, '{}', '{}');"\
+			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
 				.format(TABLE_ADDITIVEPROPS, "function", escape(s[ATTRIB_FUNCTION]))
 			f.write(sql)
 			f.write("\n")
 
 		# food
 		if s[ATTRIB_FOOD]:
-			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text) VALUES(@last_additive_id, @locale_id, '{}', '{}');"\
+			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
 				.format(TABLE_ADDITIVEPROPS, "foods", escape(s[ATTRIB_FOOD]))
 			f.write(sql)
 			f.write("\n")
 
 		# warnings
 		if s[ATTRIB_WARN]:
-			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text) VALUES(@last_additive_id, @locale_id, '{}', '{}');"\
+			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
 				.format(TABLE_ADDITIVEPROPS, "notice", escape(s[ATTRIB_WARN]))
 			f.write(sql)
 			f.write("\n")
 
 		# info
 		if s[ATTRIB_INFO]:
-			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text) VALUES(@last_additive_id, @locale_id, '{}', '{}');"\
+			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
 				.format(TABLE_ADDITIVEPROPS, ATTRIB_INFO, escape(s[ATTRIB_INFO]))
 			f.write(sql)
 			f.write("\n")			
