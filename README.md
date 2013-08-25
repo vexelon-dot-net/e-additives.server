@@ -9,12 +9,16 @@ Check the [documentation](docs/).
 
 # Requirements
 
+Required software components:
+
   * Apache >= 2.2
   * PHP >= 5.3.0
   * MySQL >= 5.5
   * Redis >= 2.2
 
 # Getting Started
+
+Note that the following steps are to be executed on Linux systems. On Windows you would need to use different commands.
 
 Install required PHP extensions:
 
