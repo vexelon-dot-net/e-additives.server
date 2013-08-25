@@ -8,6 +8,7 @@ import sys
 import os
 from xml.dom import minidom
 import re
+from optparse import OptionParser
 
 # XML Constants
 TAG_ITEMS = 'items'
@@ -175,13 +176,27 @@ def toSQL(dataList, inFile):
 def escape(str):
 	return str.replace("'", "\\'")
 
+def createParser():
+	parser = OptionParser()
+	parser.add_option("-b", "--bg", dest="bgxml", help="XML file with BG localized stings", metavar="FILE")
+	parser.add_option("-e", "--en", dest="enxml", help="XML file with EN localized stings", metavar="FILE")
+	return parser
+
 # Main ############
 
 try:
-	if len(sys.argv) < 2:
-		raise Exception('Missing XML <file path> command line argument!')
+	parser = createParser()
+	(options, args) = parser.parse_args()
 
-	fileName = sys.argv[1]
+	if not options.bgxml:
+		parser.error("BG XML parameter missing!")
+	elif not options.enxml:
+		parser.error("EN XML parameter missing!")
+
+	#if len(sys.argv) < 2:
+	#	raise Exception('Missing XML <file path> command line argument!')
+
+	fileName = options.bgxml
 
 	# check if file exists
 	with open(fileName): 
