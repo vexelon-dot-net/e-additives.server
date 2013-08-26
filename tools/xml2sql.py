@@ -7,8 +7,9 @@
 
 import sys
 import os
-from xml.dom import minidom
 import re
+import collections
+from xml.dom import minidom
 from optparse import OptionParser
 
 # XML Constants
@@ -28,7 +29,12 @@ TABLE_ADDITIVE = "Additive"
 TABLE_ADDITIVEPROPS = "AdditiveProps"
 TABLE_ADDITIVECATEGORY = "AdditiveCategory"
 TABLE_ADDITIVELOCALE = "Locale"
-
+# XML 2 SQL column mappings
+COLUMNS_MAP = {\
+	ATTRIB_NAME: "name", ATTRIB_STATUS: "status", \
+	ATTRIB_VEG: "veg", ATTRIB_FUNCTION: "function", \
+	ATTRIB_FOOD: "foods", ATTRIB_WARN: "notice", \
+	ATTRIB_INFO: "info"}
 
 # Parse xml data and put it into a structure
 def parse(fileName):
@@ -42,7 +48,7 @@ def parse(fileName):
 
 	print ("Found {} XML items.".format(len(itemsList)))
 
-	outList = []
+	outList = {}
 
 	for s in itemsList:
 		newItem = {ATTRIB_KEY: s.attributes[ATTRIB_KEY].value}
@@ -66,9 +72,10 @@ def parse(fileName):
 			else:
 				raise Exception("No key attribute in <data> element in <item> with key '{}'".format(newItem[ATTRIB_KEY]))
 
-		outList.append(newItem)	
+		outList[s.attributes[ATTRIB_KEY].value] = newItem
 
-	return outList
+	ordered = collections.OrderedDict(sorted(outList.items()))
+	return ordered
 
 def toSQL(dataList, outFile):
 	#outFile = "{}.sql".format(inFile)
@@ -89,87 +96,123 @@ def toSQL(dataList, outFile):
 	# set of already added additives
 	additivesKeySet = set()
 
-	for k, v in itemsList.items():
-		# Insert language ISO 639-1 code
-		f.write("# Additives data for locale: {} \n".format(k))
-		sql = "SELECT id FROM {} WHERE code='{}' INTO @locale_id;"\
-			.format(TABLE_ADDITIVELOCALE, k)
-		f.write(sql)
-		f.write("\n")	
-		# language items
-		lastKeyChar = ''
-		for s in v:
-			# insert additive #############
-			key = s[ATTRIB_KEY][1:]
-			if key not in additivesKeySet:
-				curKeyChar = key[0:1]
-				if lastKeyChar != curKeyChar:
-					lastKeyChar = curKeyChar
-					sql = "SELECT id FROM {} WHERE category='{}' INTO @category_id;"\
-						.format(TABLE_ADDITIVECATEGORY, "{}{}".format(curKeyChar, "".zfill(len(key) - 1)))
-					f.write(sql)
-					f.write("\n")
+	# language ISO 639-1 code
+	f.write("# Get Locales \n")
+	sql = "SELECT id FROM {} WHERE code='{}' INTO @locale_id_en;"\
+		.format(TABLE_ADDITIVELOCALE, 'en')
+	f.write(sql)
+	f.write("\n")
+	sql = "SELECT id FROM {} WHERE code='{}' INTO @locale_id_bg;"\
+		.format(TABLE_ADDITIVELOCALE, 'bg')
+	f.write(sql)	
+	f.write("\n")
 
-				sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @category_id, {});"\
-					.format(TABLE_ADDITIVE, key, 'TRUE')
-				f.write(sql)
-				f.write("\n")
-				last_insert_id = 'SET @last_additive_id = LAST_INSERT_ID();'
-				f.write(last_insert_id)
-				f.write("\n")
-				additivesKeySet.add(key)
-			
-			# insert properties ############
+	f.write("# Additives Properties \n")
 
-			# status
-			if s[ATTRIB_STATUS]:
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-					.format(TABLE_ADDITIVEPROPS, ATTRIB_STATUS, s[ATTRIB_STATUS])
-				f.write(sql)
-				f.write("\n")
-
-			# vegan or vegetarian ...unclear. This must be checked later.
-			veg = -1
-			if not s[ATTRIB_VEG] or s[ATTRIB_VEG] == "":
-				veg = -1
-			else:
-				if s[ATTRIB_VEG].lower() == 'да':
-					veg = 1
-				else:
-					veg = 0
-
-			sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_int, last_update) VALUES(@last_additive_id, @locale_id, '{}', {}, NOW());"\
-				.format(TABLE_ADDITIVEPROPS, "veg", veg)
+	lastKeyChar = ''
+	for k, v in itemsList['en'].items():
+		# insert additive #############
+		key = k[1:]
+		#if key not in additivesKeySet:
+		curKeyChar = key[0:1]
+		if lastKeyChar != curKeyChar:
+			lastKeyChar = curKeyChar
+			sql = "SELECT id FROM {} WHERE category='{}' INTO @category_id;"\
+				.format(TABLE_ADDITIVECATEGORY, "{}{}".format(curKeyChar, "".zfill(len(key) - 1)))
 			f.write(sql)
-			f.write("\n")			
+			f.write("\n")
 
-			# function
-			if s[ATTRIB_FUNCTION]:
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-					.format(TABLE_ADDITIVEPROPS, "function", escape(s[ATTRIB_FUNCTION]))
+		sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @category_id, {});"\
+			.format(TABLE_ADDITIVE, key, 'TRUE')
+		f.write(sql)
+		f.write("\n")
+		last_insert_id = 'SET @last_additive_id = LAST_INSERT_ID();'
+		f.write(last_insert_id)
+		f.write("\n")
+		#additivesKeySet.add(key)
+
+		# insert properties ############
+		for dk, dv in v.items():
+			if dv and dk != ATTRIB_KEY:
+				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id_en, '{}', '{}', NOW());"\
+					.format(TABLE_ADDITIVEPROPS, COLUMNS_MAP[dk], escape(dv))
 				f.write(sql)
 				f.write("\n")
 
-			# food
-			if s[ATTRIB_FOOD]:
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-					.format(TABLE_ADDITIVEPROPS, "foods", escape(s[ATTRIB_FOOD]))
-				f.write(sql)
-				f.write("\n")
+		bgv = itemsList['bg']
+		bgvv = bgv[k]
+		#print (bgv)
+		for dk, dv in bgvv.items():
+			if dv and dk != ATTRIB_KEY:
+				value = dv
 
-			# warnings
-			if s[ATTRIB_WARN]:
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-					.format(TABLE_ADDITIVEPROPS, "notice", escape(s[ATTRIB_WARN]))
-				f.write(sql)
-				f.write("\n")
+				# vegan or vegetarian ...unclear. This must be checked later.
+				if dk == ATTRIB_VEG:
+					
+					veg = -1
+					if not dv or dv == "":
+						veg = -1
+					else:
+						if dv.lower() == 'да' or dv.lower() == 'yes':
+							veg = 1
+						else:
+							veg = 0
+					dv = veg			
 
-			# info
-			if s[ATTRIB_INFO]:
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-					.format(TABLE_ADDITIVEPROPS, ATTRIB_INFO, escape(s[ATTRIB_INFO]))
+				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id_bg, '{}', '{}', NOW());"\
+					.format(TABLE_ADDITIVEPROPS, COLUMNS_MAP[dk], escape(dv))
 				f.write(sql)
-				f.write("\n")			
+				f.write("\n")							
+
+		# # status
+		# if s[ATTRIB_STATUS]:
+		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
+		# 		.format(TABLE_ADDITIVEPROPS, ATTRIB_STATUS, s[ATTRIB_STATUS])
+		# 	f.write(sql)
+		# 	f.write("\n")
+
+		# # vegan or vegetarian ...unclear. This must be checked later.
+		# veg = -1
+		# if not s[ATTRIB_VEG] or s[ATTRIB_VEG] == "":
+		# 	veg = -1
+		# else:
+		# 	if s[ATTRIB_VEG].lower() == 'да' or s[ATTRIB_VEG].lower() == 'yes':
+		# 		veg = 1
+		# 	else:
+		# 		veg = 0
+
+		# sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_int, last_update) VALUES(@last_additive_id, @locale_id, '{}', {}, NOW());"\
+		# 	.format(TABLE_ADDITIVEPROPS, "veg", veg)
+		# f.write(sql)
+		# f.write("\n")			
+
+		# # function
+		# if s[ATTRIB_FUNCTION]:
+		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
+		# 		.format(TABLE_ADDITIVEPROPS, "function", escape(s[ATTRIB_FUNCTION]))
+		# 	f.write(sql)
+		# 	f.write("\n")
+
+		# # food
+		# if s[ATTRIB_FOOD]:
+		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
+		# 		.format(TABLE_ADDITIVEPROPS, "foods", escape(s[ATTRIB_FOOD]))
+		# 	f.write(sql)
+		# 	f.write("\n")
+
+		# # warnings
+		# if s[ATTRIB_WARN]:
+		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
+		# 		.format(TABLE_ADDITIVEPROPS, "notice", escape(s[ATTRIB_WARN]))
+		# 	f.write(sql)
+		# 	f.write("\n")
+
+		# # info
+		# if s[ATTRIB_INFO]:
+		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
+		# 		.format(TABLE_ADDITIVEPROPS, ATTRIB_INFO, escape(s[ATTRIB_INFO]))
+		# 	f.write(sql)
+		# 	f.write("\n")			
 
 def escape(str):
 	return str.replace("'", "\\'")
