@@ -10,8 +10,7 @@ CUR_DIR=$(dirname $(readlink -f $0))
 DATA_DIR=$(readlink -f "$CUR_DIR/../data")
 MODEL_DATA="$DATA_DIR/db_schema.sql"
 DB_DATA="$DATA_DIR/db_app_data.sql"
-DB_DATA_EN="$DATA_DIR/db_app_data.additives.en.sql"
-DB_DATA_BG="$DATA_DIR/db_app_data.additives.bg.sql"
+DB_DATA_ADDT="$DATA_DIR/db_additives_data.sql"
 
 usage() {
         echo "Create E-additives database structure."
@@ -31,17 +30,11 @@ if [ -z $DBNAME ]; then
 	exit
 fi
 
-if [ ! -e $DB_DATA ]; then
-	echo "ERROR: DB data file $DB_DATA not found!"
-	echo
-	exit
-fi
 if [ ! -e $MODEL_DATA ]; then
 	echo "ERROR: Model data file $MODEL_DATA not found!"
 	echo
 	exit
 fi
-
 
 echo "This script will *DROP* the current database! Continue(y/n) ?"
 read CHOICE
@@ -56,6 +49,17 @@ then
 	echo Done.
 fi
 
+if [ ! -e $DB_DATA ]; then
+	echo "ERROR: DB data file $DB_DATA not found!"
+	echo
+	exit
+fi
+if [ ! -e $DB_DATA_ADDT ]; then
+	echo "ERROR: DB additives data file $DB_DATA_ADDT not found!"
+	echo
+	exit
+fi
+
 echo "Do you want to import initial database data? Existing data in the database will be deleted. Continue(y/n) ?"
 read CHOICE
 if [ "x$CHOICE" = "xy" ];
@@ -63,10 +67,7 @@ then
     echo Importing MySQL data ... Please wait ...
     mysql -u$USER -p$PASS -D$DBNAME < $DB_DATA
     sleep 3
-    echo Importing EN additives data ... Please wait ...
-    mysql -u$USER -p$PASS -D$DBNAME < $DB_DATA_EN
-    sleep 3
-    echo Importing BG additives data ... Please wait ...
-    mysql -u$USER -p$PASS -D$DBNAME < $DB_DATA_BG
+    echo Importing additives data ... Please wait ...
+    mysql -u$USER -p$PASS -D$DBNAME < $DB_DATA_ADDT
     echo Done.
 fi
