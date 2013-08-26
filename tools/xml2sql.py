@@ -141,23 +141,18 @@ def toSQL(dataList, outFile):
 
 				# vegan or vegetarian ...unclear. This must be checked later.
 				if dk == ATTRIB_VEG:
-					
-					veg = -1
-					if not dv or dv == "":
-						veg = -1
+					if dv.lower() == 'да' or dv.lower() == 'yes':
+						veg = 1
 					else:
-						if dv.lower() == 'да' or dv.lower() == 'yes':
-							veg = 1
-						else:
-							veg = 0
+						veg = 0
 					value = veg
 
 				if COLUMNS_MAP[dk]['type'] != 'value_int':
-					value = escape(dv)
+					value = "'{}'".format(escape(dv))
 
 				column = COLUMNS_MAP[dk]
 
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, {}, last_update) VALUES(@last_additive_id, @locale_id_en, '{}', '{}', NOW());"\
+				sql = "INSERT INTO {}(additive_id, locale_id, key_name, {}, last_update) VALUES(@last_additive_id, @locale_id_en, '{}', {}, NOW());"\
 					.format(TABLE_ADDITIVEPROPS, column['type'], column['name'], value)
 				f.write(sql)
 				f.write("\n")	
@@ -171,23 +166,18 @@ def toSQL(dataList, outFile):
 
 				# vegan or vegetarian ...unclear. This must be checked later.
 				if dk == ATTRIB_VEG:
-					
-					veg = -1
-					if not dv or dv == "":
-						veg = -1
+					if dv.lower() == 'да' or dv.lower() == 'yes':
+						veg = 1
 					else:
-						if dv.lower() == 'да' or dv.lower() == 'yes':
-							veg = 1
-						else:
-							veg = 0
+						veg = 0
 					value = veg
 
 				if COLUMNS_MAP[dk]['type'] != 'value_int':
-					value = escape(dv)
+					value = "'{}'".format(escape(dv))
 
 				column = COLUMNS_MAP[dk]
 
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, {}, last_update) VALUES(@last_additive_id, @locale_id_bg, '{}', '{}', NOW());"\
+				sql = "INSERT INTO {}(additive_id, locale_id, key_name, {}, last_update) VALUES(@last_additive_id, @locale_id_bg, '{}', {}, NOW());"\
 					.format(TABLE_ADDITIVEPROPS, column['type'], column['name'], value)
 				f.write(sql)
 				f.write("\n")							
