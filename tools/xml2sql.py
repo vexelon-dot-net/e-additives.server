@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 ##########################################################################
 # This script converts the existing XML databases into SQL import scripts
 # NOTE: Script requires Python 3.3
@@ -33,6 +34,7 @@ TABLE_ADDITIVELOCALE = "Locale"
 def parse(fileName):
 	print("Parsing elements ...")
 
+	#f = open(fileName, encoding='utf-8', mode='r')
 	xmldoc = minidom.parse(fileName)
 	itemsRoot = xmldoc.getElementsByTagName(TAG_ITEMS) 
 	# get sub <item> elements from the first <items> parent found
@@ -82,7 +84,7 @@ def toSQL(dataList, inFile):
 	# "E900-E999 "miscellaneous"
 	# "E1000-E1199 "chemicals"
 
-	f = open(outFile, 'w')
+	f = open(outFile, encoding='utf-8', mode='w')
 
 	# Insert language ISO 639-1 code
 	langName = os.path.splitext(os.path.basename(inFile))[0]
