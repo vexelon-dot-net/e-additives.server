@@ -86,6 +86,9 @@ def toSQL(dataList, outFile):
 
 	f = open(outFile, encoding='utf-8', mode='w')
 
+	# set of already added additives
+	additivesKeySet = set()
+
 	for k, v in itemsList.items():
 		# Insert language ISO 639-1 code
 		f.write("# Additives data for locale: {} \n".format(k))
@@ -98,21 +101,23 @@ def toSQL(dataList, outFile):
 		for s in v:
 			# insert additive #############
 			key = s[ATTRIB_KEY][1:]
-			curKeyChar = key[0:1]
-			if lastKeyChar != curKeyChar:
-				lastKeyChar = curKeyChar
-				sql = "SELECT id FROM {} WHERE category='{}' INTO @category_id;"\
-					.format(TABLE_ADDITIVECATEGORY, "{}{}".format(curKeyChar, "".zfill(len(key) - 1)))
+			if key not in additivesKeySet:
+				curKeyChar = key[0:1]
+				if lastKeyChar != curKeyChar:
+					lastKeyChar = curKeyChar
+					sql = "SELECT id FROM {} WHERE category='{}' INTO @category_id;"\
+						.format(TABLE_ADDITIVECATEGORY, "{}{}".format(curKeyChar, "".zfill(len(key) - 1)))
+					f.write(sql)
+					f.write("\n")
+
+				sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @category_id, {});"\
+					.format(TABLE_ADDITIVE, key, 'TRUE')
 				f.write(sql)
 				f.write("\n")
-
-			sql = "INSERT INTO {}(code, category_id, visible) VALUES('{}', @category_id, {});"\
-				.format(TABLE_ADDITIVE, key, 'TRUE')
-			f.write(sql)
-			f.write("\n")
-			last_insert_id = 'SET @last_additive_id = LAST_INSERT_ID();'
-			f.write(last_insert_id)
-			f.write("\n")
+				last_insert_id = 'SET @last_additive_id = LAST_INSERT_ID();'
+				f.write(last_insert_id)
+				f.write("\n")
+				additivesKeySet.add(key)
 			
 			# insert properties ############
 
