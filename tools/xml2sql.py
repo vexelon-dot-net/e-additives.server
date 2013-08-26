@@ -31,10 +31,13 @@ TABLE_ADDITIVECATEGORY = "AdditiveCategory"
 TABLE_ADDITIVELOCALE = "Locale"
 # XML 2 SQL column mappings
 COLUMNS_MAP = {\
-	ATTRIB_NAME: "name", ATTRIB_STATUS: "status", \
-	ATTRIB_VEG: "veg", ATTRIB_FUNCTION: "function", \
-	ATTRIB_FOOD: "foods", ATTRIB_WARN: "notice", \
-	ATTRIB_INFO: "info"}
+	ATTRIB_NAME: {'name': "name", 'type': "value_str"}, \
+	ATTRIB_STATUS: {'name': "status", 'type': "value_text"}, \
+	ATTRIB_VEG: {'name': "veg", 'type': "value_int"}, \
+	ATTRIB_FUNCTION: {'name': "function", 'type': "value_text"}, \
+	ATTRIB_FOOD: {'name': "foods", 'type': "value_text"}, \
+	ATTRIB_WARN: {'name': "notice", 'type': "value_text"}, \
+	ATTRIB_INFO: {'name': "info", 'type': "value_big_text"}}
 
 # Parse xml data and put it into a structure
 def parse(fileName):
@@ -134,10 +137,30 @@ def toSQL(dataList, outFile):
 		# insert properties ############
 		for dk, dv in v.items():
 			if dv and dk != ATTRIB_KEY:
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id_en, '{}', '{}', NOW());"\
-					.format(TABLE_ADDITIVEPROPS, COLUMNS_MAP[dk], escape(dv))
+				value = dv
+
+				# vegan or vegetarian ...unclear. This must be checked later.
+				if dk == ATTRIB_VEG:
+					
+					veg = -1
+					if not dv or dv == "":
+						veg = -1
+					else:
+						if dv.lower() == 'да' or dv.lower() == 'yes':
+							veg = 1
+						else:
+							veg = 0
+					value = veg
+
+				if COLUMNS_MAP[dk]['type'] != 'value_int':
+					value = escape(dv)
+
+				column = COLUMNS_MAP[dk]
+
+				sql = "INSERT INTO {}(additive_id, locale_id, key_name, {}, last_update) VALUES(@last_additive_id, @locale_id_en, '{}', '{}', NOW());"\
+					.format(TABLE_ADDITIVEPROPS, column['type'], column['name'], value)
 				f.write(sql)
-				f.write("\n")
+				f.write("\n")	
 
 		bgv = itemsList['bg']
 		bgvv = bgv[k]
@@ -157,62 +180,17 @@ def toSQL(dataList, outFile):
 							veg = 1
 						else:
 							veg = 0
-					dv = veg			
+					value = veg
 
-				sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id_bg, '{}', '{}', NOW());"\
-					.format(TABLE_ADDITIVEPROPS, COLUMNS_MAP[dk], escape(dv))
+				if COLUMNS_MAP[dk]['type'] != 'value_int':
+					value = escape(dv)
+
+				column = COLUMNS_MAP[dk]
+
+				sql = "INSERT INTO {}(additive_id, locale_id, key_name, {}, last_update) VALUES(@last_additive_id, @locale_id_bg, '{}', '{}', NOW());"\
+					.format(TABLE_ADDITIVEPROPS, column['type'], column['name'], value)
 				f.write(sql)
 				f.write("\n")							
-
-		# # status
-		# if s[ATTRIB_STATUS]:
-		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-		# 		.format(TABLE_ADDITIVEPROPS, ATTRIB_STATUS, s[ATTRIB_STATUS])
-		# 	f.write(sql)
-		# 	f.write("\n")
-
-		# # vegan or vegetarian ...unclear. This must be checked later.
-		# veg = -1
-		# if not s[ATTRIB_VEG] or s[ATTRIB_VEG] == "":
-		# 	veg = -1
-		# else:
-		# 	if s[ATTRIB_VEG].lower() == 'да' or s[ATTRIB_VEG].lower() == 'yes':
-		# 		veg = 1
-		# 	else:
-		# 		veg = 0
-
-		# sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_int, last_update) VALUES(@last_additive_id, @locale_id, '{}', {}, NOW());"\
-		# 	.format(TABLE_ADDITIVEPROPS, "veg", veg)
-		# f.write(sql)
-		# f.write("\n")			
-
-		# # function
-		# if s[ATTRIB_FUNCTION]:
-		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_str, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-		# 		.format(TABLE_ADDITIVEPROPS, "function", escape(s[ATTRIB_FUNCTION]))
-		# 	f.write(sql)
-		# 	f.write("\n")
-
-		# # food
-		# if s[ATTRIB_FOOD]:
-		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-		# 		.format(TABLE_ADDITIVEPROPS, "foods", escape(s[ATTRIB_FOOD]))
-		# 	f.write(sql)
-		# 	f.write("\n")
-
-		# # warnings
-		# if s[ATTRIB_WARN]:
-		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-		# 		.format(TABLE_ADDITIVEPROPS, "notice", escape(s[ATTRIB_WARN]))
-		# 	f.write(sql)
-		# 	f.write("\n")
-
-		# # info
-		# if s[ATTRIB_INFO]:
-		# 	sql = "INSERT INTO {}(additive_id, locale_id, key_name, value_text, last_update) VALUES(@last_additive_id, @locale_id, '{}', '{}', NOW());"\
-		# 		.format(TABLE_ADDITIVEPROPS, ATTRIB_INFO, escape(s[ATTRIB_INFO]))
-		# 	f.write(sql)
-		# 	f.write("\n")			
 
 def escape(str):
 	return str.replace("'", "\\'")
