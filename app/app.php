@@ -18,21 +18,24 @@
  *
 */
 
+// Get database settings
 $databaseSettings = unserialize(DB_SETTINGS);
 
+// Establish database connection
 use Doctrine\Common\ClassLoader;
 
 $config = new \Doctrine\DBAL\Configuration();
 $connectionParams = array(
+    'driver' => 'pdo_mysql',
+    'host' => $databaseSettings['host'],
     'dbname' => $databaseSettings['database'],
     'user' => $databaseSettings['user'],
     'password' => $databaseSettings['password'],
-    'host' => $databaseSettings['host'],
-    'driver' => 'pdo_mysql',
+    'charset ' => $databaseSettings['charset '],
 );
 $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
 
-
+// Create REST service
 $app = new \Slim\Slim(array(
     'debug' => DEBUG,
     'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
@@ -40,7 +43,7 @@ $app = new \Slim\Slim(array(
     'http.version' => '1.1'
     ));
 
-$app->setName('E-additives Server');
+$app->setName('E-additives REST Server');
 $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 	

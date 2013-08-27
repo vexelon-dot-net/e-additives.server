@@ -19,7 +19,7 @@
 */
 
 
-// General errors
+// General error handler
 $app->error(function (\Exception $e) use ($app) {
 	$app->render(500, array(
 		'error' => TRUE,
@@ -27,6 +27,7 @@ $app->error(function (\Exception $e) use ($app) {
 		));	
 });
 
+// Resource not found
 $app->notFound(function () use ($app) {
 	$app->render(404, array(
 		'error' => TRUE,
@@ -43,26 +44,48 @@ $app->get('/', function () use ($app) {
 		));	
 });
 
-// Get list of additives
-$app->get('/additives/:name', function ($name) use ($app, $conn) {
 
-	$sql = "SELECT * FROM additive as a 
-		LEFT JOIN additiveprops as ap ON ap.additive_id = a.id 
-		WHERE a.code=? AND ap.locale_id = ?";
+// list of all additives
+$app->get('/additives', function () use ($app, $conn) {
 
-	$stmt = $conn->prepare($sql);
-	$stmt->bindValue(1, $name);
-	$stmt->bindValue(2, '1');
-	$stmt->execute();
-	$result = $stmt->fetch();
+	$sql = "SELECT code,
+		(SELECT value_str FROM AdditiveProps as ap WHERE ap.additive_id = a.id AND key_name='name' AND locale_id=1) as name
+		FROM additive as a
+		WHERE visible = TRUE";
+
+	$statement  = $conn->prepare($sql);
+	$statement ->execute();
+	$result = $statement ->fetchAll();
 
 	$app->render(200, array(
-		'id' => $result['id'],
-		'code' => $result['code'],
-		'visible' => $result['visible'],
-		'function' => $result['key_name'],
-		));	
-});
+		'result' => $result,
+		));		
+});	
 
+$app->group('/additives', function() use ($app, $conn) {
+
+	// Get list of additives
+	$app->get('/:name', function ($name) use ($app, $conn) {
+
+		$sql = "SELECT * FROM additive as a 
+			LEFT JOIN additiveprops as ap ON ap.additive_id = a.id 
+			WHERE a.code=? AND ap.locale_id = ?";
+
+		$stmt = $conn->prepare($sql);
+		$stmt->bindValue(1, $name);
+		$stmt->bindValue(2, '1');
+		$stmt->execute();
+		$result = $stmt->fetch();
+
+		$app->render(200, array(
+			'result' => array(
+				'id' => $result['id'],
+				'code' => $result['code'],
+				'visible' => $result['visible'],
+				'function' => $result['key_name'],
+			)));	
+	});
+
+});
 
 ?>

@@ -21,7 +21,7 @@ define('DB_SETTINGS', serialize(array(
 define('BASE_URL', sprintf("http://%s/", $_SERVER["HTTP_HOST"]));
 
 // Runtime settings
-define('MAINTENANCE_MODE', false);
+define('MAINTENANCE_MODE', false); // service is offline
 define('DEBUG', true); // spit more log messages (useful for debugging)
 define('SHOW_SQL', true); // spit all sql statements into log
 
