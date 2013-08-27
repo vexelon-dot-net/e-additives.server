@@ -45,30 +45,30 @@ $app->get('/', function () use ($app) {
 });
 
 
-// list of all additives
-$app->get('/additives', function () use ($app, $conn) {
-
-	$sql = "SELECT code,
-		(SELECT value_str FROM AdditiveProps as ap WHERE ap.additive_id = a.id AND key_name='name' AND locale_id=1) as name
-		FROM additive as a
-		WHERE visible = TRUE";
-
-	$statement  = $conn->prepare($sql);
-	$statement ->execute();
-	$result = $statement ->fetchAll();
-
-	$app->render(200, array(
-		'result' => $result,
-		));		
-});	
-
 $app->group('/additives', function() use ($app, $conn) {
+
+	// list of all additives
+	$app->get('/', function () use ($app, $conn) {
+
+		$sql = "SELECT code,
+			(SELECT value_str FROM AdditiveProps as ap WHERE ap.additive_id = a.id AND key_name='name' AND locale_id=1) as name
+			FROM Additive as a
+			WHERE visible = TRUE";
+
+		$statement  = $conn->prepare($sql);
+		$statement ->execute();
+		$result = $statement ->fetchAll();
+
+		$app->render(200, array(
+			'result' => $result,
+			));		
+	});		
 
 	// Get list of additives
 	$app->get('/:name', function ($name) use ($app, $conn) {
 
-		$sql = "SELECT * FROM additive as a 
-			LEFT JOIN additiveprops as ap ON ap.additive_id = a.id 
+		$sql = "SELECT * FROM Additive as a 
+			LEFT JOIN AdditiveProps as ap ON ap.additive_id = a.id 
 			WHERE a.code=? AND ap.locale_id = ?";
 
 		$stmt = $conn->prepare($sql);
