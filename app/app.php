@@ -18,6 +18,19 @@
  *
 */
 
+use Doctrine\Common\ClassLoader;
+
+$config = new \Doctrine\DBAL\Configuration();
+$connectionParams = array(
+    'dbname' => 'eadditives',
+    'user' => 'ead_user',
+    'password' => '123',
+    'host' => 'localhost',
+    'driver' => 'pdo_mysql',
+);
+$conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
+
+
 $app = new \Slim\Slim(array(
     'debug' => DEBUG,
     'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,

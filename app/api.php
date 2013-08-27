@@ -18,6 +18,7 @@
  *
 */
 
+
 // General errors
 $app->error(function (\Exception $e) use ($app) {
 	$app->render(500, array(
@@ -43,9 +44,23 @@ $app->get('/', function () use ($app) {
 });
 
 // Get list of additives
-$app->get('/additives/:name', function ($name) use ($app) {
+$app->get('/additives/:name', function ($name) use ($app, $conn) {
+
+	$sql = "SELECT * FROM additive as a 
+		LEFT JOIN additiveprops as ap ON ap.additive_id = a.id 
+		WHERE a.code=? AND ap.locale_id = ?";
+
+	$stmt = $conn->prepare($sql);
+	$stmt->bindValue(1, $name);
+	$stmt->bindValue(2, '1');
+	$stmt->execute();
+	$result = $stmt->fetch();
+
 	$app->render(200, array(
-		'msg' => 'Welcome ' . $name,
+		'id' => $result['id'],
+		'code' => $result['code'],
+		'visible' => $result['visible'],
+		'function' => $result['key_name'],
 		));	
 });
 
