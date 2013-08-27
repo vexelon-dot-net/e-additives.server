@@ -20,11 +20,13 @@ Required software components:
 
 Note that the following steps are to be executed on Linux systems. On Windows you would need to use different commands.
 
-Install required PHP extensions:
+Install required PHP extensions and enable them in `php.ini`:
 
   * mcrypt.so
   * openssl.so
   * phar.so
+  * php_pdo_mysql.so
+  * php_mbstring.so
 
 Install composer:
 

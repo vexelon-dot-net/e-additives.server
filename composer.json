@@ -13,8 +13,11 @@
 	}
 	],	
 	"require": {
-		"predis/predis": "0.8.*@dev",
+		"php": ">=5.3.2",
 		"slim/slim": "2.3.*",
-		"entomb/slim-json-api": "dev-master"
+		"entomb/slim-json-api": "dev-master",
+		"doctrine/common": "2.4.*@dev",
+		"doctrine/dbal": "2.4.*@dev",
+		"predis/predis": "0.8.*@dev"
 	}
 }
