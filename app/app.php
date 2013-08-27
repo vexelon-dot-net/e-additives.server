@@ -18,14 +18,16 @@
  *
 */
 
+$databaseSettings = unserialize(DB_SETTINGS);
+
 use Doctrine\Common\ClassLoader;
 
 $config = new \Doctrine\DBAL\Configuration();
 $connectionParams = array(
-    'dbname' => 'eadditives',
-    'user' => 'ead_user',
-    'password' => '123',
-    'host' => 'localhost',
+    'dbname' => $databaseSettings['database'],
+    'user' => $databaseSettings['user'],
+    'password' => $databaseSettings['password'],
+    'host' => $databaseSettings['host'],
     'driver' => 'pdo_mysql',
 );
 $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);

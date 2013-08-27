@@ -8,12 +8,14 @@ error_reporting(E_ALL & ~(E_WARNING | E_STRICT | E_NOTICE));
 @ini_set("display_errors", 0);
 
 // Database configurations
-define('DB_HOST', 'localhost');
-define('DB_NAME', '');
-define('DB_USER', '');
-define('DB_PASSWORD', '');
-define('DB_CHARSET', 'utf8');
-define('DB_COLLATE', '');
+define('DB_SETTINGS', serialize(array(
+	'host' => '',
+	'user' => '',
+	'password' => '',
+	'database' => '',
+	'charset' => 'utf8',
+	'collate' => '')
+));
 
 // Location settings
 define('BASE_URL', sprintf("http://%s/", $_SERVER["HTTP_HOST"]));
