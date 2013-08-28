@@ -11,6 +11,8 @@ Note, that **availability** and **backup** scenarios are currently **not covered
 
 ![alt text](https://raw.github.com/petarov/e-additives.server/master/docs/eadditives_architecture.png "Components")
 
+Purpose of the _Redis_ server is to cache results queries from the SQL database. It will not store data physically.
+
 # Technology Stack
 
 Performance is a function of many factors - hardware specs, components configuration, ISP stabilty, etc. The technology stack presented here aims to achieve relatively fast performance given the API requirements and our available hosting hardware.
