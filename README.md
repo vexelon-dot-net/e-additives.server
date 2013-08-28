@@ -3,7 +3,7 @@ e-additives.server
 
 The goal of the E-additives project is to implement a web platform and REST server API that will provide detailed information about [food additives](http://en.wikipedia.org/wiki/Food_additive).
 
-The REST API implementation will provide CRUD access to the data which may later be consumed by web or mobile apps.
+The REST API implementation will provide [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) access to the data which may later be consumed by web or mobile apps.
 
 Check the [documentation](docs/).
 
