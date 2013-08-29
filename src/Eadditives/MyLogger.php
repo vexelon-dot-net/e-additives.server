@@ -18,13 +18,36 @@
  *
 */
 
-class Model {
+namespace Eadditives;
 
-	function __construct() {
+/**
+ * MyLogger
+ *
+ * Slim custom Logger implementation.
+ *
+ * @package Eadditives
+ * @author  p.petrov
+ */
+class MyLogger
+{
 
-	}
-	
+    protected static $levels = array(
+        \Slim\Log::EMERGENCY => 'EMERGENCY',
+        \Slim\Log::ALERT     => 'ALERT',
+        \Slim\Log::CRITICAL  => 'CRITICAL',
+        \Slim\Log::ERROR     => 'ERROR',
+        \Slim\Log::WARN      => 'WARNING',
+        \Slim\Log::NOTICE    => 'NOTICE',
+        \Slim\Log::INFO      => 'INFO',
+        \Slim\Log::DEBUG     => 'DEBUG'
+    );
+
+    public function write($object, $level)
+    {
+        error_log(sprintf("[%s]: %s", self::$levels[$level], (string) $object));
+
+        return true;
+    }
 }
-
 
 ?>

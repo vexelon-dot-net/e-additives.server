@@ -19,5 +19,8 @@
 		"doctrine/common": "2.4.*@dev",
 		"doctrine/dbal": "2.4.*@dev",
 		"predis/predis": "0.8.*@dev"
-	}
+	},
+	"autoload": {
+		"psr-0": {"Eadditives\\": "src/"}
+	}	
 }

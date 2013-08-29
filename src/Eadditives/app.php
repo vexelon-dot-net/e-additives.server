@@ -35,7 +35,7 @@ $connectionParams = array(
 );
 $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
 
-// Create REST service
+// Configure REST App
 $app = new \Slim\Slim(array(
     'debug' => DEBUG,
     'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
@@ -43,12 +43,17 @@ $app = new \Slim\Slim(array(
     'http.version' => '1.1'
     ));
 
-$app->setName('E-additives REST Server');
+$app->setName(APP_NAME);
 $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
+
+// Register Logger
+use Eadditives;
+$log = new \Slim\Log(new \Eadditives\MyLogger());
+$log->debug('ready!');
 	
-// Add API calls
-require 'app/api.php';
+// Run API
+require 'api.php';
 
 $app->run();
 

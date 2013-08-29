@@ -16,15 +16,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
-*/
+ */
 
-// define site path location
-define('__SITE_PATH', realpath(dirname(__FILE__)) );
+namespace Eadditives;
 
-require 'config.php';
-require 'vendor/autoload.php';
+/**
+ * MyModel
+ *
+ *
+ * @package Eadditives
+ * @author  p.petrov
+ */
 
-// Start App
-require 'src/Eadditives/app.php';
+class MyModel {
+
+	function __construct() {
+
+	}
+	
+}
+
+
 ?>
-
