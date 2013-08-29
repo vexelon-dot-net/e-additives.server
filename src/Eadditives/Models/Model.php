@@ -1,7 +1,7 @@
 <?php
 /*
  * E-additives REST API Server
- * Copyright (C) 2013 Petar Petrov
+ * Copyright (C) 2013 VEXELON.NET Services
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,20 +18,25 @@
  *
  */
 
-namespace Eadditives;
+namespace Eadditives\Models;
 
 /**
- * MyModel
+ * Model
  *
  *
  * @package Eadditives
  * @author  p.petrov
  */
 
-class MyModel {
+class Model {
 
-	function __construct() {
+    /**
+     * @var mixed
+     */
+    protected $dbConnection;
 
+	function __construct($dbConnection) {
+		self::$dbConnection = $dbConnection;
 	}
 	
 }
