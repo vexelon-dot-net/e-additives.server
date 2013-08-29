@@ -11,9 +11,10 @@ Get a list of food additives.
 
 **Parameters**
 
-  * __optional__ _(string)_ `sort` - sort by `code`, `name` or `last_update`; the default is `code`
-  * __optional__ _(string)_ `order` - sort order. One of `asc` or `desc`; the default is `desc`
-  * __optional__ _(string)_ `locale` - either `en` or `bg`; the default is always `en`
+  * *optional* **string** `category` - get only from specified additives category
+  * *optional* **string** `sort` - sort by `code`, `name` or `last_update`; the default is `code`
+  * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
+  * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
 **Example**
 
@@ -26,9 +27,9 @@ Search for food additives.
     
 **Parameters**
 
-  * _(string)_ `q` - a string to search for
-  * __optional__ _(string)_ `category` - search only in specified additives category
-  * __optional__ _(string)_ `locale` - either `en` or `bg`; the default is always `en`
+  * **string** `q` - a string to search for
+  * *optional* **string** `category` - search only in specified additives category
+  * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
 **Example**
 
@@ -41,8 +42,23 @@ Get information about single additive.
 
 **Parameters**
 
-  * _(string)_ `code` - additive code
-  * __optional__ _(string)_ `locale` - either `en` or `bg`; the default is always `en`
+  * **string** `code` - additive code
+  * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
+
+**Example**
+
+TODO
+
+---
+Get a list of additives categories.
+
+    GET /additives/categories
+
+**Parameters**
+
+  * *optional* **string** `sort` - sort by `id`, `name` or `last_update`; the default is `id`
+  * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
+  * *optional* **string**  `locale` - either `en` or `bg`; the default is always `en`
 
 **Example**
 
