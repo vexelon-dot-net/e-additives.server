@@ -33,10 +33,10 @@ class Model {
     /**
      * @var mixed
      */
-    protected $dbConnection;
+    protected $dbConnection = null;
 
 	function __construct($dbConnection) {
-		self::$dbConnection = $dbConnection;
+		$this->dbConnection = $dbConnection;
 	}
 	
 }

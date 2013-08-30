@@ -1,7 +1,7 @@
 <?php
 /*
  * E-additives REST API Server
- * Copyright (C) 2013 Petar Petrov
+ * Copyright (C) 2013 VEXELON.NET Services
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@ $databaseSettings = unserialize(DB_SETTINGS);
 // Establish database connection
 use Doctrine\Common\ClassLoader;
 
-$config = new \Doctrine\DBAL\Configuration();
-$connectionParams = array(
+$dbConfig = new \Doctrine\DBAL\Configuration();
+$dbConnectionParams = array(
     'driver' => 'pdo_mysql',
     'host' => $databaseSettings['host'],
     'dbname' => $databaseSettings['database'],
@@ -33,7 +33,7 @@ $connectionParams = array(
     'password' => $databaseSettings['password'],
     'charset ' => $databaseSettings['charset '],
 );
-$conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
+$dbConnection = \Doctrine\DBAL\DriverManager::getConnection($dbConnectionParams, $dbConfig);
 
 // Configure REST App
 $app = new \Slim\Slim(array(

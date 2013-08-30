@@ -23,18 +23,80 @@ namespace Eadditives\Models;
 /**
  * AdditivesModel
  *
+ * Fetch additives data from database.
  *
  * @package Eadditives
  * @author  p.petrov
  */
 
-class AdditivesModel {
+class AdditivesModel extends Model {
+
+	protected $defaultCriteria = array(
+		'locale' => 'en'
+		);
 
 	function __construct($dbConnection) {
 		parent::__construct($dbConnection);
 	}
 
-	
+    /**
+     * Get a list of food additives.
+     * @param  array $criteria Filtering criteria.
+     * @return array 
+     */	
+	public function getAll($criteria = array()) {
+		$criteria = array_merge($defaultCriteria, $criteria);
+
+		$sql = "SELECT code,
+			(SELECT value_str FROM AdditiveProps as ap WHERE ap.additive_id = a.id AND key_name='name' AND locale_id=1) as name
+			FROM Additive as a
+			WHERE visible = TRUE";
+
+		$statement = $this->dbConnection->prepare($sql);
+		$statement ->execute();
+		$result = $statement ->fetchAll();
+	}
+
+    /**
+     * Search for food additives.
+     * @param  string $q String to search for
+     * @param  array $criteria Filtering criteria.     
+     * @return array 
+     */	
+	public function search($q, $criteria = array()) {
+		$criteria = array_merge($defaultCriteria, $criteria);
+
+	}
+
+    /**
+     * Get information about single additive.
+     * @param  string $code additive code
+     * @param  array $criteria Filtering criteria.     
+     * @return array 
+     */	
+	public function getSingle($code, $criteria = array()) {
+		$criteria = array_merge($defaultCriteria, $criteria);
+
+		$sql = "SELECT * FROM Additive as a 
+			LEFT JOIN AdditiveProps as ap ON ap.additive_id = a.id 
+			WHERE a.code=? AND ap.locale_id = ?";
+
+		$stmt = $this->dbConnection->prepare($sql);
+		$stmt->bindValue(1, $name);
+		$stmt->bindValue(2, '1');
+		$stmt->execute();
+		$result = $stmt->fetch();
+	}
+
+    /**
+     * Get a list of additives categories.
+     * @param  array $criteria Filtering criteria.
+     * @return array 
+     */	
+	public function getCategories($criteria = array()) {
+		$criteria = array_merge($defaultCriteria, $criteria);
+
+	}	
 }
 
 
