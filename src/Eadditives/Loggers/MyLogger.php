@@ -44,7 +44,7 @@ class MyLogger
 
     public function write($object, $level)
     {
-        error_log(sprintf("[%s]: %s", self::$levels[$level], (string) $object));
+        error_log(sprintf("[%s] %s", self::$levels[$level], (string) $object));
 
         return true;
     }

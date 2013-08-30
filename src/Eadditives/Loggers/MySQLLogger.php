@@ -46,7 +46,7 @@ class MySQLLogger implements SQLLogger
         //     var_dump($types);
         // }
 
-        error_log(sprintf("[%s]: %s", 'SQL', (string) $sql));
+        error_log(sprintf("[%s] %s", 'SQL', (string) $sql));
     }
 
     /**
