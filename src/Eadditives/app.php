@@ -25,6 +25,9 @@ $databaseSettings = unserialize(DB_SETTINGS);
 use Doctrine\Common\ClassLoader;
 
 $dbConfig = new \Doctrine\DBAL\Configuration();
+if (SHOW_SQL)
+    $dbConfig->setSQLLogger(new \Eadditives\Loggers\MySQLLogger());
+
 $dbConnectionParams = array(
     'driver' => 'pdo_mysql',
     'host' => $databaseSettings['host'],
@@ -49,7 +52,7 @@ $app->add(new \JsonApiMiddleware());
 
 // Register Logger
 use Eadditives;
-$log = new \Slim\Log(new \Eadditives\MyLogger());
+$log = new \Slim\Log(new \Eadditives\Loggers\MyLogger());
 $log->debug('ready!');
 	
 // Run API

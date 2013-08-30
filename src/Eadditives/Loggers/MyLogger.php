@@ -18,7 +18,7 @@
  *
  */
 
-namespace Eadditives;
+namespace Eadditives\Loggers;
 
 /**
  * MyLogger
