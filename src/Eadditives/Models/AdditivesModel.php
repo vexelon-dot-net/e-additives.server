@@ -39,11 +39,11 @@ class AdditivesModel extends Model {
 		parent::__construct($dbConnection);
 	}
 
-    /**
-     * Get a list of food additives.
-     * @param  array $criteria Filtering criteria.
-     * @return array 
-     */	
+	/**
+	 * Get a list of food additives.
+	 * @param  array $criteria Filtering criteria.
+	 * @return array 
+	 */	
 	public function getAll($criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
@@ -57,23 +57,23 @@ class AdditivesModel extends Model {
 		$result = $statement ->fetchAll();
 	}
 
-    /**
-     * Search for food additives.
-     * @param  string $q String to search for
-     * @param  array $criteria Filtering criteria.     
-     * @return array 
-     */	
+	/**
+	 * Search for food additives.
+	 * @param  string $q String to search for
+	 * @param  array $criteria Filtering criteria.     
+	 * @return array 
+	 */	
 	public function search($q, $criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
 	}
 
-    /**
-     * Get information about single additive.
-     * @param  string $code additive code
-     * @param  array $criteria Filtering criteria.     
-     * @return array 
-     */	
+	/**
+	 * Get information about single additive.
+	 * @param  string $code additive code
+	 * @param  array $criteria Filtering criteria.     
+	 * @return array 
+	 */	
 	public function getSingle($code, $criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
@@ -88,11 +88,11 @@ class AdditivesModel extends Model {
 		$result = $stmt->fetch();
 	}
 
-    /**
-     * Get a list of additives categories.
-     * @param  array $criteria Filtering criteria.
-     * @return array 
-     */	
+	/**
+	 * Get a list of additives categories.
+	 * @param  array $criteria Filtering criteria.
+	 * @return array 
+	 */	
 	public function getCategories($criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 

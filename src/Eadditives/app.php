@@ -18,11 +18,10 @@
  *
  */
 
-// Get database settings
-$databaseSettings = unserialize(DB_SETTINGS);
+use Doctrine\Common\ClassLoader;
 
 // Establish database connection
-use Doctrine\Common\ClassLoader;
+$databaseSettings = unserialize(DB_SETTINGS);
 
 $dbConfig = new \Doctrine\DBAL\Configuration();
 if (SHOW_SQL)
@@ -47,8 +46,8 @@ $app = new \Slim\Slim(array(
     ));
 
 $app->setName(APP_NAME);
-$app->view(new \JsonApiView());
-$app->add(new \JsonApiMiddleware());
+$app->view(new \Eadditives\Views\JsonView());
+$app->add(new \Eadditives\Views\JsonMiddleware());
 
 // Register Logger
 use Eadditives;
