@@ -32,21 +32,17 @@ use \Slim;
  */
 class JsonMiddleware extends \Slim\Middleware {
 
+    function __construct($app, $logger) {
 
-    /**
-     * Sets a buch of static API calls
-     *
-     */
-    function __construct(){
-
-        $app = \Slim\Slim::getInstance();
+        $this->setApplication($app);
+        //$app = \Slim\Slim::getInstance();
 
         // Mirrors the API request
         $app->get('/return', function() use ($app) {
-            $app->render(200,array(
+            $app->render(200, array(
                 'method'    => $app->request()->getMethod(),
                 'name'      => $app->request()->get('name'),
-                'headers'   => $app->request()->headers(),
+                'headers'   => json_encode($app->request()->headers->all()),
                 'params'    => $app->request()->params(),
             ));
         });
@@ -61,28 +57,27 @@ class JsonMiddleware extends \Slim\Middleware {
 
         // Not found handler (invalid routes, invalid method types)
         $app->notFound(function() use ($app) {
-            $app->render(400,array(
+            $app->render(400, array(
                 'error' => TRUE,
                 'msg'   => 'Invalid route',
             ));
         });
 
         // Handle Empty response body
-        $app->hook('slim.after.router', function () use ($app) {
+        $app->hook('slim.after.router', function () use ($app, $logger) {
             if (strlen($app->response()->body()) == 0) {
-                $app->render(500,array(
+                $app->render(500, array(
                     'error' => TRUE,
                     'msg'   => 'Empty response',
                 ));
-            }
+            }            
         });
-
     }
 
     /**
      * Call default SLIM call()
      */
-    function call(){
+    function call() {
         return $this->app->call();
     }
 

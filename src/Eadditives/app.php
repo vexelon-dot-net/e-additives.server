@@ -44,15 +44,15 @@ $app = new \Slim\Slim(array(
     'log.enabled' => true,
     'http.version' => '1.1'
     ));
-
 $app->setName(APP_NAME);
-$app->view(new \Eadditives\Views\JsonView());
-$app->add(new \Eadditives\Views\JsonMiddleware());
 
 // Register Logger
 use Eadditives;
-$log = new \Slim\Log(new \Eadditives\Loggers\MyLogger());
-$log->debug('ready!');
+$logger = new \Slim\Log(new \Eadditives\Loggers\MyLogger());
+
+// Initialize Response mediators
+$app->view(new \Eadditives\Views\JsonView($app, $logger));
+$app->add(new \Eadditives\Views\JsonMiddleware($app, $logger));
 	
 // Run API
 require 'api.php';
