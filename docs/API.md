@@ -49,10 +49,12 @@ Get information about single additive.
 
 TODO
 
----
+
+# /categories
+
 Get a list of additives categories.
 
-    GET /additives/categories
+    GET /categories
 
 **Parameters**
 
