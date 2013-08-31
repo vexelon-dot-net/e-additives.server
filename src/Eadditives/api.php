@@ -20,6 +20,7 @@
 
 use \Eadditives\Views\JsonView;
 use \Eadditives\Models\AdditivesModel;
+use \Eadditives\Models\CategoriesModel;
 
 // Index - Display list of available API calls - TODO:
 $app->get('/', function () use ($app) {
@@ -31,7 +32,8 @@ $app->get('/', function () use ($app) {
 });
 
 /*
- * /additives
+ * API: /additives
+ *
  */
 $app->group('/additives', function() use ($app, $dbConnection) {
 
@@ -49,14 +51,6 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});
 
-	// Get a list of additives categories.
-	$app->get('/categories', function() use ($app, $dbConnection) {
-		$model = new AdditivesModel($dbConnection);
-		$result = $model->getCategories();		
-		error_log('res ' . print_r($result, true));
-		$app->render(JsonView::HTTP_STATUS_OK, $result);		
-	});	
-
 	// Get information about single additive.
 	$app->get('/:code', function($code) use ($app, $dbConnection) {
 		$model = new AdditivesModel($dbConnection);
@@ -66,5 +60,18 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 	});			
 });
 
+/*
+ * API: /categories
+ *
+ */
+$app->group('/categories', function() use ($app, $dbConnection) {
+
+	// Get a list of additives categories.
+	$app->get('/', function() use ($app, $dbConnection) {
+		$model = new CategoriesModel($dbConnection);
+		$result = $model->getAll();		
+		$app->render(JsonView::HTTP_STATUS_OK, $result);		
+	});	
+});
 
 ?>

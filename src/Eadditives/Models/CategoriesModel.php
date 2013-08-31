@@ -1,4 +1,5 @@
 <?php
+
 /*
  * E-additives REST API Server
  * Copyright (C) 2013 VEXELON.NET Services
@@ -21,39 +22,36 @@
 namespace Eadditives\Models;
 
 /**
- * Model
+ * CategoriesModel
  *
+ * Fetch additives categories data from database.
  *
  * @package Eadditives
  * @author  p.petrov
  */
 
-class Model {
+class CategoriesModel extends Model {
 
-	const CRITERIA_CATEGORY = 'category';
-	const CRITERIA_SORT = 'sort';
-	const CRITERIA_ORDER = 'order';
-	const CRITERIA_LOCALE = 'locale';	
+	/**
+	 * Get a list of categories.
+	 * @param  array $criteria Filtering criteria.
+	 * @return array 
+	 */	
+	public function getAll($criteria = array()) {
+		$criteria = array_merge($defaultCriteria, $criteria);
 
-    /**
-     * @var array
-     */
-	protected $defaultCriteria = array(
-		'locale' => 'en'
-		);	
+		$sql = "SELECT c.category, p.name, p.description, p.last_update 
+			FROM AdditiveCategory as c
+			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+			WHERE p.locale_id = :locale_id";
 
-    /**
-     * @var mixed
-     */
-    protected $dbConnection = null;
+		$statement = $this->dbConnection->prepare($sql);
+		$statement->bindValue('locale_id', 1);
+		$statement->execute();
+		$result = $statement ->fetchAll();
 
-    /**
-     * Constructor
-     * @param  mixed $dbConnection
-     */
-	function __construct($dbConnection) {
-		$this->dbConnection = $dbConnection;
-	}
-	
+		return $result;
+	}		
+
 }
 ?>

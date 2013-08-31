@@ -39,15 +39,6 @@ class AdditivesModel extends Model {
 	const PROPERTY_NOTICE = 'notice';
 	const PROPERTY_INFO = 'info';
 
-	const CRITERIA_CATEGORY = 'category';
-	const CRITERIA_SORT = 'sort';
-	const CRITERIA_ORDER = 'order';
-	const CRITERIA_LOCALE = 'locale';
-
-	protected $defaultCriteria = array(
-		'locale' => 'en'
-		);
-
     /**
      * Constructor
      * @param  mixed $dbConnection
@@ -117,26 +108,6 @@ class AdditivesModel extends Model {
 		return $result;
 	}
 
-	/**
-	 * Get a list of additives categories.
-	 * @param  array $criteria Filtering criteria.
-	 * @return array 
-	 */	
-	public function getCategories($criteria = array()) {
-		$criteria = array_merge($defaultCriteria, $criteria);
-
-		$sql = "SELECT c.category, p.name, p.description, p.last_update 
-			FROM AdditiveCategory as c
-			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
-			WHERE p.locale_id = :locale_id";
-
-		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', 1);
-		$statement->execute();
-		$result = $statement ->fetchAll();
-
-		return $result;
-	}	
 }
 
 
