@@ -54,17 +54,12 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 
 		$model = new \Eadditives\Models\AdditivesModel($dbConnection);
 		$result = $model->getAll();
-
-		$app->render(200, array(
-			'result' => $result,
-			));		
+		$app->render(200, $result);
 	});	
 
 	// Search for food additives.
 	$app->get('/search', function() use ($app, $dbConnection) {
-		$app->render(200, array(
-			'result' => $result,
-			));		
+		$app->render(200, $result);		
 	});
 
 	// Get information about single additive.
@@ -74,19 +69,16 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 		$result = $model->getSingle($code);		
 
 		$app->render(200, array(
-			'result' => array(
-				'id' => $result['id'],
-				'code' => $result['code'],
-				'visible' => $result['visible'],
-				'function' => $result['key_name'],
-				)));	
+			'id' => $result['id'],
+			'code' => $result['code'],
+			'visible' => $result['visible'],
+			'function' => $result['key_name'],
+			));	
 	});
 
 	// Get a list of additives categories.
 	$app->get('/categories', function($code) use ($app, $dbConnection) {
-		$app->render(200, array(
-			'result' => $result,
-			));		
+		$app->render(200, $result);		
 	});			
 });
 

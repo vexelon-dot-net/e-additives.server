@@ -40,12 +40,12 @@ class JsonView extends \Slim\View {
         $status = intval($status);
 
         //append error bool
-        if (!$this->has('error')) {
-            $this->set('error', false);
-        }
+        // if (!$this->has('error')) {
+        //     $this->set('error', false);
+        // }
 
         //append status code
-        $this->set('status', $status);
+        //$this->set('status', $status);
 
         $app->response()->status($status);
         $app->response()->header('Content-Type', 'application/json');

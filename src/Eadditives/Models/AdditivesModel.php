@@ -55,6 +55,8 @@ class AdditivesModel extends Model {
 		$statement = $this->dbConnection->prepare($sql);
 		$statement ->execute();
 		$result = $statement ->fetchAll();
+
+		return $result;
 	}
 
 	/**
@@ -82,10 +84,12 @@ class AdditivesModel extends Model {
 			WHERE a.code=? AND ap.locale_id = ?";
 
 		$stmt = $this->dbConnection->prepare($sql);
-		$stmt->bindValue(1, $name);
+		$stmt->bindValue(1, $code);
 		$stmt->bindValue(2, '1');
 		$stmt->execute();
 		$result = $stmt->fetch();
+
+		return $result;
 	}
 
 	/**
