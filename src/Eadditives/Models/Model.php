@@ -35,22 +35,22 @@ class Model {
 	const CRITERIA_ORDER = 'order';
 	const CRITERIA_LOCALE = 'locale';	
 
-    /**
-     * @var array
-     */
+	/**
+	 * @var array
+	 */
 	protected $defaultCriteria = array(
 		'locale' => 'en'
-		);	
+	);	
 
-    /**
-     * @var mixed
-     */
-    protected $dbConnection = null;
+	/**
+	 * @var mixed
+	 */
+	protected $dbConnection = null;
 
-    /**
-     * Constructor
-     * @param  mixed $dbConnection
-     */
+	/**
+	 * Constructor
+	 * @param  mixed $dbConnection
+	 */
 	function __construct($dbConnection) {
 		$this->dbConnection = $dbConnection;
 	}
