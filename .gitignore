@@ -4,3 +4,4 @@ composer.lock
 config.php
 *.bak
 *xml.sql
+*sublime-*
