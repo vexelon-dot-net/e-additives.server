@@ -25,14 +25,19 @@ use \Slim;
 /**
  * JsonView
  *
- * 
+ * Custom Slim view that renders HTTP response body in JSON/P.
  *
  * @package Eadditives
  * @author  p.petrov
  */
 class JsonView extends \Slim\View {
 
+    /**
+     * HTTP status codes
+     */
     const HTTP_STATUS_OK = 200;
+    const HTTP_STATUS_NOT_FOUND = 404;
+    const HTTP_STATUS_ERROR = 500;
 
     private $logger;
 

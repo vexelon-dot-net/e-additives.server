@@ -21,22 +21,6 @@
 use \Eadditives\Views\JsonView;
 use \Eadditives\Models\AdditivesModel;
 
-// General error handler
-$app->error(function (\Exception $e) use ($app) {
-	$app->render(500, array(
-		'error' => TRUE,
-		'msg' => 'Unknown error. Check server logs.',
-		));	
-});
-
-// Resource not found
-$app->notFound(function () use ($app) {
-	$app->render(404, array(
-		'error' => TRUE,
-		'msg' => 'Not found.',
-		));	
-});
-
 // Index - Display list of available API calls - TODO:
 $app->get('/', function () use ($app) {
 	$app->render(200, array(
@@ -55,11 +39,13 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 	$app->get('/', function() use ($app, $dbConnection) {
 		$model = new AdditivesModel($dbConnection);
 		$result = $model->getAll();
+
 		$app->render(JsonView::HTTP_STATUS_OK, $result);
 	});	
 
 	// Search for food additives.
 	$app->get('/search', function() use ($app, $dbConnection) {
+
 		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});
 
@@ -79,6 +65,7 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 
 	// Get a list of additives categories.
 	$app->get('/categories', function($code) use ($app, $dbConnection) {
+		
 		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});			
 });

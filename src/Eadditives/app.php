@@ -62,5 +62,4 @@ $app->add(new JsonMiddleware($app, $logger));
 require 'api.php';
 
 $app->run();
-
 ?>

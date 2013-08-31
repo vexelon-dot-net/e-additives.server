@@ -25,7 +25,7 @@ use \Slim;
 /**
  * JsonMiddleware
  *
- * 
+ * Custom Slim Middleware
  *
  * @package Eadditives
  * @author  p.petrov
@@ -33,7 +33,6 @@ use \Slim;
 class JsonMiddleware extends \Slim\Middleware {
 
     function __construct($app, $logger) {
-
         $this->setApplication($app);
         //$app = \Slim\Slim::getInstance();
 
@@ -49,7 +48,7 @@ class JsonMiddleware extends \Slim\Middleware {
 
         // Generic error handler
         $app->error(function (Exception $e) use ($app) {
-            $app->render(500,array(
+            $app->render(JsonView::HTTP_STATUS_ERROR, array(
                 'error' => TRUE,
                 'msg'   => $e->getMessage(),
             ));
@@ -57,16 +56,17 @@ class JsonMiddleware extends \Slim\Middleware {
 
         // Not found handler (invalid routes, invalid method types)
         $app->notFound(function() use ($app) {
-            $app->render(400, array(
+            $app->render(JsonView::HTTP_STATUS_NOT_FOUND, array(
                 'error' => TRUE,
-                'msg'   => 'Invalid route',
+                'msg'   => 'Invalid route!',
             ));
         });
 
         // Handle Empty response body
         $app->hook('slim.after.router', function () use ($app, $logger) {
+            // XXX: is this correct?
             if (strlen($app->response()->body()) == 0) {
-                $app->render(500, array(
+                $app->render(JsonView::HTTP_STATUS_ERROR, array(
                     'error' => TRUE,
                     'msg'   => 'Empty response',
                 ));
@@ -74,11 +74,7 @@ class JsonMiddleware extends \Slim\Middleware {
         });
     }
 
-    /**
-     * Call default SLIM call()
-     */
     function call() {
         return $this->app->call();
     }
-
 }
