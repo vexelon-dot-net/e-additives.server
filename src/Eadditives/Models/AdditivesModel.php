@@ -39,14 +39,6 @@ class AdditivesModel extends Model {
 	const PROPERTY_NOTICE = 'notice';
 	const PROPERTY_INFO = 'info';
 
-    /**
-     * Constructor
-     * @param  mixed $dbConnection
-     */
-	function __construct($dbConnection) {
-		parent::__construct($dbConnection);
-	}
-
 	/**
 	 * Get a list of food additives.
 	 * @param  array $criteria Filtering criteria.
