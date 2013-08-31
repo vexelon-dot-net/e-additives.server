@@ -36,9 +36,10 @@ class JsonMiddleware extends \Slim\Middleware {
         $this->setApplication($app);
         //$app = \Slim\Slim::getInstance();
 
-        // Mirrors the API request
+        // Mirror request
+        // TODO: Allow only in DEBUG mode!
         $app->get('/return', function() use ($app) {
-            $app->render(200, array(
+            $app->render(JsonView::HTTP_STATUS_OK, array(
                 'method'    => $app->request()->getMethod(),
                 'name'      => $app->request()->get('name'),
                 'headers'   => json_encode($app->request()->headers->all()),

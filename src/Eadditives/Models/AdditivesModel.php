@@ -31,10 +31,27 @@ namespace Eadditives\Models;
 
 class AdditivesModel extends Model {
 
+	const PROPERTY_NAME = 'name';
+	const PROPERTY_STATUS = 'status';
+	const PROPERTY_VEG = 'veg';
+	const PROPERTY_FUNCTION = 'function';
+	const PROPERTY_FOODS = 'foods';
+	const PROPERTY_NOTICE = 'notice';
+	const PROPERTY_INFO = 'info';
+
+	const CRITERIA_CATEGORY = 'category';
+	const CRITERIA_SORT = 'sort';
+	const CRITERIA_ORDER = 'order';
+	const CRITERIA_LOCALE = 'locale';
+
 	protected $defaultCriteria = array(
 		'locale' => 'en'
 		);
 
+    /**
+     * Constructor
+     * @param  mixed $dbConnection
+     */
 	function __construct($dbConnection) {
 		parent::__construct($dbConnection);
 	}
@@ -47,13 +64,14 @@ class AdditivesModel extends Model {
 	public function getAll($criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
-		$sql = "SELECT code,
-			(SELECT value_str FROM AdditiveProps as ap WHERE ap.additive_id = a.id AND key_name='name' AND locale_id=1) as name
+		$sql = "SELECT a.code,
+			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
 			FROM Additive as a
 			WHERE visible = TRUE";
 
 		$statement = $this->dbConnection->prepare($sql);
-		$statement ->execute();
+		$statement->bindValue('locale_id', 1);
+		$statement->execute();
 		$result = $statement ->fetchAll();
 
 		return $result;
@@ -79,15 +97,22 @@ class AdditivesModel extends Model {
 	public function getSingle($code, $criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
-		$sql = "SELECT * FROM Additive as a 
-			LEFT JOIN AdditiveProps as ap ON ap.additive_id = a.id 
-			WHERE a.code=? AND ap.locale_id = ?";
+		$sql = "SELECT a.id, a.code,
+			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
+			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'status' AND locale_id = :locale_id) as status,
+			(SELECT value_int FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'veg' AND locale_id = :locale_id) as veg,
+			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'function' AND locale_id = :locale_id) as function,
+			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'foods' AND locale_id = :locale_id) as foods,
+			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'notice' AND locale_id = :locale_id) as notice,
+			(SELECT value_big_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'info' AND locale_id = :locale_id) as info
+			FROM Additive as a 
+			WHERE a.code = :code";
 
-		$stmt = $this->dbConnection->prepare($sql);
-		$stmt->bindValue(1, $code);
-		$stmt->bindValue(2, '1');
-		$stmt->execute();
-		$result = $stmt->fetch();
+		$statement = $this->dbConnection->prepare($sql);
+		$statement->bindValue('locale_id', 1);
+		$statement->bindValue('code', $code);
+		$statement->execute();
+		$result = $statement->fetch();
 
 		return $result;
 	}
@@ -100,6 +125,17 @@ class AdditivesModel extends Model {
 	public function getCategories($criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
+		$sql = "SELECT c.category, p.name, p.description, p.last_update 
+			FROM AdditiveCategory as c
+			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+			WHERE p.locale_id = :locale_id";
+
+		$statement = $this->dbConnection->prepare($sql);
+		$statement->bindValue('locale_id', 1);
+		$statement->execute();
+		$result = $statement ->fetchAll();
+
+		return $result;
 	}	
 }
 

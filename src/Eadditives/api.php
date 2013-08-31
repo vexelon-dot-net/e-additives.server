@@ -49,24 +49,20 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});
 
+	// Get a list of additives categories.
+	$app->get('/categories', function() use ($app, $dbConnection) {
+		$model = new AdditivesModel($dbConnection);
+		$result = $model->getCategories();		
+		error_log('res ' . print_r($result, true));
+		$app->render(JsonView::HTTP_STATUS_OK, $result);		
+	});	
+
 	// Get information about single additive.
 	$app->get('/:code', function($code) use ($app, $dbConnection) {
-
 		$model = new AdditivesModel($dbConnection);
 		$result = $model->getSingle($code);		
 
-		$app->render(JsonView::HTTP_STATUS_OK, array(
-			'id' => $result['id'],
-			'code' => $result['code'],
-			'visible' => $result['visible'],
-			'function' => $result['key_name'],
-			));	
-	});
-
-	// Get a list of additives categories.
-	$app->get('/categories', function($code) use ($app, $dbConnection) {
-		
-		$app->render(JsonView::HTTP_STATUS_OK, $result);		
+		$app->render(JsonView::HTTP_STATUS_OK, $result);	
 	});			
 });
 
