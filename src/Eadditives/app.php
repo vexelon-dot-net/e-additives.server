@@ -20,12 +20,17 @@
 
 use Doctrine\Common\ClassLoader;
 
+use \Eadditives\Views\JsonView;
+use \Eadditives\Views\JsonMiddleware;
+use \Eadditives\Loggers\MyLogger;
+use \Eadditives\Loggers\MySQLLogger;
+
 // Establish database connection
 $databaseSettings = unserialize(DB_SETTINGS);
 
 $dbConfig = new \Doctrine\DBAL\Configuration();
 if (SHOW_SQL)
-    $dbConfig->setSQLLogger(new \Eadditives\Loggers\MySQLLogger());
+    $dbConfig->setSQLLogger(new MySQLLogger());
 
 $dbConnectionParams = array(
     'driver' => 'pdo_mysql',
@@ -47,12 +52,11 @@ $app = new \Slim\Slim(array(
 $app->setName(APP_NAME);
 
 // Register Logger
-use Eadditives;
-$logger = new \Slim\Log(new \Eadditives\Loggers\MyLogger());
+$logger = new \Slim\Log(new MyLogger());
 
 // Initialize Response mediators
-$app->view(new \Eadditives\Views\JsonView($app, $logger));
-$app->add(new \Eadditives\Views\JsonMiddleware($app, $logger));
+$app->view(new JsonView($app, $logger));
+$app->add(new JsonMiddleware($app, $logger));
 	
 // Run API
 require 'api.php';

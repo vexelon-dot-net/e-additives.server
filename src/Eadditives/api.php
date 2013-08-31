@@ -18,6 +18,8 @@
  *
 */
 
+use \Eadditives\Views\JsonView;
+use \Eadditives\Models\AdditivesModel;
 
 // General error handler
 $app->error(function (\Exception $e) use ($app) {
@@ -51,24 +53,23 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 
 	// Get a list of food additives.
 	$app->get('/', function() use ($app, $dbConnection) {
-
-		$model = new \Eadditives\Models\AdditivesModel($dbConnection);
+		$model = new AdditivesModel($dbConnection);
 		$result = $model->getAll();
-		$app->render(200, $result);
+		$app->render(JsonView::HTTP_STATUS_OK, $result);
 	});	
 
 	// Search for food additives.
 	$app->get('/search', function() use ($app, $dbConnection) {
-		$app->render(200, $result);		
+		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});
 
 	// Get information about single additive.
 	$app->get('/:code', function($code) use ($app, $dbConnection) {
 
-		$model = new \Eadditives\Models\AdditivesModel($dbConnection);
+		$model = new AdditivesModel($dbConnection);
 		$result = $model->getSingle($code);		
 
-		$app->render(200, array(
+		$app->render(JsonView::HTTP_STATUS_OK, array(
 			'id' => $result['id'],
 			'code' => $result['code'],
 			'visible' => $result['visible'],
@@ -78,7 +79,7 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 
 	// Get a list of additives categories.
 	$app->get('/categories', function($code) use ($app, $dbConnection) {
-		$app->render(200, $result);		
+		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});			
 });
 

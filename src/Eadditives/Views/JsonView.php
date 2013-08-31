@@ -50,13 +50,14 @@ class JsonView extends \Slim\View {
 
         $content = json_encode($this->all());
 
-        // Return JSONP ?
         $jsonpCb = $app->request->params('callback');
         if (isset($jsonpCb)) { // $app->request->isAjax()) {
+            // Return JSONP
             $logger->debug('JSONP Callback:' . $jsonpCb);
             $app->response()->header('Content-Type', 'application/javascript');
             $content = $jsonpCb . '(' . $content . ')';
         } else {
+            // Return JSON
             $app->response()->header('Content-Type', 'application/json');
         }
 
