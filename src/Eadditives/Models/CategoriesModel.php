@@ -40,7 +40,7 @@ class CategoriesModel extends Model {
 	public function getAll($criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
-		$sql = "SELECT c.category, p.name, p.description, p.last_update 
+		$sql = "SELECT c.id, p.name, p.last_update 
 			FROM AdditiveCategory as c
 			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
 			WHERE p.locale_id = :locale_id";
@@ -51,7 +51,31 @@ class CategoriesModel extends Model {
 		$result = $statement ->fetchAll();
 
 		return $result;
-	}		
+	}
+
+	/**
+	 * Get information about single category.
+	 * @param  string $id category id
+	 * @param  array $criteria Filtering criteria.     
+	 * @return array 
+	 */	
+	public function getSingle($id, $criteria = array()) {
+		$criteria = array_merge($defaultCriteria, $criteria);
+
+
+		$sql = "SELECT c.id, p.name, p.description, p.last_update 
+			FROM AdditiveCategory as c
+			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+			WHERE c.id = :category_id AND p.locale_id = :locale_id";
+
+		$statement = $this->dbConnection->prepare($sql);
+		$statement->bindValue('locale_id', 1);
+		$statement->bindValue('category_id', $id);
+		$statement->execute();
+		$result = $statement->fetch();
+
+		return $result;
+	}	
 
 }
 ?>

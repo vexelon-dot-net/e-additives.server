@@ -89,16 +89,39 @@ TODO
 ```json
 [
     {
-        "category": "100",
+        "id": "1",
         "name": "colors",
-        "description": "",
-        "last_update": "2013-08-28 00:07:42"
+        "last_update": "2013-08-28 00:07:42",
+        "url": "http://hostname/categories/1"
     },
     {
-        "category": "900",
-        "name": "miscellaneous",
-        "description": "",
-        "last_update": "2013-08-28 00:07:42"
-    }
+        "id": "2",
+        "name": "preservatives",
+        "last_update": "2013-08-28 00:07:42",
+        "url": "http://hostname/categories/2"
+    },
 ]
+```
+
+### Get information about single category.
+
+    GET /categories/{id}
+
+##### Parameters
+
+
+  * **integer** `id` - category id
+  * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
+
+#### Response
+
+    Status: 200 OK
+
+```json
+{
+    "id": "1",
+    "name": "colors",
+    "description": "",
+    "last_update": "2013-08-28 00:07:42"
+}
 ```

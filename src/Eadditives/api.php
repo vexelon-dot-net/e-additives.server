@@ -28,7 +28,8 @@ $app->get('/', function () use ($app) {
 			'additives_url' => BASE_URL . '/additives',
 			'additive_url' => BASE_URL . '/additives/{code}',
 			'additive_search_url' => BASE_URL . '/additives/search',
-			'categories_url' => BASE_URL . '/categories'
+			'categories_url' => BASE_URL . '/categories',
+			'category_url' => BASE_URL . '/categories/{id}'
 			));	
 });
 
@@ -43,12 +44,19 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 		$model = new AdditivesModel($dbConnection);
 		$result = $model->getAll();
 
-		$app->render(JsonView::HTTP_STATUS_OK, $result);
+		// add urls
+		$items = array();
+		foreach ($result as $row) {
+			$row['url'] = BASE_URL . '/additives/' . $row['code'];
+			$items[] = $row;
+		}
+
+		$app->render(JsonView::HTTP_STATUS_OK, $items);
 	});	
 
 	// Search for food additives.
 	$app->get('/search', function() use ($app, $dbConnection) {
-
+		// TODO
 		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});
 
@@ -71,8 +79,24 @@ $app->group('/categories', function() use ($app, $dbConnection) {
 	$app->get('/', function() use ($app, $dbConnection) {
 		$model = new CategoriesModel($dbConnection);
 		$result = $model->getAll();		
-		$app->render(JsonView::HTTP_STATUS_OK, $result);		
+
+		// add urls
+		$items = array();
+		foreach ($result as $row) {
+			$row['url'] = BASE_URL . '/categories/' . $row['id'];
+			$items[] = $row;
+		}
+
+		$app->render(JsonView::HTTP_STATUS_OK, $items);		
 	});	
+
+	// Get information about single category.
+	$app->get('/:id', function($id) use ($app, $dbConnection) {
+		$model = new CategoriesModel($dbConnection);
+		$result = $model->getSingle($id);		
+
+		$app->render(JsonView::HTTP_STATUS_OK, $result);	
+	});		
 });
 
 ?>
