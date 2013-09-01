@@ -18,7 +18,7 @@ define('DB_SETTINGS', serialize(array(
 ));
 
 // Location settings
-define('BASE_URL', sprintf("http://%s/", $_SERVER["HTTP_HOST"]));
+define('BASE_URL', sprintf("http://%s", $_SERVER["HTTP_HOST"]));
 
 // Runtime settings
 define('MAINTENANCE_MODE', false); // service is offline

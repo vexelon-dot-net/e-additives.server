@@ -24,11 +24,12 @@ use \Eadditives\Models\CategoriesModel;
 
 // Index - Display list of available API calls - TODO:
 $app->get('/', function () use ($app) {
-	$app->render(200, array(
-		'urls' => array(
-			'additives_url' => BASE_URL . '/additives'
-			),
-		));	
+	$app->render(JsonView::HTTP_STATUS_OK, array(
+			'additives_url' => BASE_URL . '/additives',
+			'additive_url' => BASE_URL . '/additives/{code}',
+			'additive_search_url' => BASE_URL . '/additives/search',
+			'categories_url' => BASE_URL . '/categories'
+			));	
 });
 
 /*
