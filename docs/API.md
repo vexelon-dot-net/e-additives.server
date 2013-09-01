@@ -103,6 +103,7 @@ TODO
 ]
 ```
 
+---
 ### Get information about single category.
 
     GET /categories/{id}
