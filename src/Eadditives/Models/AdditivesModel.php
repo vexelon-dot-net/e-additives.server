@@ -18,6 +18,8 @@
  *
  */
 
+use \Doctrine\DBAL\Connection;
+
 namespace Eadditives\Models;
 
 /**
@@ -69,6 +71,15 @@ class AdditivesModel extends Model {
 	public function search($q, $criteria = array()) {
 		$criteria = array_merge($defaultCriteria, $criteria);
 
+		$sql = "SELECT p.additive_id as id, a.code, p.value_str
+			FROM AdditiveProps as p
+			LEFT JOIN Additive as a ON a.id = p.additive_id
+			WHERE p.locale_id=? AND (p.key_name = 'name' AND p.value_str LIKE ?)";
+
+		$statement = $this->dbConnection->executeQuery($sql, array(1, '%' . $q . '%'));
+		$result = $statement->fetchAll();
+
+		return $result;
 	}
 
 	/**

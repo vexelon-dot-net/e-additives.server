@@ -56,7 +56,22 @@ $app->group('/additives', function() use ($app, $dbConnection) {
 
 	// Search for food additives.
 	$app->get('/search', function() use ($app, $dbConnection) {
-		// TODO
+
+		$q = $app->request->get('q');
+		if (!isset($q)) {
+			throw new Exception('query not specified!');
+		}
+
+		$model = new AdditivesModel($dbConnection);
+		$result = $model->search($q);
+
+		// add urls
+		$items = array();
+		foreach ($result as $row) {
+			$row['url'] = BASE_URL . '/additives/' . $row['code'];
+			$items[] = $row;
+		}
+
 		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});
 
