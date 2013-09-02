@@ -5,7 +5,7 @@ Relative To: **Milestone-01**
 
 # /additives
 
-### Get a list of food additives.
+Get a list of food additives.
 
 #### Request
 
@@ -22,8 +22,8 @@ Relative To: **Milestone-01**
 
 TODO
 
----
-### Search for food additives. 
+================================
+Search for food additives. 
 
 #### Request
 
@@ -39,8 +39,8 @@ TODO
 
 TODO
 
----
-### Get information about single additive.
+================================
+Get information about single additive.
 
 #### Request
 
@@ -72,7 +72,9 @@ TODO
 
 # /categories
 
-### Get a list of additives categories.
+Get a list of additives categories.
+
+#### Request
 
     GET /categories
 
@@ -103,8 +105,10 @@ TODO
 ]
 ```
 
----
-### Get information about single category.
+================================
+Get information about single category.
+
+#### Request
 
     GET /categories/{id}
 
