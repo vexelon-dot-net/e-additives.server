@@ -18,6 +18,23 @@
  *
 */
 
+/*
+ * REST API - handles routed requests using a "Chain-Of-Responsibility" -alike pattern.
+ * 
+ *  --------------
+ * | HTTP Request | -->
+ *  --------------
+ *      -------------------                          -----------
+ * --> | Slim App (Router) | --> headers/params --> | MyRequest | --> parsing/validation --> 
+ *      -------------------                          -----------
+ *      -------                              ------------
+ * --> | Model | --> data fetch/caching --> | MyResponse | --> formatting/create headers --> 
+ *      -------                              ------------
+ *      ---------------
+ * --> | HTTP Response |
+ *      ---------------
+ */
+
 use \Eadditives\Views\JsonView;
 use \Eadditives\Models\AdditivesModel;
 use \Eadditives\Models\CategoriesModel;
@@ -32,6 +49,7 @@ $app->get('/', function () use ($app) {
 			'category_url' => BASE_URL . '/categories/{id}'
 			));	
 });
+
 
 /*
  * API: /additives

@@ -23,7 +23,7 @@ namespace Eadditives;
 /**
  * MyRequest
  *
- * 
+ * Reads input HTTP request header and parameters and prepares data fetch criteria.
  *
  * @package Eadditives
  * @author  p.petrov
