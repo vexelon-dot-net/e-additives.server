@@ -46,7 +46,7 @@ class CategoriesModel extends Model {
 			WHERE p.locale_id = :locale_id";
 
 		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', 1);
+		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
 		$statement->execute();
 		$result = $statement ->fetchAll();
 
@@ -69,7 +69,7 @@ class CategoriesModel extends Model {
 			WHERE c.id = :category_id AND p.locale_id = :locale_id";
 
 		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', 1);
+		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
 		$statement->bindValue('category_id', $id);
 		$statement->execute();
 		$result = $statement->fetch();

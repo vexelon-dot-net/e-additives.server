@@ -37,12 +37,15 @@ $app->get('/', function () use ($app) {
  * API: /additives
  *
  */
-$app->group('/additives', function() use ($app, $dbConnection) {
+$app->group('/additives', function() use ($logger, $app, $dbConnection) {
 
 	// Get a list of food additives.
-	$app->get('/', function() use ($app, $dbConnection) {
+	$app->get('/', function() use ($logger, $app, $dbConnection) {
+
+		$request = new \Eadditives\MyRequest($app->request, $logger);
+
 		$model = new AdditivesModel($dbConnection);
-		$result = $model->getAll();
+		$result = $model->getAll($request->getCriteria());
 
 		// add urls
 		$items = array();

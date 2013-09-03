@@ -47,7 +47,7 @@ class AdditivesModel extends Model {
 	 * @return array 
 	 */	
 	public function getAll($criteria = array()) {
-		$criteria = array_merge($defaultCriteria, $criteria);
+		$criteria = array_merge($this->defaultCriteria, $criteria);
 
 		$sql = "SELECT a.code,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
@@ -55,7 +55,7 @@ class AdditivesModel extends Model {
 			WHERE visible = TRUE";
 
 		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', 1);
+		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
 		$statement->execute();
 		$result = $statement ->fetchAll();
 
@@ -76,7 +76,9 @@ class AdditivesModel extends Model {
 			LEFT JOIN Additive as a ON a.id = p.additive_id
 			WHERE p.locale_id=? AND (p.key_name = 'name' AND p.value_str LIKE ?)";
 
-		$statement = $this->dbConnection->executeQuery($sql, array(1, '%' . $q . '%'));
+		$statement = $this->dbConnection->executeQuery($sql, array(
+			$criteria[Model::CRITERIA_LOCALE], 
+			'%' . $q . '%'));
 		$result = $statement->fetchAll();
 
 		return $result;
@@ -103,7 +105,7 @@ class AdditivesModel extends Model {
 			WHERE a.code = :code";
 
 		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', 1);
+		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
 		$statement->bindValue('code', $code);
 		$statement->execute();
 		$result = $statement->fetch();
