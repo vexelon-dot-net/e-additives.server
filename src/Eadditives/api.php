@@ -55,14 +55,14 @@ $app->get('/', function () use ($app) {
  * API: /additives
  *
  */
-$app->group('/additives', function() use ($logger, $app, $dbConnection) {
+$app->group('/additives', function() use ($app) {
 
 	// Get a list of food additives.
-	$app->get('/', function() use ($logger, $app, $dbConnection) {
+	$app->get('/', function() use ($app) {
 
-		$request = new \Eadditives\MyRequest($app->request, $logger);
+		$request = new \Eadditives\MyRequest($app->request, $app->logger);
 
-		$model = new AdditivesModel($dbConnection);
+		$model = new AdditivesModel($app->dbConnection);
 		$result = $model->getAll($request->getCriteria());
 
 		// add urls
@@ -76,14 +76,14 @@ $app->group('/additives', function() use ($logger, $app, $dbConnection) {
 	});	
 
 	// Search for food additives.
-	$app->get('/search', function() use ($app, $dbConnection) {
+	$app->get('/search', function() use ($app) {
 
 		$q = $app->request->get('q');
 		if (!isset($q)) {
 			throw new Exception('query not specified!');
 		}
 
-		$model = new AdditivesModel($dbConnection);
+		$model = new AdditivesModel($app->dbConnection);
 		$result = $model->search($q);
 
 		// add urls
@@ -97,8 +97,8 @@ $app->group('/additives', function() use ($logger, $app, $dbConnection) {
 	});
 
 	// Get information about single additive.
-	$app->get('/:code', function($code) use ($app, $dbConnection) {
-		$model = new AdditivesModel($dbConnection);
+	$app->get('/:code', function($code) use ($app) {
+		$model = new AdditivesModel($app->dbConnection);
 		$result = $model->getSingle($code);		
 
 		$app->render(JsonView::HTTP_STATUS_OK, $result);	
@@ -109,11 +109,11 @@ $app->group('/additives', function() use ($logger, $app, $dbConnection) {
  * API: /categories
  *
  */
-$app->group('/categories', function() use ($app, $dbConnection) {
+$app->group('/categories', function() use ($app) {
 
 	// Get a list of additives categories.
-	$app->get('/', function() use ($app, $dbConnection) {
-		$model = new CategoriesModel($dbConnection);
+	$app->get('/', function() use ($app) {
+		$model = new CategoriesModel($app->dbConnection);
 		$result = $model->getAll();		
 
 		// add urls
@@ -127,8 +127,8 @@ $app->group('/categories', function() use ($app, $dbConnection) {
 	});	
 
 	// Get information about single category.
-	$app->get('/:id', function($id) use ($app, $dbConnection) {
-		$model = new CategoriesModel($dbConnection);
+	$app->get('/:id', function($id) use ($app) {
+		$model = new CategoriesModel($app->dbConnection);
 		$result = $model->getSingle($id);		
 
 		$app->render(JsonView::HTTP_STATUS_OK, $result);	

@@ -43,9 +43,9 @@ class JsonView extends \Slim\View {
 
     private $app;
 
-    function __construct($app, $logger) {
+    function __construct($app) {
         parent::__construct();
-        $this->logger = $logger;
+        $this->logger = $app->logger;
         $this->app = $app;
     }
 

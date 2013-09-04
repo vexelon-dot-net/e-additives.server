@@ -32,7 +32,7 @@ use \Slim;
  */
 class JsonMiddleware extends \Slim\Middleware {
 
-    function __construct($app, $logger) {
+    function __construct($app) {
         $this->setApplication($app);
         //$app = \Slim\Slim::getInstance();
 

@@ -25,40 +25,52 @@ use \Eadditives\Views\JsonMiddleware;
 use \Eadditives\Loggers\MyLogger;
 use \Eadditives\Loggers\MySQLLogger;
 
-// Establish database connection
+// Configure database connection
 $databaseSettings = unserialize(DB_SETTINGS);
 
 $dbConfig = new \Doctrine\DBAL\Configuration();
 if (SHOW_SQL)
-    $dbConfig->setSQLLogger(new MySQLLogger());
+	$dbConfig->setSQLLogger(new MySQLLogger());
 
 $dbConnectionParams = array(
-    'driver' => 'pdo_mysql',
-    'host' => $databaseSettings['host'],
-    'dbname' => $databaseSettings['database'],
-    'user' => $databaseSettings['user'],
-    'password' => $databaseSettings['password'],
-    'charset ' => $databaseSettings['charset '],
+	'driver' => 'pdo_mysql',
+	'host' => $databaseSettings['host'],
+	'dbname' => $databaseSettings['database'],
+	'user' => $databaseSettings['user'],
+	'password' => $databaseSettings['password'],
+	'charset ' => $databaseSettings['charset '],
 );
-$dbConnection = \Doctrine\DBAL\DriverManager::getConnection($dbConnectionParams, $dbConfig);
 
-// Configure REST App
+// Configure Slim App
 $app = new \Slim\Slim(array(
-    'debug' => DEBUG,
-    'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
-    'log.enabled' => true,
-    'http.version' => '1.1'
-    ));
+	'debug' => DEBUG,
+	'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
+	'log.enabled' => true,
+	'http.version' => '1.1'
+	));
 $app->setName(APP_NAME);
 
-// Register Logger
-$logger = new \Slim\Log(new MyLogger());
-
 // Initialize Response mediators
-$app->view(new JsonView($app, $logger));
-$app->add(new JsonMiddleware($app, $logger));
+$app->view(new JsonView($app));
+$app->add(new JsonMiddleware($app));
+
+/*
+ * Register global resources
+ */
+$app->container->singleton('logger', function() {
+	// Register Logger
+	return new \Slim\Log(new MyLogger());
+});
+
+$app->container->singleton('dbConnection', function() use ($dbConnectionParams, $dbConfig) {
+	// Establish database connection
+	$connection = \Doctrine\DBAL\DriverManager::getConnection($dbConnectionParams, $dbConfig);
+	return $connection;
+});
 	
-// Run API
+/*
+ * Run API
+ */
 require 'api.php';
 
 $app->run();
