@@ -46,13 +46,16 @@ class MyRequest
         self::PARAM_LOCALE => array()
     );  
 
+    protected $app;
+
     protected $logger;
 
     protected $request;
 
-    function __construct($request, $logger) {
-        $this->request = $request;
-        $this->logger = $logger;
+    function __construct($app) {
+        $this->app = $app;
+        $this->request = $app->request;
+        $this->logger = $app->logger;
     }
 
     public function getFilteredParams() {

@@ -19,7 +19,7 @@
 */
 
 /*
- * REST API - handles routed requests using a "Chain-Of-Responsibility" -alike pattern.
+ * RESTful API - handles routed requests using a "Chain-Of-Responsibility" -alike pattern.
  * 
  *  --------------
  * | HTTP Request | -->
@@ -60,7 +60,7 @@ $app->group('/additives', function() use ($app) {
 	// Get a list of food additives.
 	$app->get('/', function() use ($app) {
 
-		$request = new \Eadditives\MyRequest($app->request, $app->logger);
+		$request = new \Eadditives\MyRequest($app);
 
 		$model = new AdditivesModel($app->dbConnection);
 		$result = $model->getAll($request->getCriteria());
