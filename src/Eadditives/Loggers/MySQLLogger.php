@@ -32,29 +32,21 @@ use Doctrine\DBAL\Logging\SQLLogger;
  */
 class MySQLLogger implements SQLLogger
 {
-    /**
-    * {@inheritdoc}
-    */
-    public function startQuery($sql, array $params = null, array $types = null) {
-        // echo $sql . PHP_EOL;
+	/**
+	* {@inheritdoc}
+	*/
+	public function startQuery($sql, array $params = null, array $types = null) {
+		// echo $sql . PHP_EOL;
+		//error_log(sprintf("[%s] %s %s [with params ==> ]%s", 'SQL', (string) $sql, print_r($params, true)));
+		error_log(sprintf("[SQL] %s", (string) $sql));
+	}
 
-        // if ($params) {
-        //     var_dump($params);
-        // }
+	/**
+	* {@inheritdoc}
+	*/
+	public function stopQuery() {
 
-        // if ($types) {
-        //     var_dump($types);
-        // }
-
-        error_log(sprintf("[%s] %s", 'SQL', (string) $sql));
-    }
-
-    /**
-    * {@inheritdoc}
-    */
-    public function stopQuery() {
-
-    }
+	}
 }
 
 ?>
