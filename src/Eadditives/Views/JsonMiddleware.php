@@ -21,6 +21,7 @@
 namespace Eadditives\Views;
 
 use \Slim;
+use \Eadditives\MyResponse;
 
 /**
  * JsonMiddleware
@@ -32,50 +33,45 @@ use \Slim;
  */
 class JsonMiddleware extends \Slim\Middleware {
 
-    function __construct($app) {
-        $this->setApplication($app);
-        //$app = \Slim\Slim::getInstance();
+	function __construct($app) {
+		$this->setApplication($app);
+		//$app = \Slim\Slim::getInstance();
 
-        // Mirror request
-        // TODO: Allow only in DEBUG mode!
-        $app->get('/return', function() use ($app) {
-            $app->render(JsonView::HTTP_STATUS_OK, array(
-                'method'    => $app->request()->getMethod(),
-                'name'      => $app->request()->get('name'),
-                'headers'   => json_encode($app->request()->headers->all()),
-                'params'    => $app->request()->params(),
-            ));
-        });
+		// Mirror request
+		// TODO: Allow only in DEBUG mode!
+		$app->get('/return', function() use ($app) {
+			$app->render(JsonView::HTTP_STATUS_OK, array(
+				'method'    => $app->request()->getMethod(),
+				'name'      => $app->request()->get('name'),
+				'headers'   => json_encode($app->request()->headers->all()),
+				'params'    => $app->request()->params(),
+			));
+		});
 
-        // Generic error handler
-        $app->error(function (Exception $e) use ($app) {
-            $app->render(JsonView::HTTP_STATUS_ERROR, array(
-                'code' => JsonView::HTTP_STATUS_ERROR,
-                'msg'  => $e->getMessage(),
-            ));
-        });
+		// Generic error handler
+		$app->error(function (Exception $e) use ($app) {
+			$response = new MyResponse($app);
+			$response->renderError( $e->getMessage());                
 
-        // Not found handler (invalid routes, invalid method types)
-        $app->notFound(function() use ($app) {
-            $app->render(JsonView::HTTP_STATUS_NOT_FOUND, array(
-                'code' => JsonView::HTTP_STATUS_NOT_FOUND,
-                'msg'  => 'Invalid route!',
-            ));
-        });
+		});
 
-        // Handle Empty response body
-        $app->hook('slim.after.router', function () use ($app, $logger) {
-            // XXX: is this correct?
-            if (strlen($app->response()->body()) == 0) {
-                $app->render(JsonView::HTTP_STATUS_ERROR, array(
-                    'code' => JsonView::HTTP_STATUS_ERROR,
-                    'msg'  => 'Empty response',
-                ));
-            }            
-        });
-    }
+		// Not found handler (invalid routes, invalid method types)
+		$app->notFound(function() use ($app) {
+			$response = new MyResponse($app);
+			$response->renderError('Invalid route!');
+		});
 
-    function call() {
-        return $this->app->call();
-    }
+		// Handle Empty response body
+		$app->hook('slim.after.router', function () use ($app, $logger) {
+			// XXX: is this correct?
+			if (strlen($app->response()->body()) == 0) {
+				$response = new MyResponse($app);
+				$response->renderError('Empty response!');                
+			}            
+		});
+	}
+
+	function call() {
+		return $this->app->call();
+	}
 }

@@ -34,11 +34,11 @@ class MyResponse
 {
 	protected $app;
 
-    function __construct($app) {
-        $this->app = $app;
-    }
+	function __construct($app) {
+		$this->app = $app;
+	}
 
-    function render($status, $results) {
+	function render($status, $results) {
 
 		// add urls
 		$items = array();
@@ -50,15 +50,22 @@ class MyResponse
 		$this->app->response->headers->set('X-Alfa-Type', 'Broderbund');
 
 		$this->app->render($status, $items);    	
-    }
+	}
 
-    public function renderOK($results) {
-    	$this->render(JsonView::HTTP_STATUS_OK, $results);
-    }
+	public function renderOK($results) {
+		$this->render(JsonView::HTTP_STATUS_OK, $results);
+	}
 
-    public function renderError($results) {
-    	$this->render(JsonView::HTTP_STATUS_ERROR, $results);
-    }    
+	public function renderError($errorMessage) {
+		$this->app->render(JsonView::HTTP_STATUS_ERROR, 
+			self::newErrorObject(JsonView::HTTP_STATUS_ERROR, $errorMessage));
+	}
+
+	public static function newErrorObject($code, $errorMessage) {
+		return array(
+			'code' => $code,
+			'msg' => $errorMessage);
+	}
 }
 
 ?>

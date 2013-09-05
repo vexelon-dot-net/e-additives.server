@@ -61,12 +61,15 @@ $app->group('/additives', function() use ($app) {
 	$app->get('/', function() use ($app) {
 
 		$request = new \Eadditives\MyRequest($app);
-
 		$model = new AdditivesModel($app->dbConnection);
-		$result = $model->getAll($request->getCriteria());
 
-		$response = new \Eadditives\MyResponse($app, $result);
-		$response->renderOK($result);
+		try {
+			$result = $model->getAll($request->getCriteria());
+			$response = new \Eadditives\MyResponse($app, $result);
+			$response->renderOK($result);
+		} catch (ModelException $e) {
+			$response->renderError('blah');
+		}
 
 		// // add urls
 		// $items = array();
