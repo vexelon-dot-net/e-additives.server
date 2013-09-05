@@ -22,15 +22,13 @@ use Doctrine\Common\ClassLoader;
 
 use \Eadditives\Views\JsonView;
 use \Eadditives\Views\JsonMiddleware;
-use \Eadditives\Loggers\MyLogger;
-use \Eadditives\Loggers\MySQLLogger;
 
 // Configure database connection
 $databaseSettings = unserialize(DB_SETTINGS);
 
 $dbConfig = new \Doctrine\DBAL\Configuration();
 if (SHOW_SQL)
-	$dbConfig->setSQLLogger(new MySQLLogger());
+	$dbConfig->setSQLLogger(new \Eadditives\Loggers\SQLLogger());
 
 $dbConnectionParams = array(
 	'driver' => 'pdo_mysql',
@@ -44,7 +42,7 @@ $dbConnectionParams = array(
 // Configure Slim App
 $app = new \Slim\Slim(array(
 	'debug' => DEBUG,
-    'log.writer' => new MyLogger(),
+    'log.writer' => new \Eadditives\Loggers\LogWriter(),
 	'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
 	'log.enabled' => true,
 	'http.version' => '1.1'

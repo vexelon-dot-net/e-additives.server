@@ -20,17 +20,15 @@
 
 namespace Eadditives\Loggers;
 
-use Doctrine\DBAL\Logging\SQLLogger;
-
 /**
- * MySQLLogger
+ * SQLLogger
  *
  * DBAL custom Logger implementation.
  *
  * @package Eadditives
  * @author  p.petrov
  */
-class MySQLLogger implements SQLLogger
+class SQLLogger implements \Doctrine\DBAL\Logging\SQLLogger
 {
 	/**
 	* {@inheritdoc}

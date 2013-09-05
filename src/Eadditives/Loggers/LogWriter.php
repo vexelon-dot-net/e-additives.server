@@ -21,14 +21,14 @@
 namespace Eadditives\Loggers;
 
 /**
- * MyLogger
+ * LogWriter
  *
  * Slim custom Log writer implementation.
  *
  * @package Eadditives
  * @author  p.petrov
  */
-class MyLogger
+class LogWriter
 {
 	protected static $levels = array(
 		\Slim\Log::EMERGENCY => 'EMERGENCY',
