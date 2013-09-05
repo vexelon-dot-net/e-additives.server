@@ -44,6 +44,7 @@ $dbConnectionParams = array(
 // Configure Slim App
 $app = new \Slim\Slim(array(
 	'debug' => DEBUG,
+    'log.writer' => new MyLogger(),
 	'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
 	'log.enabled' => true,
 	'http.version' => '1.1'
@@ -57,11 +58,6 @@ $app->add(new JsonMiddleware($app));
 /*
  * Register global resources
  */
-$app->container->singleton('logger', function() {
-	// Register Logger
-	return new \Slim\Log(new MyLogger());
-});
-
 $app->container->singleton('dbConnection', function() use ($dbConnectionParams, $dbConfig) {
 	// Establish database connection
 	$connection = \Doctrine\DBAL\DriverManager::getConnection($dbConnectionParams, $dbConfig);

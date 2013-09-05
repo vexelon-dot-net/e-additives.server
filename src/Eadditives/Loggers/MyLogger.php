@@ -23,14 +23,13 @@ namespace Eadditives\Loggers;
 /**
  * MyLogger
  *
- * Slim custom Logger implementation.
+ * Slim custom Log writer implementation.
  *
  * @package Eadditives
  * @author  p.petrov
  */
 class MyLogger
 {
-
     protected static $levels = array(
         \Slim\Log::EMERGENCY => 'EMERGENCY',
         \Slim\Log::ALERT     => 'ALERT',
@@ -42,12 +41,10 @@ class MyLogger
         \Slim\Log::DEBUG     => 'DEBUG'
     );
 
-    public function write($object, $level)
-    {
+    public function write($object, $level) {
         error_log(sprintf("[%s] %s", self::$levels[$level], (string) $object));
 
         return true;
     }
 }
-
 ?>

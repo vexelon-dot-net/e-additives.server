@@ -30,11 +30,10 @@ namespace Eadditives;
  */
 class MyResponse
 {
+	protected $app;
 
-    protected $logger;
-
-    function __construct($logger) {
-        $this->logger = $logger;
+    function __construct($app) {
+        $this->app = $app;
     }
 
 }

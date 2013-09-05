@@ -48,19 +48,18 @@ class MyRequest
 
     protected $app;
 
-    protected $logger;
-
     protected $request;
 
     function __construct($app) {
         $this->app = $app;
         $this->request = $app->request;
-        $this->logger = $app->logger;
     }
 
     public function getFilteredParams() {
         $result = array_intersect_key($this->request->params(), $this->validParams);
-        $this->logger->debug('Request params: ' . print_r($result, true));
+
+        if ($this->app->log->getEnabled())
+            $this->app->log->debug('Request params: ' . print_r($result, true));
         return $result;
     }
 
@@ -86,7 +85,6 @@ class MyRequest
 
         return $criteria;
     }
-
 
 }
 
