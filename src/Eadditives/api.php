@@ -38,10 +38,13 @@
 use \Eadditives\Views\JsonView;
 use \Eadditives\Models\AdditivesModel;
 use \Eadditives\Models\CategoriesModel;
+use \Eadditives\MyRequest;
+use \Eadditives\MyResponse;
+
 
 // Index - Display list of available API calls - TODO:
 $app->get('/', function () use ($app) {
-	$app->render(JsonView::HTTP_STATUS_OK, array(
+	$app->render(MyResponse::HTTP_STATUS_OK, array(
 		'additives_url' => BASE_URL . '/additives',
 		'additive_url' => BASE_URL . '/additives/{code}',
 		'additive_search_url' => BASE_URL . '/additives/search',
@@ -60,55 +63,75 @@ $app->group('/additives', function() use ($app) {
 	// Get a list of food additives.
 	$app->get('/', function() use ($app) {
 
-		$request = new \Eadditives\MyRequest($app);
+		$request = new MyRequest($app);
 		$model = new AdditivesModel($app->dbConnection);
 
 		try {
+
 			$result = $model->getAll($request->getCriteria());
-			$response = new \Eadditives\MyResponse($app, $result);
-			$response->renderOK($result);
+
+			// add urls
+			$items = array();
+			foreach ($result as $row) {
+				$row['url'] = BASE_URL . '/additives/' . $row['code'];
+				$items[] = $row;
+			}
+
+			$response = new MyResponse($app);
+			$response->renderOK($items);
+
 		} catch (ModelException $e) {
-			$response->renderError('blah');
+			$response->renderError('TODO: ERROR');
 		}
 
-		// // add urls
-		// $items = array();
-		// foreach ($result as $row) {
-		// 	$row['url'] = BASE_URL . '/additives/' . $row['code'];
-		// 	$items[] = $row;
-		// }
 
-		// $app->render(JsonView::HTTP_STATUS_OK, $items);
-	});	
+	});			
 
 	// Search for food additives.
 	$app->get('/search', function() use ($app) {
 
-		$q = $app->request->get('q');
-		if (!isset($q)) {
+		$request = new MyRequest($app);
+		if (!$request->isParam('q'))
 			throw new Exception('query not specified!');
+		
+		$q = $request->getParam('q');
+
+		try {
+
+			$model = new AdditivesModel($app->dbConnection);
+			$result = $model->search($q);
+
+			// add urls
+			$items = array();
+			foreach ($result as $row) {
+				$row['url'] = BASE_URL . '/additives/' . $row['code'];
+				$items[] = $row;
+			}
+
+			$response = new MyResponse($app);
+			$response->renderOK($items);
+
+		} catch(ModelException $e) {
+			$response->renderError('TODO: ERROR');
 		}
-
-		$model = new AdditivesModel($app->dbConnection);
-		$result = $model->search($q);
-
-		// add urls
-		$items = array();
-		foreach ($result as $row) {
-			$row['url'] = BASE_URL . '/additives/' . $row['code'];
-			$items[] = $row;
-		}
-
-		$app->render(JsonView::HTTP_STATUS_OK, $result);		
 	});
 
 	// Get information about single additive.
 	$app->get('/:code', function($code) use ($app) {
-		$model = new AdditivesModel($app->dbConnection);
-		$result = $model->getSingle($code);		
 
-		$app->render(JsonView::HTTP_STATUS_OK, $result);	
-	});			
+		$request = new MyRequest($app);
+		$model = new AdditivesModel($app->dbConnection);
+
+		try {
+
+			$result = $model->getSingle($code);
+			$response = new MyResponse($app);
+			$response->renderOK($result);
+
+		} catch (ModelException $e) {
+			$response->renderError('TODO: ERROR');
+		}
+	});		
 });
 
 /*
@@ -119,25 +142,44 @@ $app->group('/categories', function() use ($app) {
 
 	// Get a list of additives categories.
 	$app->get('/', function() use ($app) {
+
+		$request = new MyRequest($app);
 		$model = new CategoriesModel($app->dbConnection);
-		$result = $model->getAll();		
 
-		// add urls
-		$items = array();
-		foreach ($result as $row) {
-			$row['url'] = BASE_URL . '/categories/' . $row['id'];
-			$items[] = $row;
-		}
+		try {
 
-		$app->render(JsonView::HTTP_STATUS_OK, $items);		
+			$result = $model->getAll();
+
+			// add urls
+			$items = array();
+			foreach ($result as $row) {
+				$row['url'] = BASE_URL . '/categories/' . $row['id'];
+				$items[] = $row;
+			}
+
+			$response = new MyResponse($app);
+			$response->renderOK($items);
+
+		} catch (ModelException $e) {
+			$response->renderError('TODO: ERROR');
+		}		
 	});	
 
 	// Get information about single category.
 	$app->get('/:id', function($id) use ($app) {
-		$model = new CategoriesModel($app->dbConnection);
-		$result = $model->getSingle($id);		
 
-		$app->render(JsonView::HTTP_STATUS_OK, $result);	
+		$request = new MyRequest($app);
+		$model = new CategoriesModel($app->dbConnection);
+
+		try {
+
+			$result = $model->getSingle($id);
+			$response = new MyResponse($app);
+			$response->renderOK($result);
+
+		} catch (ModelException $e) {
+			$response->renderError('TODO: ERROR');
+		}
 	});		
 });
 

@@ -32,6 +32,13 @@ use \Eadditives\Views\JsonView;
  */
 class MyResponse
 {
+	/**
+	 * HTTP status codes
+	 */
+	const HTTP_STATUS_OK = 200;
+	const HTTP_STATUS_NOT_FOUND = 404;
+	const HTTP_STATUS_ERROR = 500;
+
 	protected $app;
 
 	function __construct($app) {
@@ -39,26 +46,17 @@ class MyResponse
 	}
 
 	function render($status, $results) {
-
-		// add urls
-		$items = array();
-		foreach ($results as $row) {
-			$row['url'] = BASE_URL . '/additives/' . $row['code'];
-			$items[] = $row;
-		}
-
-		$this->app->response->headers->set('X-Alfa-Type', 'Broderbund');
-
-		$this->app->render($status, $items);    	
+		//$this->app->response->headers->set('X-Alfa-Type', 'Broderbund');
+		$this->app->render($status, $results);    	
 	}
 
 	public function renderOK($results) {
-		$this->render(JsonView::HTTP_STATUS_OK, $results);
+		$this->render(self::HTTP_STATUS_OK, $results);
 	}
 
 	public function renderError($errorMessage) {
-		$this->app->render(JsonView::HTTP_STATUS_ERROR, 
-			self::newErrorObject(JsonView::HTTP_STATUS_ERROR, $errorMessage));
+		$this->app->render(self::HTTP_STATUS_ERROR, 
+			self::newErrorObject(self::HTTP_STATUS_ERROR, $errorMessage));
 	}
 
 	public static function newErrorObject($code, $errorMessage) {

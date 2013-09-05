@@ -31,60 +31,68 @@ namespace Eadditives;
 class MyRequest
 {
 
-    const PARAM_CATEGORY = 'category';
-    const PARAM_SORT = 'sort';
-    const PARAM_ORDER = 'order';
-    const PARAM_LOCALE = 'locale';   
+	const PARAM_CATEGORY = 'category';
+	const PARAM_SORT = 'sort';
+	const PARAM_ORDER = 'order';
+	const PARAM_LOCALE = 'locale';   
 
-    /**
-     * @var array
-     */
-    protected $validParams = array(
-        self::PARAM_CATEGORY => array(),
-        self::PARAM_SORT => array(),
-        self::PARAM_ORDER => array(),
-        self::PARAM_LOCALE => array()
-    );  
+	/**
+	 * @var array
+	 */
+	protected $validParams = array(
+		self::PARAM_CATEGORY => array(),
+		self::PARAM_SORT => array(),
+		self::PARAM_ORDER => array(),
+		self::PARAM_LOCALE => array()
+	);  
 
-    protected $app;
+	protected $app;
 
-    protected $request;
+	protected $request;
 
-    function __construct($app) {
-        $this->app = $app;
-        $this->request = $app->request;
-    }
+	function __construct($app) {
+		$this->app = $app;
+		$this->request = $app->request;
+	}
 
-    public function getFilteredParams() {
-        $result = array_intersect_key($this->request->params(), $this->validParams);
+	public function isParam($name) {
+		return !is_null($this->request->params($name));
+	}
 
-        if ($this->app->log->getEnabled())
-            $this->app->log->debug('Request params: ' . print_r($result, true));
-        return $result;
-    }
+	public function getParam($name) {
+		return $this->request->params($name);
+	}
 
-    /**
-     * Resolve criteria parameters
-     * @param  array $criteria category id
-     * @return array 
-     */     
-    public function getCriteria() {
-        $criteria = array();
-        $params = $this->getFilteredParams();
+	public function getFilteredParams() {
+		$result = array_intersect_key($this->request->params(), $this->validParams);
 
-        // get locale
-        switch($params[self::PARAM_LOCALE]) {
-            case 'bg':
-                $criteria[self::PARAM_LOCALE] = 2;
-                break;
-            case 'en':
-            default:
-                $criteria[self::PARAM_LOCALE] = 1;
-                break;
-        }
+		if ($this->app->log->getEnabled())
+			$this->app->log->debug('Request params: ' . print_r($result, true));
+		return $result;
+	}
 
-        return $criteria;
-    }
+	/**
+	 * Resolve criteria parameters
+	 * @param  array $criteria category id
+	 * @return array 
+	 */     
+	public function getCriteria() {
+		$criteria = array();
+		$params = $this->getFilteredParams();
+
+		// get locale
+		switch($params[self::PARAM_LOCALE]) {
+			case 'bg':
+				$criteria[self::PARAM_LOCALE] = 2;
+				break;
+			case 'en':
+			default:
+				$criteria[self::PARAM_LOCALE] = 1;
+				break;
+		}
+
+		return $criteria;
+	}
 
 }
 

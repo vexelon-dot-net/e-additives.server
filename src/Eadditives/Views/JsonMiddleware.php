@@ -62,7 +62,7 @@ class JsonMiddleware extends \Slim\Middleware {
 		});
 
 		// Handle Empty response body
-		$app->hook('slim.after.router', function () use ($app, $logger) {
+		$app->hook('slim.after.router', function() use ($app, $logger) {
 			// XXX: is this correct?
 			if (strlen($app->response()->body()) == 0) {
 				$response = new MyResponse($app);

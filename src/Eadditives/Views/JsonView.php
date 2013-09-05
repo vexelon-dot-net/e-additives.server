@@ -32,41 +32,34 @@ use \Slim;
  */
 class JsonView extends \Slim\View {
 
-    /**
-     * HTTP status codes
-     */
-    const HTTP_STATUS_OK = 200;
-    const HTTP_STATUS_NOT_FOUND = 404;
-    const HTTP_STATUS_ERROR = 500;
+	private $app;
 
-    private $app;
+	function __construct($app) {
+		parent::__construct();
+		$this->app = $app;
+	}
 
-    function __construct($app) {
-        parent::__construct();
-        $this->app = $app;
-    }
+	public function render($statusCode) {
+		$app = $this->app;
 
-    public function render($status = self::HTTP_STATUS_OK) {
-        $app = $this->app;
+		$content = json_encode($this->all());
 
-        $content = json_encode($this->all());
+		$jsonpCb = $app->request->params('callback');
+		
+		if (isset($jsonpCb)) { // $app->request->isAjax()) {
+			// Return JSONP
+			$app->log->debug('JSONP Callback:' . $jsonpCb);
+			$app->response()->header('Content-Type', 'application/javascript');
+			$content = $jsonpCb . '(' . $content . ')';
+		} else {
+			// Return JSON
+			$app->response()->header('Content-Type', 'application/json');
+		}
 
-        $jsonpCb = $app->request->params('callback');
-        
-        if (isset($jsonpCb)) { // $app->request->isAjax()) {
-            // Return JSONP
-            $app->log->debug('JSONP Callback:' . $jsonpCb);
-            $app->response()->header('Content-Type', 'application/javascript');
-            $content = $jsonpCb . '(' . $content . ')';
-        } else {
-            // Return JSON
-            $app->response()->header('Content-Type', 'application/json');
-        }
+		$app->response()->body($content);
+		$app->response()->status(intval($statusCode));
 
-        $app->response()->body($content);
-        $app->response()->status(intval($status));
-
-        $app->stop();
-    }
+		$app->stop();
+	}
 
 }
