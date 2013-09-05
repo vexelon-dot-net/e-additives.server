@@ -38,7 +38,7 @@ class CategoriesModel extends Model {
 	 * @return array 
 	 */	
 	public function getAll($criteria = array()) {
-		$criteria = array_merge($defaultCriteria, $criteria);
+		$criteria = array_merge($this->defaultCriteria, $criteria);
 
 		$sql = "SELECT c.id, p.name, p.last_update 
 			FROM AdditiveCategory as c
@@ -60,7 +60,7 @@ class CategoriesModel extends Model {
 	 * @return array 
 	 */	
 	public function getSingle($id, $criteria = array()) {
-		$criteria = array_merge($defaultCriteria, $criteria);
+		$criteria = array_merge($this->defaultCriteria, $criteria);
 
 
 		$sql = "SELECT c.id, p.name, p.description, p.last_update 

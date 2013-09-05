@@ -69,7 +69,7 @@ class AdditivesModel extends Model {
 	 * @return array 
 	 */	
 	public function search($q, $criteria = array()) {
-		$criteria = array_merge($defaultCriteria, $criteria);
+		$criteria = array_merge($this->defaultCriteria, $criteria);
 
 		$sql = "SELECT p.additive_id as id, a.code, p.value_str
 			FROM AdditiveProps as p
@@ -91,7 +91,7 @@ class AdditivesModel extends Model {
 	 * @return array 
 	 */	
 	public function getSingle($code, $criteria = array()) {
-		$criteria = array_merge($defaultCriteria, $criteria);
+		$criteria = array_merge($this->defaultCriteria, $criteria);
 
 		$sql = "SELECT a.id, a.code,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,

@@ -39,7 +39,7 @@ class Model {
 	 * @var array
 	 */
 	protected $defaultCriteria = array(
-		'locale' => 'en'
+		'locale' => '1'
 	);	
 
 	/**
