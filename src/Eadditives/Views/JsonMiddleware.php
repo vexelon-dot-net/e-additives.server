@@ -50,16 +50,16 @@ class JsonMiddleware extends \Slim\Middleware {
         // Generic error handler
         $app->error(function (Exception $e) use ($app) {
             $app->render(JsonView::HTTP_STATUS_ERROR, array(
-                'error' => TRUE,
-                'msg'   => $e->getMessage(),
+                'code' => JsonView::HTTP_STATUS_ERROR,
+                'msg'  => $e->getMessage(),
             ));
         });
 
         // Not found handler (invalid routes, invalid method types)
         $app->notFound(function() use ($app) {
             $app->render(JsonView::HTTP_STATUS_NOT_FOUND, array(
-                'error' => TRUE,
-                'msg'   => 'Invalid route!',
+                'code' => JsonView::HTTP_STATUS_NOT_FOUND,
+                'msg'  => 'Invalid route!',
             ));
         });
 
@@ -68,8 +68,8 @@ class JsonMiddleware extends \Slim\Middleware {
             // XXX: is this correct?
             if (strlen($app->response()->body()) == 0) {
                 $app->render(JsonView::HTTP_STATUS_ERROR, array(
-                    'error' => TRUE,
-                    'msg'   => 'Empty response',
+                    'code' => JsonView::HTTP_STATUS_ERROR,
+                    'msg'  => 'Empty response',
                 ));
             }            
         });

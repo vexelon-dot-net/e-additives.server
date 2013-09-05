@@ -39,26 +39,23 @@ class JsonView extends \Slim\View {
     const HTTP_STATUS_NOT_FOUND = 404;
     const HTTP_STATUS_ERROR = 500;
 
-    private $logger;
-
     private $app;
 
     function __construct($app) {
         parent::__construct();
-        $this->logger = $app->logger;
         $this->app = $app;
     }
 
     public function render($status = self::HTTP_STATUS_OK) {
         $app = $this->app;
-        $logger = $this->logger;
 
         $content = json_encode($this->all());
 
         $jsonpCb = $app->request->params('callback');
+        
         if (isset($jsonpCb)) { // $app->request->isAjax()) {
             // Return JSONP
-            $logger->debug('JSONP Callback:' . $jsonpCb);
+            $app->log->debug('JSONP Callback:' . $jsonpCb);
             $app->response()->header('Content-Type', 'application/javascript');
             $content = $jsonpCb . '(' . $content . ')';
         } else {

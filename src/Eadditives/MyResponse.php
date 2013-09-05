@@ -20,6 +20,8 @@
 
 namespace Eadditives;
 
+use \Eadditives\Views\JsonView;
+
 /**
  * MyResponse
  *
@@ -36,6 +38,27 @@ class MyResponse
         $this->app = $app;
     }
 
+    function render($status, $results) {
+
+		// add urls
+		$items = array();
+		foreach ($results as $row) {
+			$row['url'] = BASE_URL . '/additives/' . $row['code'];
+			$items[] = $row;
+		}
+
+		$this->app->response->headers->set('X-Alfa-Type', 'Broderbund');
+
+		$this->app->render($status, $items);    	
+    }
+
+    public function renderOK($results) {
+    	$this->render(JsonView::HTTP_STATUS_OK, $results);
+    }
+
+    public function renderError($results) {
+    	$this->render(JsonView::HTTP_STATUS_ERROR, $results);
+    }    
 }
 
 ?>

@@ -42,12 +42,12 @@ use \Eadditives\Models\CategoriesModel;
 // Index - Display list of available API calls - TODO:
 $app->get('/', function () use ($app) {
 	$app->render(JsonView::HTTP_STATUS_OK, array(
-			'additives_url' => BASE_URL . '/additives',
-			'additive_url' => BASE_URL . '/additives/{code}',
-			'additive_search_url' => BASE_URL . '/additives/search',
-			'categories_url' => BASE_URL . '/categories',
-			'category_url' => BASE_URL . '/categories/{id}'
-			));	
+		'additives_url' => BASE_URL . '/additives',
+		'additive_url' => BASE_URL . '/additives/{code}',
+		'additive_search_url' => BASE_URL . '/additives/search',
+		'categories_url' => BASE_URL . '/categories',
+		'category_url' => BASE_URL . '/categories/{id}'
+		));
 });
 
 
@@ -65,14 +65,17 @@ $app->group('/additives', function() use ($app) {
 		$model = new AdditivesModel($app->dbConnection);
 		$result = $model->getAll($request->getCriteria());
 
-		// add urls
-		$items = array();
-		foreach ($result as $row) {
-			$row['url'] = BASE_URL . '/additives/' . $row['code'];
-			$items[] = $row;
-		}
+		$response = new \Eadditives\MyResponse($app, $result);
+		$response->renderOK($result);
 
-		$app->render(JsonView::HTTP_STATUS_OK, $items);
+		// // add urls
+		// $items = array();
+		// foreach ($result as $row) {
+		// 	$row['url'] = BASE_URL . '/additives/' . $row['code'];
+		// 	$items[] = $row;
+		// }
+
+		// $app->render(JsonView::HTTP_STATUS_OK, $items);
 	});	
 
 	// Search for food additives.
