@@ -39,7 +39,7 @@ class CategoriesModel extends Model {
 	public function getAll($criteria = array()) {
 		$criteria = array_merge($this->defaultCriteria, $criteria);
 
-		$sql = "SELECT c.id, p.name, p.last_update 
+		$sql = "SELECT c.id, c.last_update, p.name
 			FROM AdditiveCategory as c
 			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
 			WHERE p.locale_id = :locale_id";

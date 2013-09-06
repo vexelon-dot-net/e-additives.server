@@ -48,7 +48,7 @@ class AdditivesModel extends Model {
 	public function getAll($criteria = array()) {
 		$criteria = array_merge($this->defaultCriteria, $criteria);
 
-		$sql = "SELECT a.code,
+		$sql = "SELECT a.code, a.last_update,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
 			FROM Additive as a
 			WHERE visible = TRUE";
@@ -63,7 +63,12 @@ class AdditivesModel extends Model {
 			// add urls
 			$items = array();
 			foreach ($result as $row) {
-				$row['url'] = BASE_URL . '/additives/' . $row['code'];
+				// ISO-8601 datetime format
+				$dt = new \DateTime($row['last_update']);
+				$row['last_update'] = $dt->format(\DateTime::ISO8601);
+				// add resource url
+				$row['url'] = BASE_URL . '/additives/' . $row['id'];
+				// add updated row
 				$items[] = $row;
 			}
 
