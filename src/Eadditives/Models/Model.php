@@ -48,11 +48,17 @@ class Model {
 	protected $dbConnection = null;
 
 	/**
+	 * @var mixed
+	 */
+	protected $log = null;
+
+	/**
 	 * Constructor
 	 * @param  mixed $dbConnection
 	 */
-	function __construct($dbConnection) {
+	function __construct($dbConnection, $log) {
 		$this->dbConnection = $dbConnection;
+		$this->log = $log;
 	}
 	
 }

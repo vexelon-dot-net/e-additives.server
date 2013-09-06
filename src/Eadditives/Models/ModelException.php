@@ -28,7 +28,7 @@ namespace Eadditives\Models;
  * @author  p.petrov
  */
 
-class ModelException extends Exception {
+class ModelException extends \Exception {
 	
 	
 }

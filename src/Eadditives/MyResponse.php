@@ -30,8 +30,8 @@ use \Eadditives\Views\JsonView;
  * @package Eadditives
  * @author  p.petrov
  */
-class MyResponse
-{
+class MyResponse {
+	
 	/**
 	 * HTTP status codes
 	 */

@@ -18,8 +18,6 @@
  *
  */
 
-use \Doctrine\DBAL\Connection;
-
 namespace Eadditives\Models;
 
 /**
@@ -44,6 +42,7 @@ class AdditivesModel extends Model {
 	/**
 	 * Get a list of food additives.
 	 * @param  array $criteria Filtering criteria.
+	 * @throws ModelException On any SQL error.
 	 * @return array 
 	 */	
 	public function getAll($criteria = array()) {
@@ -54,12 +53,19 @@ class AdditivesModel extends Model {
 			FROM Additive as a
 			WHERE visible = TRUE";
 
-		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
-		$statement->execute();
-		$result = $statement ->fetchAll();
+		try {
 
-		return $result;
+			$statement = $this->dbConnection->prepare($sql);
+			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->execute();
+			$result = $statement ->fetchAll();
+			return $result;
+
+		} catch (\Exception $e) {
+			$this->log->error($e->getMessage());
+			$this->log->debug($e);
+			throw new ModelException('SQL Error!', $e->getCode(), $e);
+		}
 	}
 
 	/**

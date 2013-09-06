@@ -64,7 +64,7 @@ $app->group('/additives', function() use ($app) {
 	$app->get('/', function() use ($app) {
 
 		$request = new MyRequest($app);
-		$model = new AdditivesModel($app->dbConnection);
+		$model = new AdditivesModel($app->dbConnection, $app->log);
 
 		try {
 
@@ -81,6 +81,7 @@ $app->group('/additives', function() use ($app) {
 			$response->renderOK($items);
 
 		} catch (ModelException $e) {
+			die('hard');
 			$response->renderError('TODO: ERROR');
 		}
 

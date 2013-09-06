@@ -28,8 +28,7 @@ namespace Eadditives;
  * @package Eadditives
  * @author  p.petrov
  */
-class MyRequest
-{
+class MyRequest {
 
 	const PARAM_CATEGORY = 'category';
 	const PARAM_SORT = 'sort';
