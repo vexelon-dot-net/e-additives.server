@@ -1,5 +1,4 @@
 <?php
-
 /*
  * E-additives REST API Server
  * Copyright (C) 2013 VEXELON.NET Services
@@ -50,7 +49,19 @@ class CategoriesModel extends Model {
 		$statement->execute();
 		$result = $statement ->fetchAll();
 
-		return $result;
+		// format results
+		$items = array();
+		foreach ($result as $row) {
+			// ISO-8601 datetime format
+			$dt = new \DateTime($row['last_update']);
+			$row['last_update'] = $dt->format(\DateTime::ISO8601);
+			// add resource url
+			$row['url'] = BASE_URL . '/categories/' . $row['id'];
+			// add updated row
+			$items[] = $row;
+		}
+
+		return $items;
 	}
 
 	/**
@@ -61,7 +72,6 @@ class CategoriesModel extends Model {
 	 */	
 	public function getSingle($id, $criteria = array()) {
 		$criteria = array_merge($this->defaultCriteria, $criteria);
-
 
 		$sql = "SELECT c.id, p.name, p.description, p.last_update 
 			FROM AdditiveCategory as c

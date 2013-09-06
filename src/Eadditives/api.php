@@ -63,55 +63,34 @@ $app->group('/additives', function() use ($app) {
 
 	// Get a list of food additives.
 	$app->get('/', function() use ($app) {
-
 		$request = new MyRequest($app);
 		$model = new AdditivesModel($app->dbConnection, $app->log);
-		
-		$result = $model->getAll($request->getCriteria());
-
-		// add urls
-		$items = array();
-		foreach ($result as $row) {
-			$row['url'] = BASE_URL . '/additives/' . $row['code'];
-			$items[] = $row;
-		}
-
 		$response = new MyResponse($app);
-		$response->renderOK($items);
+		$response->renderOK(
+			$model->getAll($request->getCriteria()));
 	});			
 
 	// Search for food additives.
 	$app->get('/search', function() use ($app) {
-
 		$request = new MyRequest($app);
 		if (!$request->isParam('q'))
 			throw new Exception('query not specified!');
 		
 		$q = $request->getParam('q');
 
-			$model = new AdditivesModel($app->dbConnection);
-			$result = $model->search($q);
-
-			// add urls
-			$items = array();
-			foreach ($result as $row) {
-				$row['url'] = BASE_URL . '/additives/' . $row['code'];
-				$items[] = $row;
-			}
-
+		$model = new AdditivesModel($app->dbConnection);
 		$response = new MyResponse($app);
-		$response->renderOK($items);
+		$response->renderOK(
+			$model->search($q));
 	});
 
 	// Get information about single additive.
 	$app->get('/:code', function($code) use ($app) {
-
 		$request = new MyRequest($app);
 		$model = new AdditivesModel($app->dbConnection);
-
-		$result = $model->getSingle($code);
 		$response = new MyResponse($app);
-		$response->renderOK($result);
+		$response->renderOK(
+			$model->getSingle($code));
 	});		
 });
 
@@ -123,32 +102,20 @@ $app->group('/categories', function() use ($app) {
 
 	// Get a list of additives categories.
 	$app->get('/', function() use ($app) {
-
 		$request = new MyRequest($app);
 		$model = new CategoriesModel($app->dbConnection);
-
-		$result = $model->getAll();
-
-		// add urls
-		$items = array();
-		foreach ($result as $row) {
-			$row['url'] = BASE_URL . '/categories/' . $row['id'];
-			$items[] = $row;
-		}
-
 		$response = new MyResponse($app);
-		$response->renderOK($items);
+		$response->renderOK(
+			$model->getAll());
 	});	
 
 	// Get information about single category.
 	$app->get('/:id', function($id) use ($app) {
-
 		$request = new MyRequest($app);
 		$model = new CategoriesModel($app->dbConnection);
-
-		$result = $model->getSingle($id);
 		$response = new MyResponse($app);
-		$response->renderOK($result);
+		$response->renderOK(
+			$model->getSingle($id));
 	});		
 });
 

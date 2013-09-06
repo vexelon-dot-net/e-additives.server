@@ -51,7 +51,7 @@ class AdditivesModel extends Model {
 		$sql = "SELECT a.code,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
 			FROM Additive as a
-			WHERE visible1 = TRUE";
+			WHERE visible = TRUE";
 
 		try {
 
@@ -59,7 +59,15 @@ class AdditivesModel extends Model {
 			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
 			$statement->execute();
 			$result = $statement ->fetchAll();
-			return $result;
+
+			// add urls
+			$items = array();
+			foreach ($result as $row) {
+				$row['url'] = BASE_URL . '/additives/' . $row['code'];
+				$items[] = $row;
+			}
+
+			return $items;
 
 		} catch (\Exception $e) {
 			$this->log->error($e->getMessage());
@@ -87,7 +95,14 @@ class AdditivesModel extends Model {
 			'%' . $q . '%'));
 		$result = $statement->fetchAll();
 
-		return $result;
+		// add urls
+		$items = array();
+		foreach ($result as $row) {
+			$row['url'] = BASE_URL . '/additives/' . $row['code'];
+			$items[] = $row;
+		}		
+
+		return $items;
 	}
 
 	/**
