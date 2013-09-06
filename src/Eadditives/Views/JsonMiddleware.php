@@ -51,8 +51,7 @@ class JsonMiddleware extends \Slim\Middleware {
 		// Generic error handler
 		$app->error(function (Exception $e) use ($app) {
 			$response = new MyResponse($app);
-			$response->renderError( $e->getMessage());                
-
+			$response->renderError($e->getMessage());
 		});
 
 		// Not found handler (invalid routes, invalid method types)

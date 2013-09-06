@@ -54,15 +54,21 @@ class MyResponse
 		$this->render(self::HTTP_STATUS_OK, $results);
 	}
 
-	public function renderError($errorMessage) {
+	public function renderError($errorMessage, $errorCode = null) {
 		$this->app->render(self::HTTP_STATUS_ERROR, 
-			self::newErrorObject(self::HTTP_STATUS_ERROR, $errorMessage));
+			self::newErrorObject(self::HTTP_STATUS_ERROR, $errorMessage, $errorCode));
 	}
 
-	public static function newErrorObject($code, $errorMessage) {
-		return array(
-			'code' => $code,
+	public static function newErrorObject($status, $errorMessage, $errorCode = null) {
+		$errorObj = array(
+			'status' => $status,
 			'msg' => $errorMessage);
+
+		if (!is_null($errorCode)) {
+			$errorObj['code'] = $errorCode;
+		}
+
+		return $errorObj;
 	}
 }
 
