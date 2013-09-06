@@ -28,7 +28,6 @@ namespace Eadditives\Models;
  * @package Eadditives
  * @author  p.petrov
  */
-
 class AdditivesModel extends Model {
 
 	const PROPERTY_NAME = 'name';
@@ -75,8 +74,6 @@ class AdditivesModel extends Model {
 			return $items;
 
 		} catch (\Exception $e) {
-			$this->log->error($e->getMessage());
-			$this->log->debug($e);
 			throw new ModelException('SQL Error!', $e->getCode(), $e);
 		}
 	}
@@ -84,7 +81,8 @@ class AdditivesModel extends Model {
 	/**
 	 * Search for food additives.
 	 * @param  string $q String to search for
-	 * @param  array $criteria Filtering criteria.     
+	 * @param  array $criteria Filtering criteria.  
+	 * @throws ModelException On any SQL error.   
 	 * @return array 
 	 */	
 	public function search($q, $criteria = array()) {
@@ -95,25 +93,32 @@ class AdditivesModel extends Model {
 			LEFT JOIN Additive as a ON a.id = p.additive_id
 			WHERE p.locale_id=? AND (p.key_name = 'name' AND p.value_str LIKE ?)";
 
-		$statement = $this->dbConnection->executeQuery($sql, array(
-			$criteria[Model::CRITERIA_LOCALE], 
-			'%' . $q . '%'));
-		$result = $statement->fetchAll();
+		try {
 
-		// add urls
-		$items = array();
-		foreach ($result as $row) {
-			$row['url'] = BASE_URL . '/additives/' . $row['code'];
-			$items[] = $row;
+			$statement = $this->dbConnection->executeQuery($sql, array(
+				$criteria[Model::CRITERIA_LOCALE], 
+				'%' . $q . '%'));
+			$result = $statement->fetchAll();
+
+			// add urls
+			$items = array();
+			foreach ($result as $row) {
+				$row['url'] = BASE_URL . '/additives/' . $row['code'];
+				$items[] = $row;
+			}		
+
+			return $items;			
+
+		} catch (\Exception $e) {
+			throw new ModelException('SQL Error!', $e->getCode(), $e);
 		}		
-
-		return $items;
 	}
 
 	/**
 	 * Get information about single additive.
 	 * @param  string $code additive code
-	 * @param  array $criteria Filtering criteria.     
+	 * @param  array $criteria Filtering criteria.
+	 * @throws ModelException On any SQL error.  
 	 * @return array 
 	 */	
 	public function getSingle($code, $criteria = array()) {
@@ -130,16 +135,18 @@ class AdditivesModel extends Model {
 			FROM Additive as a 
 			WHERE a.code = :code";
 
-		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
-		$statement->bindValue('code', $code);
-		$statement->execute();
-		$result = $statement->fetch();
+		try {
+			$statement = $this->dbConnection->prepare($sql);
+			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->bindValue('code', $code);
+			$statement->execute();
+			$result = $statement->fetch();
 
-		return $result;
+			return $result;
+		} catch (\Exception $e) {
+			throw new ModelException('SQL Error!', $e->getCode(), $e);
+		}		
 	}
 
 }
-
-
 ?>

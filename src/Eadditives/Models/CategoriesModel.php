@@ -28,12 +28,12 @@ namespace Eadditives\Models;
  * @package Eadditives
  * @author  p.petrov
  */
-
 class CategoriesModel extends Model {
 
 	/**
 	 * Get a list of categories.
 	 * @param  array $criteria Filtering criteria.
+	 * @throws ModelException On any SQL error.
 	 * @return array 
 	 */	
 	public function getAll($criteria = array()) {
@@ -44,30 +44,37 @@ class CategoriesModel extends Model {
 			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
 			WHERE p.locale_id = :locale_id";
 
-		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
-		$statement->execute();
-		$result = $statement ->fetchAll();
+		try {
 
-		// format results
-		$items = array();
-		foreach ($result as $row) {
-			// ISO-8601 datetime format
-			$dt = new \DateTime($row['last_update']);
-			$row['last_update'] = $dt->format(\DateTime::ISO8601);
-			// add resource url
-			$row['url'] = BASE_URL . '/categories/' . $row['id'];
-			// add updated row
-			$items[] = $row;
+			$statement = $this->dbConnection->prepare($sql);
+			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->execute();
+			$result = $statement ->fetchAll();
+
+			// format results
+			$items = array();
+			foreach ($result as $row) {
+				// ISO-8601 datetime format
+				$dt = new \DateTime($row['last_update']);
+				$row['last_update'] = $dt->format(\DateTime::ISO8601);
+				// add resource url
+				$row['url'] = BASE_URL . '/categories/' . $row['id'];
+				// add updated row
+				$items[] = $row;
+			}
+
+			return $items;			
+
+		} catch (\Exception $e) {
+			throw new ModelException('SQL Error!', $e->getCode(), $e);
 		}
-
-		return $items;
 	}
 
 	/**
 	 * Get information about single category.
 	 * @param  string $id category id
-	 * @param  array $criteria Filtering criteria.     
+	 * @param  array $criteria Filtering criteria.
+	 * @throws ModelException On any SQL error.
 	 * @return array 
 	 */	
 	public function getSingle($id, $criteria = array()) {
@@ -78,13 +85,19 @@ class CategoriesModel extends Model {
 			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
 			WHERE c.id = :category_id AND p.locale_id = :locale_id";
 
-		$statement = $this->dbConnection->prepare($sql);
-		$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
-		$statement->bindValue('category_id', $id);
-		$statement->execute();
-		$result = $statement->fetch();
+		try {
 
-		return $result;
+			$statement = $this->dbConnection->prepare($sql);
+			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->bindValue('category_id', $id);
+			$statement->execute();
+			$result = $statement->fetch();
+
+			return $result;
+
+		} catch (\Exception $e) {
+			throw new ModelException('SQL Error!', $e->getCode(), $e);
+		}
 	}	
 
 }

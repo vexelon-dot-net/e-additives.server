@@ -41,6 +41,7 @@ use \Eadditives\Models\AdditivesModel;
 use \Eadditives\Models\CategoriesModel;
 use \Eadditives\MyRequest;
 use \Eadditives\MyResponse;
+use \Eadditives\RequestException;
 
 
 // Index - Display list of available API calls - TODO:
@@ -73,10 +74,11 @@ $app->group('/additives', function() use ($app) {
 	// Search for food additives.
 	$app->get('/search', function() use ($app) {
 		$request = new MyRequest($app);
-		if (!$request->isParam('q'))
-			throw new Exception('query not specified!');
-		
+
 		$q = $request->getParam('q');
+		if (is_null($q) || trim($q) == '') {
+			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+		}
 
 		$model = new AdditivesModel($app->dbConnection);
 		$response = new MyResponse($app);

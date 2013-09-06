@@ -18,47 +18,20 @@
  *
  */
 
-namespace Eadditives\Models;
+namespace Eadditives;
+
+use \Eadditives;
 
 /**
- * Model
+ * RequestException
  *
+ * 
  *
  * @package Eadditives
  * @author  p.petrov
  */
-class Model {
-
-	const CRITERIA_CATEGORY = 'category';
-	const CRITERIA_SORT = 'sort';
-	const CRITERIA_ORDER = 'order';
-	const CRITERIA_LOCALE = 'locale';	
-
-	/**
-	 * @var array
-	 */
-	protected $defaultCriteria = array(
-		'locale' => '1'
-	);	
-
-	/**
-	 * @var mixed
-	 */
-	protected $dbConnection = null;
-
-	/**
-	 * @var mixed
-	 */
-	protected $log = null;
-
-	/**
-	 * Constructor
-	 * @param  mixed $dbConnection
-	 */
-	function __construct($dbConnection, $log) {
-		$this->dbConnection = $dbConnection;
-		$this->log = $log;
-	}
+class RequestException extends \Exception {
 	
 }
+
 ?>

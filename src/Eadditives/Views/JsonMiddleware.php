@@ -23,6 +23,7 @@ namespace Eadditives\Views;
 use \Slim;
 use \Eadditives\Models\ModelException;
 use \Eadditives\MyResponse;
+use \Eadditives\RequestException;
 
 /**
  * JsonMiddleware
@@ -51,11 +52,19 @@ class JsonMiddleware extends \Slim\Middleware {
 
 		// Generic error handler
 		$app->error(function(\Exception $e) use ($app) {
+
+			$app->log->error($e->getMessage());
+			if (DEBUG)
+				$this->log->debug($e);
+								
 			$response = new MyResponse($app);
 			
 			if ($e instanceof ModelException) {
 				// put SQL error code into error JSON response. 
 				$response->renderError($e->getMessage(), $e->getCode());	
+			} else if ($e instanceof RequestException) {
+				$response->render($e->getCode(), 
+					MyResponse::newErrorObject($e->getCode(), $e->getMessage()));
 			} else {
 				// in all other Exception cases just write general error text msg.
 				$response->renderError('Unknown server error! Contact administrator.', $e->getCode());	
