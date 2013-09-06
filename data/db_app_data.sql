@@ -20,19 +20,19 @@ ALTER TABLE AdditiveCategoryProps AUTO_INCREMENT=1;
 SET NAMES 'utf8' COLLATE 'utf8_general_ci';
 
 ### Insert supported application locales
-INSERT INTO `Locale` (`code`, `enabled`) VALUES ('en', TRUE);
-INSERT INTO `Locale` (`code`, `enabled`) VALUES ('bg', TRUE);
+INSERT INTO Locale (code, enabled) VALUES ('en', TRUE);
+INSERT INTO Locale (code, enabled) VALUES ('bg', TRUE);
 
 ### Insert additives categories
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('100');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('200');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('300');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('400');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('500');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('600');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('700');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('900');
-INSERT INTO `AdditiveCategory` (`category`) VALUES ('1000');
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('100', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('200', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('300', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('400', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('500', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('600', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('700', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('900', NOW());
+INSERT INTO AdditiveCategory (category, last_update) VALUES ('1000', NOW());
 
 # Additive category properties: EN
 SELECT id FROM Locale WHERE code='en' INTO @locale_id;
