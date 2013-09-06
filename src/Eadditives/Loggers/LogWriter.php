@@ -28,8 +28,8 @@ namespace Eadditives\Loggers;
  * @package Eadditives
  * @author  p.petrov
  */
-class LogWriter
-{
+class LogWriter {
+	
 	protected static $levels = array(
 		\Slim\Log::EMERGENCY => 'EMERGENCY',
 		\Slim\Log::ALERT     => 'ALERT',

@@ -28,8 +28,7 @@ namespace Eadditives\Loggers;
  * @package Eadditives
  * @author  p.petrov
  */
-class SQLLogger implements \Doctrine\DBAL\Logging\SQLLogger
-{
+class SQLLogger implements \Doctrine\DBAL\Logging\SQLLogger {
 	/**
 	* {@inheritdoc}
 	*/
