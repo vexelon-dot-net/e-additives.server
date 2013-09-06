@@ -51,7 +51,7 @@ class AdditivesModel extends Model {
 		$sql = "SELECT a.code,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
 			FROM Additive as a
-			WHERE visible = TRUE";
+			WHERE visible1 = TRUE";
 
 		try {
 

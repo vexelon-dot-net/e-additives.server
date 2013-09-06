@@ -60,7 +60,9 @@ class MyResponse {
 	}
 
 	public static function newErrorObject($status, $errorMessage, $errorCode = null) {
+		$dt = new \DateTime();
 		$errorObj = array(
+			'timestamp' => $dt->getTimestamp(),
 			'status' => $status,
 			'msg' => $errorMessage);
 

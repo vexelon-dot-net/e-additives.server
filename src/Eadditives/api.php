@@ -36,6 +36,7 @@
  */
 
 use \Eadditives\Views\JsonView;
+use \Eadditives\Models\ModelException;
 use \Eadditives\Models\AdditivesModel;
 use \Eadditives\Models\CategoriesModel;
 use \Eadditives\MyRequest;
@@ -65,27 +66,18 @@ $app->group('/additives', function() use ($app) {
 
 		$request = new MyRequest($app);
 		$model = new AdditivesModel($app->dbConnection, $app->log);
+		
+		$result = $model->getAll($request->getCriteria());
 
-		try {
-
-			$result = $model->getAll($request->getCriteria());
-
-			// add urls
-			$items = array();
-			foreach ($result as $row) {
-				$row['url'] = BASE_URL . '/additives/' . $row['code'];
-				$items[] = $row;
-			}
-
-			$response = new MyResponse($app);
-			$response->renderOK($items);
-
-		} catch (ModelException $e) {
-			die('hard');
-			$response->renderError('TODO: ERROR');
+		// add urls
+		$items = array();
+		foreach ($result as $row) {
+			$row['url'] = BASE_URL . '/additives/' . $row['code'];
+			$items[] = $row;
 		}
 
-
+		$response = new MyResponse($app);
+		$response->renderOK($items);
 	});			
 
 	// Search for food additives.
@@ -97,8 +89,6 @@ $app->group('/additives', function() use ($app) {
 		
 		$q = $request->getParam('q');
 
-		try {
-
 			$model = new AdditivesModel($app->dbConnection);
 			$result = $model->search($q);
 
@@ -109,12 +99,8 @@ $app->group('/additives', function() use ($app) {
 				$items[] = $row;
 			}
 
-			$response = new MyResponse($app);
-			$response->renderOK($items);
-
-		} catch(ModelException $e) {
-			$response->renderError('TODO: ERROR');
-		}
+		$response = new MyResponse($app);
+		$response->renderOK($items);
 	});
 
 	// Get information about single additive.
@@ -123,15 +109,9 @@ $app->group('/additives', function() use ($app) {
 		$request = new MyRequest($app);
 		$model = new AdditivesModel($app->dbConnection);
 
-		try {
-
-			$result = $model->getSingle($code);
-			$response = new MyResponse($app);
-			$response->renderOK($result);
-
-		} catch (ModelException $e) {
-			$response->renderError('TODO: ERROR');
-		}
+		$result = $model->getSingle($code);
+		$response = new MyResponse($app);
+		$response->renderOK($result);
 	});		
 });
 
@@ -147,23 +127,17 @@ $app->group('/categories', function() use ($app) {
 		$request = new MyRequest($app);
 		$model = new CategoriesModel($app->dbConnection);
 
-		try {
+		$result = $model->getAll();
 
-			$result = $model->getAll();
+		// add urls
+		$items = array();
+		foreach ($result as $row) {
+			$row['url'] = BASE_URL . '/categories/' . $row['id'];
+			$items[] = $row;
+		}
 
-			// add urls
-			$items = array();
-			foreach ($result as $row) {
-				$row['url'] = BASE_URL . '/categories/' . $row['id'];
-				$items[] = $row;
-			}
-
-			$response = new MyResponse($app);
-			$response->renderOK($items);
-
-		} catch (ModelException $e) {
-			$response->renderError('TODO: ERROR');
-		}		
+		$response = new MyResponse($app);
+		$response->renderOK($items);
 	});	
 
 	// Get information about single category.
@@ -172,15 +146,9 @@ $app->group('/categories', function() use ($app) {
 		$request = new MyRequest($app);
 		$model = new CategoriesModel($app->dbConnection);
 
-		try {
-
-			$result = $model->getSingle($id);
-			$response = new MyResponse($app);
-			$response->renderOK($result);
-
-		} catch (ModelException $e) {
-			$response->renderError('TODO: ERROR');
-		}
+		$result = $model->getSingle($id);
+		$response = new MyResponse($app);
+		$response->renderOK($result);
 	});		
 });
 
