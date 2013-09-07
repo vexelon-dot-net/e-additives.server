@@ -20,7 +20,16 @@ Get a list of food additives.
 
 #### Response
 
-TODO
+```json
+[
+    {
+        "code": "100",
+        "last_update": "-0001-11-30T00:00:00+0200",
+        "name": "Curcuma (turmeric)",
+        "url": "http://hostname/ead.server/additives/"
+    }
+]
+```
 
 ================================
 Search for food additives. 
@@ -92,16 +101,16 @@ Get a list of additives categories.
 [
     {
         "id": "1",
+        "last_update": "2013-09-06T19:57:24+0300",
         "name": "colors",
-        "last_update": "2013-08-28 00:07:42",
-        "url": "http://hostname/categories/1"
+        "url": "http://hostname/ead.server/categories/1"
     },
     {
         "id": "2",
+        "last_update": "2013-09-06T19:57:24+0300",
         "name": "preservatives",
-        "last_update": "2013-08-28 00:07:42",
-        "url": "http://hostname/categories/2"
-    },
+        "url": "http://hostname/ead.server/categories/2"
+    }
 ]
 ```
 
