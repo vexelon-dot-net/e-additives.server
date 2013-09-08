@@ -60,11 +60,24 @@ Configure Apache server on local machine for tests. Open your Apache Virtual Hos
 		
 If your are under Windows you can also use [XAMPP](http://www.apachefriends.org/en/xampp.html).
 
-Inside the project folder edit the `.htaccess` file and adjust `RewriteBase` to match your Apache directory configuration, e.g.,
+Copy the `.htaccess-template` to `.htaccess` and edit the file to adjust `RewriteBase` to match your Apache directory configuration, e.g.,
 
-    RewriteBase /ead.server/
+    RewriteBase /api/
 
   
+## Configure Application
+
+Copy the `config-empty.php` to `config.php` and open the file in a text editor.
+
+  * Configure `DB_SETTINGS` by specifying database name and user with access privileges.
+  * Configure `BASE_URL` by specifying the full path to the API. Just add what you specified in `RewriteBase` to the `http://%s/` string.
+  * Set `MAINTENANCE_MODE` to `false` to enable API calls.
+
+# Testing
+
+Read the [API](docs/API.md) docs to check what API calls are available and test using [CURL](http://curl.haxx.se/) or some [REST client](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm) tool.
+
+
 # License
 
-Please check [License](LICENSE).
+Please check the [License](LICENSE) file.
