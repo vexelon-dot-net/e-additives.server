@@ -6,6 +6,11 @@ HTTP API documentation.
 Relative to: [Milestone-01](https://github.com/vexelon-dot-net/e-additives.server/issues/milestones)
 
 ================================
+### JSON-P Callbacks
+
+Just add a `?callback` parameter to any GET call to have the results wrapped in a JSON function. 
+
+================================
 ### /additives
 Get a list of food additives.
 
