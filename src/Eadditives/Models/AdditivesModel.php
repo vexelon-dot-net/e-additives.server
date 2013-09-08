@@ -21,6 +21,8 @@
 namespace Eadditives\Models;
 
 use \Eadditives\MyRequest;
+use \Eadditives\RequestException;
+use \Eadditives\MyResponse;
 
 /**
  * AdditivesModel
@@ -73,7 +75,9 @@ class AdditivesModel extends Model {
 				'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
 				'category_id' => $criteria[MyRequest::PARAM_CATEGORY]
 			));
-			$result = $statement->fetchAll();			
+			$result = $statement->fetchAll();
+
+			$this->validateResult($result);		
 
 			// add urls
 			$items = array();
@@ -130,6 +134,8 @@ class AdditivesModel extends Model {
 				'query' => '%' . $q . '%'));
 			$result = $statement->fetchAll();
 
+			$this->validateResult($result);
+
 			// add urls
 			$items = array();
 			foreach ($result as $row) {
@@ -154,6 +160,10 @@ class AdditivesModel extends Model {
 	public function getSingle($code, $criteria = array()) {
 		$criteria = $this->getDatabaseCriteria($criteria);
 
+		// if (!preg_match("/^[0-9]+([a-zA-Z]+){0,}$/", $code)) {
+		// 	throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+		// }
+
 		$sql = "SELECT a.id, a.code, a.last_update,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
 			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'status' AND locale_id = :locale_id) as status,
@@ -167,17 +177,18 @@ class AdditivesModel extends Model {
 
 		try {
 
-			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
-			$statement->bindValue('code', $code);
-			$statement->execute();
+			$statement = $this->dbConnection->executeQuery($sql, array(
+				'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
+				'code' => $code));
 			$result = $statement->fetch();
+
+			$this->validateResult($result);
 
 			// ISO-8601 datetime format
 			$dt = new \DateTime($row['last_update']);
 			$result['last_update'] = $dt->format(\DateTime::ISO8601);
 			// add resource url
-			$result['url'] = BASE_URL . '/additives/' . $result['code'];			
+			$result['url'] = BASE_URL . '/additives/' . $result['code'];		
 
 			return $result;
 		} catch (\Exception $e) {

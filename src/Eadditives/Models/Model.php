@@ -86,11 +86,22 @@ class Model {
 	 * @param  array $criteria
 	 * @param $key
 	 * @param $values
-	 * @throws RequestException On any SQL error.
-	 * @return array 
+	 * @throws RequestException 
 	 */	
 	protected function validateCriteria(array $criteria, $key, array $values) {
 		if (!in_array($criteria[$key], $values)) {
+			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+		}
+	}
+
+
+	/**
+	 * Check SQL result
+	 * @param $result
+	 * @throws RequestException If result is null or empty.
+	 */	
+	protected function validateResult($result) {
+		if (empty($result)) {
 			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
 		}
 	}

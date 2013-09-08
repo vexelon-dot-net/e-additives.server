@@ -1,6 +1,8 @@
 E-additives API
 ==================
 
+RESTful HTTP API documentation.
+
 Relative To: **Milestone-01**
 
 # /additives

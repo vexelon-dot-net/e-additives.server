@@ -61,6 +61,8 @@ class CategoriesModel extends Model {
 			));
 			$result = $statement->fetchAll();
 
+			$this->validateResult($result);
+
 			// format results
 			$items = array();
 			foreach ($result as $row) {
@@ -101,7 +103,9 @@ class CategoriesModel extends Model {
 				'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
 				'category_id' => $id
 			));
-			$result = $statement->fetch();			
+			$result = $statement->fetch();
+
+			$this->validateResult($result);	
 
 			// ISO-8601 datetime format
 			$dt = new \DateTime($row['last_update']);
