@@ -42,6 +42,8 @@ Search for food additives.
 
   * **string** `q` - a string to search for
   * *optional* **string** `category` - search only in specified additives category
+  * *optional* **string** `sort` - sort by `code`, `name` or `last_update`; the default is `code`
+  * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
   * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
 #### Response

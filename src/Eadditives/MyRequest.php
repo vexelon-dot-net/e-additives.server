@@ -84,10 +84,21 @@ class MyRequest {
 		if (is_null($locale)) {
 			// default locale is EN
 			$criteria[MyRequest::PARAM_LOCALE] = LocalesModel::LOCALE_EN;
-		} else if ($locale != LocalesModel::LOCALE_EN 
-			&& $locale != LocalesModel::LOCALE_BG) {
+		} else if ($locale !== LocalesModel::LOCALE_EN 
+			&& $locale !== LocalesModel::LOCALE_BG) {
 			$this->app->log->error("Invalid locale - [$locale]!");
 			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+		}
+
+		$sort = $criteria[MyRequest::PARAM_SORT];
+		if (!is_null($sort)) {
+			$order = $criteria[MyRequest::PARAM_ORDER];
+			if (is_null($order)) {
+				$criteria[MyRequest::PARAM_ORDER] = 'DESC';
+			} else if ($order !== 'asc' && $order !== 'desc') {
+				$this->app->log->error("Invalid order - [$order]!");
+				throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+			}
 		}
 
 		return $criteria;

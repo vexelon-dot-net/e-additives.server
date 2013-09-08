@@ -54,12 +54,26 @@ class AdditivesModel extends Model {
 			FROM Additive as a
 			WHERE visible = TRUE";
 
+		// apply category criteria
+		if (!is_null($criteria[MyRequest::PARAM_CATEGORY])) {
+			$sql .= " AND a.category_id = :category_id";
+		}				
+
+		// apply sort criteria
+		if (!is_null($criteria[MyRequest::PARAM_SORT])) {
+			$this->validateCriteria($criteria, MyRequest::PARAM_SORT, array('code', 'name', 'last_update'));
+			$sql .= sprintf(" ORDER BY %s %s", 
+				$criteria[MyRequest::PARAM_SORT], 
+				$criteria[MyRequest::PARAM_ORDER]);
+		}			
+
 		try {
 
-			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
-			$statement->execute();
-			$result = $statement ->fetchAll();
+			$statement = $this->dbConnection->executeQuery($sql, array(
+				'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
+				'category_id' => $criteria[MyRequest::PARAM_CATEGORY]
+			));
+			$result = $statement->fetchAll();			
 
 			// add urls
 			$items = array();
@@ -90,16 +104,30 @@ class AdditivesModel extends Model {
 	public function search($q, $criteria = array()) {
 		$criteria = $this->getDatabaseCriteria($criteria);
 
-		$sql = "SELECT p.additive_id as id, a.code, p.value_str
+		$sql = "SELECT p.additive_id as id, a.code, p.value_str as name
 			FROM AdditiveProps as p
 			LEFT JOIN Additive as a ON a.id = p.additive_id
-			WHERE p.locale_id=? AND (p.key_name = 'name' AND p.value_str LIKE ?)";
+			WHERE p.locale_id = :locale_id AND (p.key_name = 'name' AND p.value_str LIKE :query)";
+
+		// apply category criteria
+		if (!is_null($criteria[MyRequest::PARAM_CATEGORY])) {
+			$sql .= " AND a.category_id = :category_id";
+		}			
+
+		// apply sort criteria
+		if (!is_null($criteria[MyRequest::PARAM_SORT])) {
+			$this->validateCriteria($criteria, MyRequest::PARAM_SORT, array('code', 'name', 'last_update'));
+			$sql .= sprintf(" ORDER BY %s %s", 
+				$criteria[MyRequest::PARAM_SORT], 
+				$criteria[MyRequest::PARAM_ORDER]);
+		}	
 
 		try {
 
 			$statement = $this->dbConnection->executeQuery($sql, array(
-				$criteria[MyRequest::PARAM_LOCALE], 
-				'%' . $q . '%'));
+				'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
+				'category_id' => $criteria[MyRequest::PARAM_CATEGORY],
+				'query' => '%' . $q . '%'));
 			$result = $statement->fetchAll();
 
 			// add urls
@@ -138,7 +166,7 @@ class AdditivesModel extends Model {
 			WHERE a.code = :code";
 
 		try {
-			
+
 			$statement = $this->dbConnection->prepare($sql);
 			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
 			$statement->bindValue('code', $code);

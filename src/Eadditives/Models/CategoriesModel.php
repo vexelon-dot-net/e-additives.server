@@ -46,12 +46,20 @@ class CategoriesModel extends Model {
 			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
 			WHERE p.locale_id = :locale_id";
 
+		// apply sort criteria
+		if (!is_null($criteria[MyRequest::PARAM_SORT])) {
+			$this->validateCriteria($criteria, MyRequest::PARAM_SORT, array('id', 'name', 'last_update'));
+			$sql .= sprintf(" ORDER BY %s %s", 
+				$criteria[MyRequest::PARAM_SORT], 
+				$criteria[MyRequest::PARAM_ORDER]);
+		}
+
 		try {
 
-			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
-			$statement->execute();
-			$result = $statement ->fetchAll();
+			$statement = $this->dbConnection->executeQuery($sql, array(
+				'locale_id' => $criteria[MyRequest::PARAM_LOCALE]
+			));
+			$result = $statement->fetchAll();
 
 			// format results
 			$items = array();
@@ -85,15 +93,15 @@ class CategoriesModel extends Model {
 		$sql = "SELECT c.id, p.name, p.description, p.last_update 
 			FROM AdditiveCategory as c
 			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
-			WHERE c.id = :category_id AND p.locale_id = :locale_id";
+			WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
 
 		try {
 
-			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
-			$statement->bindValue('category_id', $id);
-			$statement->execute();
-			$result = $statement->fetch();
+			$statement = $this->dbConnection->executeQuery($sql, array(
+				'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
+				'category_id' => $id
+			));
+			$result = $statement->fetch();			
 
 			// ISO-8601 datetime format
 			$dt = new \DateTime($row['last_update']);

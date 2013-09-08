@@ -21,6 +21,8 @@
 namespace Eadditives\Models;
 
 use \Eadditives\MyRequest;
+use \Eadditives\MyResponse;
+use \Eadditives\RequestException;
 
 /**
  * Model
@@ -77,6 +79,20 @@ class Model {
 		$newCriteria[MyRequest::PARAM_LOCALE] = $locale['id'];
 
 		return $newCriteria;
+	}
+
+	/**
+	 * Checks if given criteria parameter value is correct
+	 * @param  array $criteria
+	 * @param $key
+	 * @param $values
+	 * @throws RequestException On any SQL error.
+	 * @return array 
+	 */	
+	protected function validateCriteria(array $criteria, $key, array $values) {
+		if (!in_array($criteria[$key], $values)) {
+			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+		}
 	}
 }
 ?>
