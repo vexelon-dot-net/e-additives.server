@@ -79,8 +79,17 @@ class JsonMiddleware extends \Slim\Middleware {
 			$response->renderError('Invalid route!');
 		});
 
+		$app->hook('slim.before', function() use ($app) {
+			if (MAINTENANCE_MODE) {
+				$response = new MyResponse($app);
+				$response->render(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
+					MyResponse::newErrorObject(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
+						'The server is currently unavailable (because it is overloaded or down for maintenance).'));
+			}
+		});
+
 		// Handle Empty response body
-		$app->hook('slim.after.router', function() use ($app, $logger) {
+		$app->hook('slim.after.router', function() use ($app) {
 			// XXX: is this correct?
 			if (strlen($app->response()->body()) == 0) {
 				$response = new MyResponse($app);

@@ -38,6 +38,7 @@ class MyResponse {
 	const HTTP_STATUS_OK = 200;
 	const HTTP_STATUS_NOT_FOUND = 404;
 	const HTTP_STATUS_ERROR = 500;
+	const HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE = 503;
 
 	protected $app;
 
