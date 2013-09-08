@@ -23,12 +23,13 @@ use Doctrine\Common\ClassLoader;
 use \Eadditives\Views\JsonView;
 use \Eadditives\Views\JsonMiddleware;
 
-// Configure database connection
+// Configure database server connection
 $databaseSettings = unserialize(DB_SETTINGS);
 
 $dbConfig = new \Doctrine\DBAL\Configuration();
-if (SHOW_SQL)
+if (SHOW_SQL) {
 	$dbConfig->setSQLLogger(new \Eadditives\Loggers\SQLLogger());
+}
 
 $dbConnectionParams = array(
 	'driver' => 'pdo_mysql',
@@ -38,6 +39,12 @@ $dbConnectionParams = array(
 	'password' => $databaseSettings['password'],
 	'charset ' => $databaseSettings['charset '],
 );
+
+// Configure cache server connection
+$cacheSettings = unserialize(CACHE_SETTINGS);
+if ($cacheSettings['enabled']) {
+	// TODO: 
+}
 
 // Configure Slim App
 $app = new \Slim\Slim(array(

@@ -7,7 +7,7 @@
 error_reporting(E_ALL & ~(E_WARNING | E_STRICT | E_NOTICE));
 @ini_set("display_errors", 0);
 
-// Database configurations
+// Database server configurations
 define('DB_SETTINGS', serialize(array(
 	'host' => '',
 	'user' => '',
@@ -16,6 +16,19 @@ define('DB_SETTINGS', serialize(array(
 	'charset' => 'utf8',
 	'collate' => '')
 ));
+
+// Redis cache server configuration
+define('CACHE_SETTINGS', serialize(array(
+	'enabled' => false,
+	'scheme' => 'tcp',
+	'host' => '127.0.0.1',
+	'port' => 6379)
+));
+
+$redis = new PredisClient(array(
+        "scheme" => "tcp",
+        "host" => "127.0.0.1",
+        "port" => 6379));
 
 // Location settings
 // Note: Add any sub paths required here. Omit slash at the end.
