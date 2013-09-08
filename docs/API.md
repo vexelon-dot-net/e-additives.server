@@ -3,15 +3,11 @@ E-additives API
 
 HTTP API documentation.
 
-Relative To: **Milestone-01**
+Relative to: [Milestone-01](https://github.com/vexelon-dot-net/e-additives.server/issues/milestones)
 
-# /additives
-
+================================
+### /additives
 Get a list of food additives.
-
-#### Request
-
-    GET /additives
 
 #### Parameters 
 
@@ -20,10 +16,11 @@ Get a list of food additives.
   * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
   * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
-#### Response
+#### Example
 
+    GET /additives
     HTTP/1.1 200 OK
-
+    
 ```json
 [
     {
@@ -42,11 +39,8 @@ Get a list of food additives.
 ```
 
 ================================
-Search for food additives. 
-
-#### Request
-
-    GET /additives/search
+### /additives/search
+Search food additives. 
     
 #### Parameters
 
@@ -56,7 +50,7 @@ Search for food additives.
   * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
   * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
-#### Response
+#### Example
 
     GET /additives/search?q=cu&sort=code&order=desc&locale=en
     HTTP/1.1 200 OK
@@ -79,18 +73,15 @@ Search for food additives.
 ```
 
 ================================
+### /additives/{code}
 Get information about single additive.
-
-#### Request
-
-    GET /additives/{code}
 
 #### Parameters
 
   * **string** `code` - additive code
   * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
-#### Response
+#### Example
 
     GET /additives/100
     HTTP/1.1 200 OK
@@ -111,14 +102,9 @@ Get information about single additive.
 }
 ```
 
-
-# /categories
-
+================================
+### /categories
 Get a list of additives categories.
-
-#### Request
-
-    GET /categories
 
 ##### Parameters
 
@@ -126,8 +112,9 @@ Get a list of additives categories.
   * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
   * *optional* **string**  `locale` - either `en` or `bg`; the default is always `en`
 
-#### Response
+#### Example
 
+    GET /categories
     HTTP/1.1 200 OK
 
 ```json
@@ -148,11 +135,8 @@ Get a list of additives categories.
 ```
 
 ================================
+### /categories/{id}
 Get information about single category.
-
-#### Request
-
-    GET /categories/{id}
 
 ##### Parameters
 
@@ -160,7 +144,7 @@ Get information about single category.
   * **integer** `id` - category id
   * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
-#### Response
+#### Example
 
     GET /categories/6
     HTTP/1.1 200 OK
