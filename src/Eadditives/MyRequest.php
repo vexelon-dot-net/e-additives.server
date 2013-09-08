@@ -35,7 +35,7 @@ class MyRequest {
 	const PARAM_CATEGORY = 'category';
 	const PARAM_SORT = 'sort';
 	const PARAM_ORDER = 'order';
-	const PARAM_LOCALE = 'locale';   
+	const PARAM_LOCALE = 'locale';
 
 	/**
 	 * @var array

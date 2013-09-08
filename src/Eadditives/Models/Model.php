@@ -35,7 +35,7 @@ class Model {
 	 * @var array
 	 */
 	protected $defaultCriteria = array(
-		'locale' => 'en'
+		MyRequest::PARAM_LOCALE => LocalesModel::LOCALE_EN
 	);
 
 	/**
