@@ -49,7 +49,7 @@ Alternatively one can use [MySQL Workbench](http://dev.mysql.com/downloads/tools
 
 Configure Apache server on local machine for tests. Open your Apache Virtual Hosts configurations, e.g. `/etc/httpd/conf/extra/httpd-vhosts.conf`, and add the following:
 
-    Alias /ead.server /path-to-project/e-additives.server
+    Alias /ead.server.api /path-to-project/e-additives.server
     <Directory /path-to-project/e-additives.server>
             Options FollowSymLinks MultiViews -Indexes
             AllowOverride All
@@ -62,7 +62,7 @@ If your are under Windows you can also use [XAMPP](http://www.apachefriends.org/
 
 Copy the `.htaccess-template` to `.htaccess` and edit the file to adjust `RewriteBase` to match your Apache directory configuration, e.g.,
 
-    RewriteBase /api/
+    RewriteBase /ead.server.api
 
   
 ## Configure Application
@@ -70,7 +70,7 @@ Copy the `.htaccess-template` to `.htaccess` and edit the file to adjust `Rewrit
 Copy the `config-empty.php` to `config.php` and open the file in a text editor.
 
   * Configure `DB_SETTINGS` by specifying database name and user with access privileges.
-  * Configure `BASE_URL` by specifying the full path to the API. Just add what you specified in `RewriteBase` to the `http://%s/` string.
+  * Configure `BASE_URL` by specifying the full path to the API. Just add what you specified in `RewriteBase` to the `http://%s/` string, .e.g, *http://%s/ead.server.api*.
   * Set `MAINTENANCE_MODE` to `false` to enable API calls.
 
 # Testing
