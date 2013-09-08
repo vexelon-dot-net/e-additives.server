@@ -21,45 +21,41 @@
 namespace Eadditives\Models;
 
 /**
- * Model
+ * LocalesModel
  *
  *
  * @package Eadditives
  * @author  p.petrov
  */
-class Model {
-
-	const CRITERIA_CATEGORY = 'category';
-	const CRITERIA_SORT = 'sort';
-	const CRITERIA_ORDER = 'order';
-	const CRITERIA_LOCALE = 'locale';	
+class LocalesModel extends Model {
 
 	/**
-	 * @var array
-	 */
-	protected $defaultCriteria = array(
-		'locale' => '2'
-	);	
+	 * Get locale id by code name
+	 * @param  string $code local code
+	 * @throws ModelException On any SQL error.  
+	 * @return array 
+	 */	
+	public function function getSingle($code) {
 
-	/**
-	 * @var mixed
-	 */
-	protected $dbConnection = null;
+		$sql = "SELECT l.id, l.enabled
+			FROM Locale as l
+			WHERE l.code=? LIMIT 1";
 
-	/**
-	 * @var mixed
-	 */
-	protected $log = null;
+		try {
 
-	/**
-	 * Constructor
-	 * @param  mixed $dbConnection
-	 */
-	function __construct($dbConnection, $log) {
-		$this->dbConnection = $dbConnection;
-		$this->log = $log;
+			$statement = $this->dbConnection->executeQuery($sql, array($code);
+			$row = $statement->fetch();		
+			return $row;
+
+		} catch (\Exception $e) {
+			throw new ModelException('SQL Error!', $e->getCode(), $e);
+		}		
 	}
-	
+
+	public static function isEnabled($localeRow) {
+		return !is_null($localeRow) && !is_null($localeRow['enabled'] 
+			&& booval($localeRow['enabled']) === TRUE);
+	}
 	
 }
 ?>
