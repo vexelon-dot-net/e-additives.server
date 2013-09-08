@@ -25,17 +25,13 @@ define('CACHE_SETTINGS', serialize(array(
 	'port' => 6379)
 ));
 
-$redis = new PredisClient(array(
-        "scheme" => "tcp",
-        "host" => "127.0.0.1",
-        "port" => 6379));
-
 // Location settings
 // Note: Add any sub paths required here. Omit slash at the end.
 define('BASE_URL', sprintf("http://%s", $_SERVER["HTTP_HOST"]));
 
 // Runtime settings
 define('MAINTENANCE_MODE', true); // service is offline
+define('PRODUCTION', true); // silent error reporting
 define('DEBUG', false); // spit more log messages (useful for debugging)
 define('SHOW_SQL', false); // spit all sql statements into log
 

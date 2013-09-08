@@ -48,8 +48,8 @@ if ($cacheSettings['enabled']) {
 
 // Configure Slim App
 $app = new \Slim\Slim(array(
-	'mode' => DEBUG ? 'development' : 'production',
-	'debug' => DEBUG,
+	'mode' => PRODUCTION ? 'production' : 'development',
+	'debug' => !PRODUCTION,
     'log.writer' => new \Eadditives\Loggers\LogWriter(),
 	'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
 	'log.enabled' => true,
