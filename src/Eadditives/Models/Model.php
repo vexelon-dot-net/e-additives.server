@@ -20,6 +20,8 @@
 
 namespace Eadditives\Models;
 
+use \Eadditives\MyRequest;
+
 /**
  * Model
  *
@@ -29,17 +31,17 @@ namespace Eadditives\Models;
  */
 class Model {
 
-	const CRITERIA_CATEGORY = 'category';
-	const CRITERIA_SORT = 'sort';
-	const CRITERIA_ORDER = 'order';
-	const CRITERIA_LOCALE = 'locale';	
-
 	/**
 	 * @var array
 	 */
 	protected $defaultCriteria = array(
-		'locale' => '2'
-	);	
+		'locale' => 'en'
+	);
+
+	/**
+	 * @var mixed
+	 */
+	protected $app = null;
 
 	/**
 	 * @var mixed
@@ -55,11 +57,26 @@ class Model {
 	 * Constructor
 	 * @param  mixed $dbConnection
 	 */
-	function __construct($dbConnection, $log) {
-		$this->dbConnection = $dbConnection;
-		$this->log = $log;
+	function __construct($app) {
+		$this->app = $app;
+		$this->dbConnection = $app->dbConnection;
+		$this->log = $app->log;
 	}
 	
-	
+	/**
+	 * 
+	 * @param  array $criteria Request criteria.
+	 * @throws ModelException On any SQL error.
+	 * @return array 
+	 */	
+	protected function getDatabaseCriteria(array $criteria) {
+		$newCriteria = array_merge($this->defaultCriteria, $criteria);
+
+		$localesModel = new LocalesModel($this->app);
+		$locale = $localesModel->getSingle($newCriteria[MyRequest::PARAM_LOCALE]);
+		$newCriteria[MyRequest::PARAM_LOCALE] = $locale['id'];
+
+		return $newCriteria;
+	}
 }
 ?>

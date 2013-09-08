@@ -54,8 +54,10 @@ class JsonMiddleware extends \Slim\Middleware {
 		$app->error(function(\Exception $e) use ($app) {
 
 			$app->log->error($e->getMessage());
-			if (DEBUG)
-				$this->log->debug($e);
+			if (DEBUG) {
+				// log full stacktrace when in DEBUG mode
+				$app->log->debug($e);
+			}
 								
 			$response = new MyResponse($app);
 			

@@ -20,6 +20,8 @@
 
 namespace Eadditives;
 
+use \Eadditives\Models\LocalesModel;
+
 /**
  * MyRequest
  *
@@ -62,7 +64,7 @@ class MyRequest {
 		return $this->request->params($name);
 	}
 
-	public function getFilteredParams() {
+	protected function getFilteredParams() {
 		$result = array_intersect_key($this->request->params(), $this->validParams);
 
 		if ($this->app->log->getEnabled())
@@ -71,28 +73,25 @@ class MyRequest {
 	}
 
 	/**
-	 * Resolve criteria parameters
+	 * Resolve and validate criteria parameters
 	 * @param  array $criteria category id
 	 * @return array 
 	 */     
 	public function getCriteria() {
-		$criteria = array();
-		$params = $this->getFilteredParams();
+		$criteria = $this->getFilteredParams();
 
-		// get locale
-		switch($params[self::PARAM_LOCALE]) {
-			case 'bg':
-				$criteria[self::PARAM_LOCALE] = 3;
-				break;
-			case 'en':
-			default:
-				$criteria[self::PARAM_LOCALE] = 2;
-				break;
+		$locale = $criteria[MyRequest::PARAM_LOCALE];
+		if (is_null($locale)) {
+			// default locale is EN
+			$criteria[MyRequest::PARAM_LOCALE] = LocalesModel::LOCALE_EN;
+		} else if ($locale != LocalesModel::LOCALE_EN 
+			&& $locale != LocalesModel::LOCALE_BG) {
+			$this->app->log->error("Invalid locale - [$locale]!");
+			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
 		}
 
 		return $criteria;
 	}
-
 }
 
 ?>

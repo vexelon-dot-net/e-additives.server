@@ -20,6 +20,8 @@
 
 namespace Eadditives\Models;
 
+use \Eadditives\MyRequest;
+
 /**
  * AdditivesModel
  *
@@ -45,7 +47,7 @@ class AdditivesModel extends Model {
 	 * @return array 
 	 */	
 	public function getAll($criteria = array()) {
-		$criteria = array_merge($this->defaultCriteria, $criteria);
+		$criteria = $this->getDatabaseCriteria($criteria);
 
 		$sql = "SELECT a.code, a.last_update,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
@@ -55,7 +57,7 @@ class AdditivesModel extends Model {
 		try {
 
 			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
 			$statement->execute();
 			$result = $statement ->fetchAll();
 
@@ -86,7 +88,7 @@ class AdditivesModel extends Model {
 	 * @return array 
 	 */	
 	public function search($q, $criteria = array()) {
-		$criteria = array_merge($this->defaultCriteria, $criteria);
+		$criteria = $this->getDatabaseCriteria($criteria);
 
 		$sql = "SELECT p.additive_id as id, a.code, p.value_str
 			FROM AdditiveProps as p
@@ -96,7 +98,7 @@ class AdditivesModel extends Model {
 		try {
 
 			$statement = $this->dbConnection->executeQuery($sql, array(
-				$criteria[Model::CRITERIA_LOCALE], 
+				$criteria[MyRequest::PARAM_LOCALE], 
 				'%' . $q . '%'));
 			$result = $statement->fetchAll();
 
@@ -122,7 +124,7 @@ class AdditivesModel extends Model {
 	 * @return array 
 	 */	
 	public function getSingle($code, $criteria = array()) {
-		$criteria = array_merge($this->defaultCriteria, $criteria);
+		$criteria = $this->getDatabaseCriteria($criteria);
 
 		$sql = "SELECT a.id, a.code, a.last_update,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
@@ -136,8 +138,9 @@ class AdditivesModel extends Model {
 			WHERE a.code = :code";
 
 		try {
+			
 			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
 			$statement->bindValue('code', $code);
 			$statement->execute();
 			$result = $statement->fetch();

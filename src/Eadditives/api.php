@@ -65,7 +65,7 @@ $app->group('/additives', function() use ($app) {
 	// Get a list of food additives.
 	$app->get('/', function() use ($app) {
 		$request = new MyRequest($app);
-		$model = new AdditivesModel($app->dbConnection, $app->log);
+		$model = new AdditivesModel($app);
 		$response = new MyResponse($app);
 		$response->renderOK(
 			$model->getAll($request->getCriteria()));
@@ -80,19 +80,19 @@ $app->group('/additives', function() use ($app) {
 			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
 		}
 
-		$model = new AdditivesModel($app->dbConnection);
+		$model = new AdditivesModel($app);
 		$response = new MyResponse($app);
 		$response->renderOK(
-			$model->search($q));
+			$model->search($q, $request->getCriteria()));
 	});
 
 	// Get information about single additive.
 	$app->get('/:code', function($code) use ($app) {
 		$request = new MyRequest($app);
-		$model = new AdditivesModel($app->dbConnection);
+		$model = new AdditivesModel($app);
 		$response = new MyResponse($app);
 		$response->renderOK(
-			$model->getSingle($code));
+			$model->getSingle($code, $request->getCriteria()));
 	});		
 });
 
@@ -105,19 +105,19 @@ $app->group('/categories', function() use ($app) {
 	// Get a list of additives categories.
 	$app->get('/', function() use ($app) {
 		$request = new MyRequest($app);
-		$model = new CategoriesModel($app->dbConnection);
+		$model = new AdditivesModel($app);
 		$response = new MyResponse($app);
 		$response->renderOK(
-			$model->getAll());
+			$model->getAll($request->getCriteria()));
 	});	
 
 	// Get information about single category.
 	$app->get('/:id', function($id) use ($app) {
 		$request = new MyRequest($app);
-		$model = new CategoriesModel($app->dbConnection);
+		$model = new AdditivesModel($app);
 		$response = new MyResponse($app);
 		$response->renderOK(
-			$model->getSingle($id));
+			$model->getSingle($id, $request->getCriteria()));
 	});		
 });
 

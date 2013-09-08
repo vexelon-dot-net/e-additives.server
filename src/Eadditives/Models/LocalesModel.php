@@ -29,13 +29,17 @@ namespace Eadditives\Models;
  */
 class LocalesModel extends Model {
 
+	const LOCALE_ALL = 'all';
+	const LOCALE_EN = 'en';
+	const LOCALE_BG = 'bg';
+
 	/**
 	 * Get locale id by code name
 	 * @param  string $code local code
 	 * @throws ModelException On any SQL error.  
 	 * @return array 
 	 */	
-	public function function getSingle($code) {
+	public function getSingle($code) {
 
 		$sql = "SELECT l.id, l.enabled
 			FROM Locale as l
@@ -43,7 +47,7 @@ class LocalesModel extends Model {
 
 		try {
 
-			$statement = $this->dbConnection->executeQuery($sql, array($code);
+			$statement = $this->dbConnection->executeQuery($sql, array($code));
 			$row = $statement->fetch();		
 			return $row;
 
@@ -54,7 +58,7 @@ class LocalesModel extends Model {
 
 	public static function isEnabled($localeRow) {
 		return !is_null($localeRow) && !is_null($localeRow['enabled'] 
-			&& booval($localeRow['enabled']) === TRUE);
+			&& boolval($localeRow['enabled']) === TRUE);
 	}
 	
 }
