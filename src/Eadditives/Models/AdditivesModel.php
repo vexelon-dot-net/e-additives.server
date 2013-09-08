@@ -66,7 +66,7 @@ class AdditivesModel extends Model {
 				$dt = new \DateTime($row['last_update']);
 				$row['last_update'] = $dt->format(\DateTime::ISO8601);
 				// add resource url
-				$row['url'] = BASE_URL . '/additives/' . $row['id'];
+				$row['url'] = BASE_URL . '/additives/' . $row['code'];
 				// add updated row
 				$items[] = $row;
 			}
@@ -124,10 +124,10 @@ class AdditivesModel extends Model {
 	public function getSingle($code, $criteria = array()) {
 		$criteria = array_merge($this->defaultCriteria, $criteria);
 
-		$sql = "SELECT a.id, a.code,
+		$sql = "SELECT a.id, a.code, a.last_update,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
 			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'status' AND locale_id = :locale_id) as status,
-			(SELECT value_int FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'veg' AND locale_id = :locale_id) as veg,
+			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'veg' AND locale_id = :locale_id) as veg,
 			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'function' AND locale_id = :locale_id) as function,
 			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'foods' AND locale_id = :locale_id) as foods,
 			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'notice' AND locale_id = :locale_id) as notice,
@@ -141,6 +141,12 @@ class AdditivesModel extends Model {
 			$statement->bindValue('code', $code);
 			$statement->execute();
 			$result = $statement->fetch();
+
+			// ISO-8601 datetime format
+			$dt = new \DateTime($row['last_update']);
+			$result['last_update'] = $dt->format(\DateTime::ISO8601);
+			// add resource url
+			$result['url'] = BASE_URL . '/additives/' . $result['code'];			
 
 			return $result;
 		} catch (\Exception $e) {

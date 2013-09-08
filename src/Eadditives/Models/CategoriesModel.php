@@ -93,6 +93,12 @@ class CategoriesModel extends Model {
 			$statement->execute();
 			$result = $statement->fetch();
 
+			// ISO-8601 datetime format
+			$dt = new \DateTime($row['last_update']);
+			$result['last_update'] = $dt->format(\DateTime::ISO8601);
+			// add resource url
+			$result['url'] = BASE_URL . '/categories/' . $result['id'];					
+
 			return $result;
 
 		} catch (\Exception $e) {
