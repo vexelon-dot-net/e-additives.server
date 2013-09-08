@@ -20,6 +20,7 @@ ALTER TABLE AdditiveCategoryProps AUTO_INCREMENT=1;
 SET NAMES 'utf8' COLLATE 'utf8_general_ci';
 
 ### Insert supported application locales
+INSERT INTO Locale (code, enabled) VALUES ('all', TRUE);
 INSERT INTO Locale (code, enabled) VALUES ('en', TRUE);
 INSERT INTO Locale (code, enabled) VALUES ('bg', TRUE);
 

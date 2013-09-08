@@ -68,7 +68,6 @@ CREATE TABLE IF NOT EXISTS `AdditiveProps` (
   `value_str` TINYTEXT NULL,
   `value_text` TEXT NULL COMMENT '255 bytes limit',
   `value_big_text` MEDIUMTEXT NULL COMMENT '16 MB limit',
-  `value_int` INT NULL DEFAULT 0,
   `last_update` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),

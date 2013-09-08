@@ -33,7 +33,7 @@ TABLE_ADDITIVELOCALE = "Locale"
 COLUMNS_MAP = {\
 	ATTRIB_NAME: {'name': "name", 'type': "value_str"}, \
 	ATTRIB_STATUS: {'name': "status", 'type': "value_text"}, \
-	ATTRIB_VEG: {'name': "veg", 'type': "value_int"}, \
+	ATTRIB_VEG: {'name': "veg", 'type': "value_str"}, \
 	ATTRIB_FUNCTION: {'name': "function", 'type': "value_text"}, \
 	ATTRIB_FOOD: {'name': "foods", 'type': "value_text"}, \
 	ATTRIB_WARN: {'name': "notice", 'type': "value_text"}, \
@@ -142,20 +142,20 @@ def toSQL(dataList, outFile):
 				# vegan or vegetarian ...unclear. This must be checked later.
 				if dk == ATTRIB_VEG:
 					if dv.lower() == 'да' or dv.lower() == 'yes':
-						veg = 1
+						veg = '1'
 					else:
-						veg = 0
+						veg = '0'
 					value = veg
 
 				if COLUMNS_MAP[dk]['type'] != 'value_int':
-					value = "'{}'".format(escape(dv))
+					value = "'{}'".format(escape(value))
 
 				column = COLUMNS_MAP[dk]
 
 				sql = "INSERT INTO {}(additive_id, locale_id, key_name, {}, last_update) VALUES(@last_additive_id, @locale_id_en, '{}', {}, NOW());"\
 					.format(TABLE_ADDITIVEPROPS, column['type'], column['name'], value)
 				f.write(sql)
-				f.write("\n")	
+				f.write("\n")
 
 		bgv = itemsList['bg']
 		bgvv = bgv[k]
@@ -167,13 +167,13 @@ def toSQL(dataList, outFile):
 				# vegan or vegetarian ...unclear. This must be checked later.
 				if dk == ATTRIB_VEG:
 					if dv.lower() == 'да' or dv.lower() == 'yes':
-						veg = 1
+						veg = '1'
 					else:
-						veg = 0
+						veg = '0'
 					value = veg
 
 				if COLUMNS_MAP[dk]['type'] != 'value_int':
-					value = "'{}'".format(escape(dv))
+					value = "'{}'".format(escape(value))
 
 				column = COLUMNS_MAP[dk]
 

@@ -82,11 +82,11 @@ class MyRequest {
 		// get locale
 		switch($params[self::PARAM_LOCALE]) {
 			case 'bg':
-				$criteria[self::PARAM_LOCALE] = 2;
+				$criteria[self::PARAM_LOCALE] = 3;
 				break;
 			case 'en':
 			default:
-				$criteria[self::PARAM_LOCALE] = 1;
+				$criteria[self::PARAM_LOCALE] = 2;
 				break;
 		}
 
