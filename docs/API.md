@@ -1,7 +1,7 @@
 E-additives API
 ==================
 
-RESTful HTTP API documentation.
+HTTP API documentation.
 
 Relative To: **Milestone-01**
 
@@ -15,21 +15,29 @@ Get a list of food additives.
 
 #### Parameters 
 
-  * *optional* **string** `category` - get only from specified additives category
-  * *optional* **string** `sort` - sort by `code`, `name` or `last_update`; the default is `code`
+  * *optional* **string** `category` - get additives only from given category id
+  * *optional* **string** `sort` - sort by `code`, `name` or `last_update`
   * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
   * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
 #### Response
 
+    HTTP/1.1 200 OK
+
 ```json
 [
     {
         "code": "100",
-        "last_update": "-0001-11-30T00:00:00+0200",
+        "last_update": "2013-09-08T14:00:48+0300",
         "name": "Curcuma (turmeric)",
-        "url": "http://hostname/ead.server/additives/"
-    }
+        "url": "http://hostname/additives/100"
+    },
+    {
+        "code": "101",
+        "last_update": "2013-09-08T14:00:48+0300",
+        "name": "Riboflavin (Vitamin B2)",
+        "url": "http://hostname/additives/101"
+    },
 ]
 ```
 
@@ -43,14 +51,32 @@ Search for food additives.
 #### Parameters
 
   * **string** `q` - a string to search for
-  * *optional* **string** `category` - search only in specified additives category
-  * *optional* **string** `sort` - sort by `code`, `name` or `last_update`; the default is `code`
+  * *optional* **string** `category` - search only in given category id
+  * *optional* **string** `sort` - sort by `code`, `name` or `last_update`
   * *optional* **string** `order` - sort order. One of `asc` or `desc`; the default is `desc`
   * *optional* **string** `locale` - either `en` or `bg`; the default is always `en`
 
 #### Response
 
-TODO
+    GET /additives/search?q=cu&sort=code&order=desc&locale=en
+    HTTP/1.1 200 OK
+    
+```json
+[
+    {
+        "id": "190",
+        "code": "410",
+        "name": "Locust bean gum; carob gum",
+        "url": "http://hostname/additives/410"
+    },
+    {
+        "id": "1",
+        "code": "100",
+        "name": "Curcuma (turmeric)",
+        "url": "http://hostname/additives/100"
+    }
+]
+```
 
 ================================
 Get information about single additive.
@@ -66,19 +92,22 @@ Get information about single additive.
 
 #### Response
 
-    Status: 200 OK
+    GET /additives/100
+    HTTP/1.1 200 OK
 
 ```json
 {
     "id": "1",
     "code": "100",
+    "last_update": "2013-09-08T20:16:36+0300",
     "name": "Curcuma (turmeric)",
     "status": "Safe",
     "veg": null,
     "function": "food coloring (yellow-orange)",
     "foods": "Fats and oils, curry, processed cheese and fish fingers.",
     "notice": "Safe in recommended doses. High doses should not be taken by people with gallstones, obstructive jaundice, acute bilious colic or toxic liver disorders.",
-    "info": "Orange-yellow colouring extracted from the rhizomes of the turmeric plant."
+    "info": "Orange-yellow colouring extracted from the rhizomes of the turmeric plant.",
+    "url": "http://hostname/additives/100"
 }
 ```
 
@@ -99,22 +128,22 @@ Get a list of additives categories.
 
 #### Response
 
-    Status: 200 OK
+    HTTP/1.1 200 OK
 
 ```json
 [
     {
         "id": "1",
-        "last_update": "2013-09-06T19:57:24+0300",
+        "last_update": "2013-09-08T14:00:45+0300",
         "name": "colors",
-        "url": "http://hostname/ead.server/categories/1"
+        "url": "http://hostname/categories/1"
     },
     {
         "id": "2",
-        "last_update": "2013-09-06T19:57:24+0300",
+        "last_update": "2013-09-08T14:00:45+0300",
         "name": "preservatives",
-        "url": "http://hostname/ead.server/categories/2"
-    }
+        "url": "http://hostname/categories/2"
+    },
 ]
 ```
 
@@ -133,13 +162,15 @@ Get information about single category.
 
 #### Response
 
-    Status: 200 OK
+    GET /categories/6
+    HTTP/1.1 200 OK
 
 ```json
 {
-    "id": "1",
-    "name": "colors",
-    "description": "",
-    "last_update": "2013-08-28 00:07:42"
+    "id": "6",
+    "name": "flavour enhancers",
+    "description": "Flavor enhancers enhance a food's existing flavors. They may be extracted from natural sources (through distillation, solvent extraction, maceration, among other methods) or created artificially.",
+    "last_update": "2013-09-08T20:13:32+0300",
+    "url": "http://hostname/categories/6"
 }
 ```
