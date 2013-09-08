@@ -5,3 +5,4 @@ config.php
 *.bak
 *xml.sql
 *sublime-*
+.htaccess

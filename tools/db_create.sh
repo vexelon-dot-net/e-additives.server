@@ -13,8 +13,8 @@ DB_DATA="$DATA_DIR/db_app_data.sql"
 DB_DATA_ADDT="$DATA_DIR/db_additives_data.sql"
 
 usage() {
-        echo "Create E-additives database structure."
-        echo "Usage: $0 [mysql user] [password] [datbase name]"
+        echo "Create E-additives MySQL database structure."
+        echo "Usage: $0 [user] [password] [database name]"
 }
 
 if [ -z $USER ]; then
