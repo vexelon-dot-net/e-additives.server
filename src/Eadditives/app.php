@@ -41,6 +41,7 @@ $dbConnectionParams = array(
 
 // Configure Slim App
 $app = new \Slim\Slim(array(
+	'mode' => DEBUG ? 'development' : 'production',
 	'debug' => DEBUG,
     'log.writer' => new \Eadditives\Loggers\LogWriter(),
 	'log.level' => DEBUG ? \Slim\Log::DEBUG : \Slim\Log::WARN,
