@@ -105,7 +105,7 @@ $app->group('/categories', function() use ($app) {
 	// Get a list of additives categories.
 	$app->get('/', function() use ($app) {
 		$request = new MyRequest($app);
-		$model = new AdditivesModel($app);
+		$model = new CategoriesModel($app);
 		$response = new MyResponse($app);
 		$response->renderOK(
 			$model->getAll($request->getCriteria()));
@@ -114,7 +114,7 @@ $app->group('/categories', function() use ($app) {
 	// Get information about single category.
 	$app->get('/:id', function($id) use ($app) {
 		$request = new MyRequest($app);
-		$model = new AdditivesModel($app);
+		$model = new CategoriesModel($app);
 		$response = new MyResponse($app);
 		$response->renderOK(
 			$model->getSingle($id, $request->getCriteria()));

@@ -20,6 +20,8 @@
 
 namespace Eadditives\Models;
 
+use \Eadditives\MyRequest;
+
 /**
  * CategoriesModel
  *
@@ -37,7 +39,7 @@ class CategoriesModel extends Model {
 	 * @return array 
 	 */	
 	public function getAll($criteria = array()) {
-		$criteria = array_merge($this->defaultCriteria, $criteria);
+		$criteria = $this->getDatabaseCriteria($criteria);
 
 		$sql = "SELECT c.id, c.last_update, p.name
 			FROM AdditiveCategory as c
@@ -47,7 +49,7 @@ class CategoriesModel extends Model {
 		try {
 
 			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
 			$statement->execute();
 			$result = $statement ->fetchAll();
 
@@ -78,7 +80,7 @@ class CategoriesModel extends Model {
 	 * @return array 
 	 */	
 	public function getSingle($id, $criteria = array()) {
-		$criteria = array_merge($this->defaultCriteria, $criteria);
+		$criteria = $this->getDatabaseCriteria($criteria);
 
 		$sql = "SELECT c.id, p.name, p.description, p.last_update 
 			FROM AdditiveCategory as c
@@ -88,7 +90,7 @@ class CategoriesModel extends Model {
 		try {
 
 			$statement = $this->dbConnection->prepare($sql);
-			$statement->bindValue('locale_id', $criteria[Model::CRITERIA_LOCALE]);
+			$statement->bindValue('locale_id', $criteria[MyRequest::PARAM_LOCALE]);
 			$statement->bindValue('category_id', $id);
 			$statement->execute();
 			$result = $statement->fetch();
