@@ -1,15 +1,15 @@
 {
 	"name": "e-additives.server",
-	"type": "object",
-	"description": "e-additives server RESTful API",
-	"keywords": ["additives","food", "health", "rest", "server"],
+	"type": "project",
+	"description": "e-additives Server",
+	"keywords": ["additives", "food", "health", "restful", "server"],
 	"homepage": "http://github.com/petarov/e-additives.server",
-	"license": "GPLv2",
+	"license": "GPL-2.0+",
 	"authors": [ 
 	{
 		"name": "Petar Petrov",
 		"email": "",
-		"homepage": ""
+		"homepage": "http://petarov.vexelon.net"
 	}
 	],	
 	"require": {
