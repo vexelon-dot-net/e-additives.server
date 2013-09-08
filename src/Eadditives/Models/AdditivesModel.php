@@ -21,8 +21,6 @@
 namespace Eadditives\Models;
 
 use \Eadditives\MyRequest;
-use \Eadditives\RequestException;
-use \Eadditives\MyResponse;
 
 /**
  * AdditivesModel

@@ -23,6 +23,7 @@ namespace Eadditives\Models;
 /**
  * LocalesModel
  *
+ * Fetch locales info from database.
  *
  * @package Eadditives
  * @author  p.petrov

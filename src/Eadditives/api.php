@@ -43,8 +43,7 @@ use \Eadditives\MyRequest;
 use \Eadditives\MyResponse;
 use \Eadditives\RequestException;
 
-
-// Index - Display list of available API calls - TODO:
+// Index - Display list of available API calls
 $app->get('/', function () use ($app) {
 	$app->render(MyResponse::HTTP_STATUS_OK, array(
 		'additives_url' => BASE_URL . '/additives',
