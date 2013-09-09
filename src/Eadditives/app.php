@@ -40,12 +40,6 @@ $dbConnectionParams = array(
 	'charset ' => $databaseSettings['charset '],
 );
 
-// Configure cache server connection
-$cacheSettings = unserialize(CACHE_SETTINGS);
-if ($cacheSettings['enabled']) {
-	// TODO: 
-}
-
 // Configure Slim App
 $app = new \Slim\Slim(array(
 	'mode' => PRODUCTION ? 'production' : 'development',
@@ -69,6 +63,29 @@ $app->container->singleton('dbConnection', function() use ($dbConnectionParams, 
 	$connection = \Doctrine\DBAL\DriverManager::getConnection($dbConnectionParams, $dbConfig);
 	return $connection;
 });
+
+// Configure and register cache server connection
+$cacheSettings = unserialize(CACHE_SETTINGS);
+if ($cacheSettings['enabled']) {
+	$app->container->singleton('cache', function() use ($app, $cacheSettings) {
+		try {
+			//TODO: add prefix parameter based on user sessions
+			$redis = new \Predis\Client($cacheSettings, array(
+				'profile' => '2.2' // requires Redis 2.2+
+			));
+			return $redis;
+		} catch (\Exception $e) {
+			$app->log->error('Error initializing Redis! ' . $e->getMessage());
+			if (DEBUG) {
+				$app->log->debug($e);
+			}
+		}
+
+		return null;
+	});
+}
+
+$app->cache->set("hello_world", "Hi from php!");
 	
 /*
  * Run API
