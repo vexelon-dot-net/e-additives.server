@@ -68,25 +68,31 @@ $app->container->singleton('dbConnection', function() use ($dbConnectionParams, 
 $cacheSettings = unserialize(CACHE_SETTINGS);
 if ($cacheSettings['enabled']) {
 	$app->container->singleton('cache', function() use ($app, $cacheSettings) {
+		
+		$cache = null;
+
 		try {
-			//TODO: add prefix parameter based on user sessions
-			$redis = new \Predis\Client($cacheSettings, array(
-				'profile' => '2.2' // requires Redis 2.2+
+			$predis = new \Predis\Client($cacheSettings, array(
+				'profile' => '2.2', // requires Redis 2.2+
+				//TODO: add prefix parameter based on user sessions
+				'prefix' => '0xdeadbeef:',
 			));
-			return $redis;
+
+			$cache = new \Eadditives\Cache\RedisCache($predis);
+			
 		} catch (\Exception $e) {
 			$app->log->error('Error initializing Redis! ' . $e->getMessage());
 			if (DEBUG) {
 				$app->log->debug($e);
 			}
+
+			$cache = new \Eadditives\Cache\NullCache();
 		}
 
-		return null;
+		return $cache;
 	});
 }
 
-$app->cache->set("hello_world", "Hi from php!");
-	
 /*
  * Run API
  */
