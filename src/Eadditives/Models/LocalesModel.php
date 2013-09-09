@@ -34,6 +34,8 @@ class LocalesModel extends Model {
 	const LOCALE_EN = 'en';
 	const LOCALE_BG = 'bg';
 
+	const CACHE_KEY = 'locale_';
+
 	/**
 	 * Get locale id by code name
 	 * @param  string $code local code
@@ -42,6 +44,10 @@ class LocalesModel extends Model {
 	 */	
 	public function getSingle($code) {
 
+		if ($this->cache->exists(self::CACHE_KEY . $code)) {
+			return unserialize($this->cache->get(self::CACHE_KEY . $code));
+		}
+
 		$sql = "SELECT l.id, l.enabled
 			FROM Locale as l
 			WHERE l.code=? LIMIT 1";
@@ -49,7 +55,10 @@ class LocalesModel extends Model {
 		try {
 
 			$statement = $this->dbConnection->executeQuery($sql, array($code));
-			$row = $statement->fetch();		
+			$row = $statement->fetch();
+
+			$this->cache->set(self::CACHE_KEY . $code, serialize($row), 10);
+
 			return $row;
 
 		} catch (\Exception $e) {

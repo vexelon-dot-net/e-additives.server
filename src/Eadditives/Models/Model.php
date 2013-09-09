@@ -53,6 +53,11 @@ class Model {
 	/**
 	 * @var mixed
 	 */
+	protected $cache = null;	
+
+	/**
+	 * @var mixed
+	 */
 	protected $log = null;
 
 	/**
@@ -62,6 +67,7 @@ class Model {
 	function __construct($app) {
 		$this->app = $app;
 		$this->dbConnection = $app->dbConnection;
+		$this->cache = $app->cache;
 		$this->log = $app->log;
 	}
 	
@@ -77,6 +83,8 @@ class Model {
 		$localesModel = new LocalesModel($this->app);
 		$locale = $localesModel->getSingle($newCriteria[MyRequest::PARAM_LOCALE]);
 		$newCriteria[MyRequest::PARAM_LOCALE] = $locale['id'];
+
+		// TODO: throw exception if locale is disabled!
 
 		return $newCriteria;
 	}
