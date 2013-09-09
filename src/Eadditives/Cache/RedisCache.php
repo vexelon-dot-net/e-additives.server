@@ -20,6 +20,8 @@
 
 namespace Eadditives\Cache;
 
+use Eadditives\Cache\CacheInterface;
+
 /**
  * RedisCache
  *
@@ -28,7 +30,7 @@ namespace Eadditives\Cache;
  * @package Eadditives
  * @author  p.petrov
  */
-class RedisCache {
+class RedisCache implements CacheInterface {
 
 	protected $predisClient;
 
@@ -44,8 +46,19 @@ class RedisCache {
 		}
 	}
 
+	public function hset($key, array $values, $ttl = 0) {
+		$this->predisClient->hmset($key, $values);
+		if ($ttl != 0) {
+			$this->predisClient->expire($key, $ttl);
+		}		
+	}
+
 	public function get($key) {
 		return $this->predisClient->get($key);
+	}
+
+	public function hget($key) {
+		return $this->predisClient->hgetall($key);
 	}
 
 	public function exists($key) {

@@ -32,7 +32,11 @@ interface CacheInterface {
 
 	public function set($key, $value, $ttl = 0);
 
+	public function hset($key, array $values, $ttl = 0);
+
 	public function get($key);
+
+	public function hget($key);
 
 	public function exists($key);
 

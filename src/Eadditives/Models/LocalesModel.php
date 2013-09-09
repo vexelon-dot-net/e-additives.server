@@ -44,9 +44,13 @@ class LocalesModel extends Model {
 	 */	
 	public function getSingle($code) {
 
+		// if ($this->cache->exists(self::CACHE_KEY . $code)) {
+		// 	return unserialize($this->cache->get(self::CACHE_KEY . $code));
+		// }
+
 		if ($this->cache->exists(self::CACHE_KEY . $code)) {
-			return unserialize($this->cache->get(self::CACHE_KEY . $code));
-		}
+			return $this->cache->hget(self::CACHE_KEY . $code);
+		}		
 
 		$sql = "SELECT l.id, l.enabled
 			FROM Locale as l
@@ -57,7 +61,8 @@ class LocalesModel extends Model {
 			$statement = $this->dbConnection->executeQuery($sql, array($code));
 			$row = $statement->fetch();
 
-			$this->cache->set(self::CACHE_KEY . $code, serialize($row), 10);
+			// $this->cache->set(self::CACHE_KEY . $code, serialize($row), 10);
+			$this->cache->hset(self::CACHE_KEY . $code, $row, 10);
 
 			return $row;
 

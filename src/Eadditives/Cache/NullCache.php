@@ -20,6 +20,8 @@
 
 namespace Eadditives\Cache;
 
+use Eadditives\Cache\CacheInterface;
+
 /**
  * NullCache
  *
@@ -28,17 +30,21 @@ namespace Eadditives\Cache;
  * @package Eadditives
  * @author  p.petrov
  */
-class NullCache {
+class NullCache implements CacheInterface {
 
 	function __construct() {}
 
-	public function set($key, $value, $ttl = 0) {};
+	public function set($key, $value, $ttl = 0) {}
 
-	public function get($key) {};
+	public function hset($key, array $values, $ttl = 0) {}
 
-	public function exists($key) {};
+	public function get($key) {}
 
-	public function delete($key) {};
+	public function hget($key) {}
+
+	public function exists($key) {}
+
+	public function delete($key) {}
 }
 
 ?>
