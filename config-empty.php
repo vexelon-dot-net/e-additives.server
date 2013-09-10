@@ -25,6 +25,10 @@ define('CACHE_SETTINGS', serialize(array(
 	'port' => 6379)
 ));
 
+// X-Authorization key
+// Generate and add a key here. Use it on client side to make API calls to the server.
+define('X_AUTH_KEY', '');
+
 // Location settings
 // Note: Add any sub paths required here. Omit slash at the end.
 define('BASE_URL', sprintf("http://%s", $_SERVER["HTTP_HOST"]));

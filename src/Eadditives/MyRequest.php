@@ -32,6 +32,9 @@ use \Eadditives\Models\LocalesModel;
  */
 class MyRequest {
 
+	const X_AUTH_HEADER = "X-Authorization";
+	const X_AUTH_SCHEME = "EAD-TOKENS";
+
 	const PARAM_CATEGORY = 'category';
 	const PARAM_SORT = 'sort';
 	const PARAM_ORDER = 'order';
@@ -47,8 +50,16 @@ class MyRequest {
 		self::PARAM_LOCALE => array()
 	);  
 
+	/**
+	 * Slim app instance
+	 * @var mixed
+	 */
 	protected $app;
 
+	/**
+	 * Slim app request
+	 * @var mixed
+	 */
 	protected $request;
 
 	function __construct($app) {
@@ -102,6 +113,68 @@ class MyRequest {
 		}
 
 		return $criteria;
+	}
+
+	/**
+	 * Check API key. 
+	 *
+	 * Expects:
+	 * 		X-Authorization: EAD-TOKEN apiKey="quoted-string"
+	 *
+	 * @throws RequestException If authorization header was not passed or wrong formatted.
+	 */
+	
+	public function authorize() {
+		$authorization = $this->request->headers(self::X_AUTH_HEADER);
+
+		try {
+			$tokens = $this->parseXAuthorization($authorization);
+
+			// TODO: Further develop API keys management!
+
+			if ($tokens['apiKey'] != X_AUTH_KEY) {
+				throw new \Exception('Invalid API key!');
+			}
+		} catch (\Exception $e) {
+			throw new RequestException('Authorization required', MyResponse::HTTP_STATUS_UNAUTHORIZED, $e);
+		}
+	}
+
+	/**
+	 * Parses X-Authorization header components.
+	 * @param  $header
+	 * @throws Exception If one or more components of X-Authorization could not be parsed.
+	 * @return array
+	 */
+	private function parseXAuthorization($header) {
+		if (is_null($header)) {
+			throw new \Exception('X-Authorization header is empty!');
+		}
+
+		$headerNoScheme = strstr($header, self::X_AUTH_SCHEME);
+		if ($headerNoScheme === FALSE) {
+			throw new \Exception('X-Authorization header scheme is invalid!');
+		}
+
+		$headerNoScheme = trim(str_replace(self::X_AUTH_SCHEME, "", $headerNoScheme));
+
+		// expects to get no more than 10 items!
+		$items = explode(",", $headerNoScheme, 10);
+		$results = array();
+
+		// parse key/value for each item
+		foreach ($items as $item) {
+			$pair = explode("=", $item);
+			$key = trim(strval($pair[0]));
+			$value = trim(str_replace('"', "", $pair[1]));
+			$results[$key] = $value;
+		}
+
+		if (DEBUG) {
+			$this->app->log->debug(self::X_AUTH_HEADER . ' values: ' . print_r($results, true));
+		}
+
+		return $results;
 	}
 }
 

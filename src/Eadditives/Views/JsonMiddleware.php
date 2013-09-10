@@ -23,6 +23,7 @@ namespace Eadditives\Views;
 use \Slim;
 use \Eadditives\Models\ModelException;
 use \Eadditives\MyResponse;
+use \Eadditives\MyRequest;
 use \Eadditives\RequestException;
 
 /**
@@ -81,12 +82,12 @@ class JsonMiddleware extends \Slim\Middleware {
 
 		// API keys/Maintenance check
 		$app->hook('slim.before', function() use ($app) {
-
 			$response = new MyResponse($app);
 
 			/**
 			 * Server is in maintenance mode - SQL or general date updates.
-			 * It is active and running but only development has access to the functionalities. 
+			 * It is active and running but only development has access to 
+			 * the functionalities. 
 			 */
 			if (MAINTENANCE_MODE) {
 				$response->render(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
@@ -95,20 +96,11 @@ class JsonMiddleware extends \Slim\Middleware {
 			}
 
 			/**
-			 * Check API key. 
-			 * 
-			 * Expects:
-			 *
-			 * 		X-Authorization: EAD-TOKEN apiKey="quoted-string"
+			 * Perform server authorization using 
+			 * X-Authorization header sent by the client
 			 */
-			$authorization = $app->request->headers('X-Authorization');
-			// TODO
-			if (is_null($authorization) || $authorization != 'dummy') {
-				$response->render(MyResponse::HTTP_STATUS_UNAUTHORIZED, 
-					MyResponse::newErrorObject(MyResponse::HTTP_STATUS_UNAUTHORIZED, 
-						'Authorization required'));
-			}				
-
+			$request = new MyRequest($app);
+			$request->authorize();
 		});
 
 		// Handle Empty response body
