@@ -39,7 +39,7 @@ Install dependencies via composer:
 Create database structure and Import data:
 
     $ cd tools
-    $ ./db_create.sh [mysql user] [password] [datbase name]
+    $ ./db_create.sh [user] [password] [database name]
 
 Alternatively one can use [MySQL Workbench](http://dev.mysql.com/downloads/tools/workbench/) to import the scripts located in `data/` folder.
     
