@@ -67,7 +67,7 @@ class MyRequest {
 	protected function getFilteredParams() {
 		$result = array_intersect_key($this->request->params(), $this->validParams);
 
-		if ($this->app->log->getEnabled())
+		if ($this->app->log->getEnabled() && !empty($result))
 			$this->app->log->debug('Request params: ' . print_r($result, true));
 		return $result;
 	}
