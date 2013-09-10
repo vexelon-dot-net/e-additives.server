@@ -91,7 +91,7 @@ if ($cacheSettings['enabled']) {
 			$cache = new \Eadditives\Cache\RedisCache($predis);
 			
 		} catch (Exception $e) {
-			$app->log->error('Error initializing Redis cache server! ' . $e->getMessage());
+			$app->log->error('Connection to Redis failed! ' . $e->getMessage());
 			if (DEBUG) {
 				$app->log->debug($e);
 			}
