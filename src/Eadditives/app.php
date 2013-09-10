@@ -67,6 +67,7 @@ $app->container->singleton('dbConnection', function() use ($dbConnectionParams, 
 // Configure and register cache server connection
 $cacheSettings = unserialize(CACHE_SETTINGS);
 if ($cacheSettings['enabled']) {
+	// Use Redis cache
 	$app->container->singleton('cache', function() use ($app, $cacheSettings) {
 		
 		$cache = null;
@@ -77,11 +78,12 @@ if ($cacheSettings['enabled']) {
 				//TODO: add prefix parameter based on user sessions
 				'prefix' => '0xdeadbeef:',
 			));
-
+			$predis->connect();
+			
 			$cache = new \Eadditives\Cache\RedisCache($predis);
 			
-		} catch (\Exception $e) {
-			$app->log->error('Error initializing Redis! ' . $e->getMessage());
+		} catch (Exception $e) {
+			$app->log->error('Error initializing Redis cache server! ' . $e->getMessage());
 			if (DEBUG) {
 				$app->log->debug($e);
 			}
@@ -90,6 +92,11 @@ if ($cacheSettings['enabled']) {
 		}
 
 		return $cache;
+	});
+} else {
+	// No cache server used
+	$app->container->singleton('cache', function() use ($app, $cacheSettings) {
+		return new \Eadditives\Cache\NullCache();
 	});
 }
 
