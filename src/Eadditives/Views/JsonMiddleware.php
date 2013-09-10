@@ -94,12 +94,6 @@ class JsonMiddleware extends \Slim\Middleware {
 						'The server is currently unavailable (because it is overloaded or down for maintenance).'));
 			}
 
-		});
-
-		$app->hook('slim.before.dispatch', function() use ($app) {
-
-			$response = new MyResponse($app);
-
 			/**
 			 * Check API key. 
 			 * 
@@ -113,7 +107,8 @@ class JsonMiddleware extends \Slim\Middleware {
 				$response->render(MyResponse::HTTP_STATUS_UNAUTHORIZED, 
 					MyResponse::newErrorObject(MyResponse::HTTP_STATUS_UNAUTHORIZED, 
 						'Authorization required'));
-			}			
+			}				
+
 		});
 
 		// Handle Empty response body
