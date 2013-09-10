@@ -73,13 +73,21 @@ if ($cacheSettings['enabled']) {
 		$cache = null;
 
 		try {
+
+			//TODO: add prefix parameter based on user sessions
+			$prefix = 'd34db33f';
+			if (isset($app->apiKey) && strlen($app->apiKey) >= 7) {
+				//XXX: Why 7? Read goo.gl/OGYRnM :)
+				$prefix = substr($app->apiKey, -7);
+			}
+			$prefix .= ':';
+
 			$predis = new \Predis\Client($cacheSettings, array(
 				'profile' => '2.2', // requires Redis 2.2+
-				//TODO: add prefix parameter based on user sessions
-				'prefix' => '0xdeadbeef:',
+				'prefix' => $prefix
 			));
 			$predis->connect();
-			
+
 			$cache = new \Eadditives\Cache\RedisCache($predis);
 			
 		} catch (Exception $e) {

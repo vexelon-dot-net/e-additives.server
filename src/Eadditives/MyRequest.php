@@ -127,7 +127,7 @@ class MyRequest {
 	
 	public function authorize() {
 		// header: User-Agent
-		$userAgent = $this->request->headers('User-Agent1');
+		$userAgent = $this->request->headers('User-Agent');
 		if (is_null($userAgent)) {
 			throw new RequestException('Forbidden', MyResponse::HTTP_STATUS_FORBIDDEN);
 		}
@@ -143,6 +143,12 @@ class MyRequest {
 			if ($tokens['apiKey'] != X_AUTH_KEY) {
 				throw new \Exception('Invalid API key!');
 			}
+
+			// save API key info in app
+			$this->app->container->singleton('apiKey', function() use ($tokens) {
+				return $tokens['apiKey'];
+			});
+
 		} catch (\Exception $e) {
 			throw new RequestException('Authorization required', MyResponse::HTTP_STATUS_UNAUTHORIZED, $e);
 		}
