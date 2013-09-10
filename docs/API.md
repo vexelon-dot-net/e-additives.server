@@ -6,6 +6,14 @@ HTTP API documentation.
 Relative to: [Milestone-01](https://github.com/vexelon-dot-net/e-additives.server/issues/milestones)
 
 ================================
+### Authorization
+
+In order to use the API your client must send `User-Agent` and `X-Authorization` headers.
+
+    User-Agent: <any string>
+    X-Authorization: EAD-TOKENS apiKey="quoted-string"
+
+================================
 ### JSON-P Callbacks
 
 Just add a `?callback` parameter to any GET call to have the results wrapped in a JSON function. 
