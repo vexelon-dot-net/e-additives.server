@@ -48,7 +48,7 @@ class MyRequest {
 		self::PARAM_SORT => array(),
 		self::PARAM_ORDER => array(),
 		self::PARAM_LOCALE => array()
-	);  
+	);
 
 	/**
 	 * Slim app instance
@@ -116,15 +116,23 @@ class MyRequest {
 	}
 
 	/**
-	 * Check API key. 
+	 * Validate required headers.
 	 *
 	 * Expects:
-	 * 		X-Authorization: EAD-TOKEN apiKey="quoted-string"
+	 * 		User-Agent: <any string>
+	 * 		X-Authorization: EAD-TOKENS apiKey="quoted-string"
 	 *
 	 * @throws RequestException If authorization header was not passed or wrong formatted.
 	 */
 	
 	public function authorize() {
+		// header: User-Agent
+		$userAgent = $this->request->headers('User-Agent1');
+		if (is_null($userAgent)) {
+			throw new RequestException('Forbidden', MyResponse::HTTP_STATUS_FORBIDDEN);
+		}
+
+		// header: X-Authorization
 		$authorization = $this->request->headers(self::X_AUTH_HEADER);
 
 		try {
