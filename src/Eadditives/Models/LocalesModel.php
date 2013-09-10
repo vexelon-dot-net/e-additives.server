@@ -35,6 +35,7 @@ class LocalesModel extends Model {
 	const LOCALE_BG = 'bg';
 
 	const CACHE_KEY = 'locale_';
+	const CACHE_TTL = 60;
 
 	/**
 	 * Get locale id by code name
@@ -44,11 +45,10 @@ class LocalesModel extends Model {
 	 */	
 	public function getSingle($code) {
 
-		// if ($this->cache->exists(self::CACHE_KEY . $code)) {
-		// 	return unserialize($this->cache->get(self::CACHE_KEY . $code));
-		// }
+		// get cached result
 
 		if ($this->cache->exists(self::CACHE_KEY . $code)) {
+			// return unserialize($this->cache->get(self::CACHE_KEY . $code));
 			return $this->cache->hget(self::CACHE_KEY . $code);
 		}		
 
@@ -61,8 +61,8 @@ class LocalesModel extends Model {
 			$statement = $this->dbConnection->executeQuery($sql, array($code));
 			$row = $statement->fetch();
 
-			// $this->cache->set(self::CACHE_KEY . $code, serialize($row), 10);
-			$this->cache->hset(self::CACHE_KEY . $code, $row, 10);
+			// $this->cache->set(self::CACHE_KEY . $code, serialize($row), self::CACHE_TTL);
+			$this->cache->hset(self::CACHE_KEY . $code, $row, self::CACHE_TTL);
 
 			return $row;
 

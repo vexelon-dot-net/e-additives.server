@@ -79,13 +79,41 @@ class JsonMiddleware extends \Slim\Middleware {
 			$response->renderError('Invalid route!');
 		});
 
+		// API keys/Maintenance check
 		$app->hook('slim.before', function() use ($app) {
+
+			$response = new MyResponse($app);
+
+			/**
+			 * Server is in maintenance mode - SQL or general date updates.
+			 * It is active and running but only development has access to the functionalities. 
+			 */
 			if (MAINTENANCE_MODE) {
-				$response = new MyResponse($app);
 				$response->render(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
 					MyResponse::newErrorObject(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
 						'The server is currently unavailable (because it is overloaded or down for maintenance).'));
 			}
+
+		});
+
+		$app->hook('slim.before.dispatch', function() use ($app) {
+
+			$response = new MyResponse($app);
+
+			/**
+			 * Check API key. 
+			 * 
+			 * Expects:
+			 *
+			 * 		X-Authorization: EAD-TOKEN apiKey="quoted-string"
+			 */
+			$authorization = $app->request->headers('X-Authorization');
+			// TODO
+			if (is_null($authorization) || $authorization != 'dummy') {
+				$response->render(MyResponse::HTTP_STATUS_UNAUTHORIZED, 
+					MyResponse::newErrorObject(MyResponse::HTTP_STATUS_UNAUTHORIZED, 
+						'Authorization required'));
+			}			
 		});
 
 		// Handle Empty response body
