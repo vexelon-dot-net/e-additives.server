@@ -70,12 +70,16 @@ Copy the `.htaccess-template` to `.htaccess` and edit the file to adjust `Rewrit
 Copy the `config-empty.php` to `config.php` and open the file in a text editor.
 
   * Configure `DB_SETTINGS` by specifying database name and user with access privileges.
+  * Configure `CACHE_SETTINGS` if you have a [Redis](http://redis.io/) server running.
+  * Generate and set client API key in `X_AUTH_KEY`.
   * Configure `BASE_URL` by specifying the full path to the API. Just add what you specified in `RewriteBase` to the `http://%s/` string, .e.g, *http://%s/ead.server.api*.
   * Set `MAINTENANCE_MODE` to `false` to enable API calls.
 
 # Testing
 
-Read the [API](docs/API.md) docs to check what API calls are available and test using [CURL](http://curl.haxx.se/) or some [REST client](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm) tool.
+Test using [CURL](http://curl.haxx.se/) or some [REST client](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm) tool.
+
+Read the [API docs](docs/API.md) to check what API calls are available and how to use them.
 
 
 # License
