@@ -33,7 +33,7 @@ class NullCache implements CacheInterface {
 
 	function __construct() {}
 
-	public function genKey();
+	public function genKey() {}
 
 	public function set($key, $value, $ttl = 0) {}
 
