@@ -48,11 +48,11 @@ class JsonView extends \Slim\View {
 		if (isset($jsonpCb)) { // $app->request->isAjax()) {
 			// Return JSONP
 			$app->log->debug('JSONP Callback:' . $jsonpCb);
-			$app->response()->header('Content-Type', 'application/javascript');
+			$app->response()->header('Content-Type', 'application/javascript; charset=utf-8');
 			$content = $jsonpCb . '(' . $content . ')';
 		} else {
 			// Return JSON
-			$app->response()->header('Content-Type', 'application/json');
+			$app->response()->header('Content-Type', 'application/json; charset=utf-8');
 		}
 
 		$app->response()->body($content);
