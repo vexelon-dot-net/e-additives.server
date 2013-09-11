@@ -36,7 +36,8 @@ $dbConnectionParams = array(
 	'dbname' => $databaseSettings['database'],
 	'user' => $databaseSettings['user'],
 	'password' => $databaseSettings['password'],
-	'charset ' => $databaseSettings['charset '],
+	'charset' => $databaseSettings['charset'],
+	//'driverOptions' => array(1002 => 'SET NAMES utf8')
 );
 
 // Configure Slim App
