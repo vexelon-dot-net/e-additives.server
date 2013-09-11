@@ -1,9 +1,9 @@
 {
 	"name": "e-additives.server",
 	"type": "project",
-	"description": "e-additives Server",
+	"description": "E-additives RESTful web service",
 	"keywords": ["additives", "food", "health", "restful", "server"],
-	"homepage": "http://github.com/petarov/e-additives.server",
+	"homepage": "https://github.com/vexelon-dot-net/e-additives.server",
 	"license": "GPL-2.0+",
 	"authors": [ 
 	{

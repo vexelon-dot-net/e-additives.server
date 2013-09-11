@@ -8,7 +8,7 @@ Relative to: [Milestone-01](https://github.com/vexelon-dot-net/e-additives.serve
 ================================
 ### Authorization
 
-In order to use the API your client must send `User-Agent` and `X-Authorization` headers.
+The API requires that the client sends `User-Agent` and `X-Authorization` headers.
 
     User-Agent: <any string>
     X-Authorization: EAD-TOKENS apiKey="quoted-string"
@@ -16,7 +16,7 @@ In order to use the API your client must send `User-Agent` and `X-Authorization`
 ================================
 ### JSON-P Callbacks
 
-Just add a `?callback` parameter to any GET call to have the results wrapped in a JSON function. 
+Just add a `?callback` parameter to any `GET` call to have the results wrapped in a JSON function. 
 
 ================================
 ### /additives

@@ -84,6 +84,4 @@ Read the [API docs](docs/API.md) to check what API calls are available and how t
 
 # License
 
-Under [AGPL](http://www.gnu.org/licenses/agpl-3.0.html) license. 
-
-Please check the [License](LICENSE) file.
+Under [AGPL](LICENSE) license.
