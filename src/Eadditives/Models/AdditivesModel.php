@@ -31,6 +31,9 @@ use \Eadditives\MyRequest;
  */
 class AdditivesModel extends Model {
 
+	const CACHE_KEY = 'adtv_';
+	const CACHE_TTL = 300;	// 5 minutes	
+
 	const PROPERTY_NAME = 'name';
 	const PROPERTY_STATUS = 'status';
 	const PROPERTY_VEG = 'veg';
@@ -161,6 +164,13 @@ class AdditivesModel extends Model {
 		// 	throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
 		// }
 
+
+		// get cached result
+		$cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $code);
+		if ($this->cache->exists($cacheKey)) {
+			return $this->cache->hget($cacheKey);
+		}	
+
 		$sql = "SELECT a.id, a.code, a.last_update,
 			(SELECT value_str FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
 			(SELECT value_text FROM AdditiveProps WHERE additive_id = a.id AND key_name = 'status' AND locale_id = :locale_id) as status,
@@ -185,7 +195,10 @@ class AdditivesModel extends Model {
 			$dt = new \DateTime($row['last_update']);
 			$result['last_update'] = $dt->format(\DateTime::ISO8601);
 			// add resource url
-			$result['url'] = BASE_URL . '/additives/' . $result['code'];		
+			$result['url'] = BASE_URL . '/additives/' . $result['code'];
+
+			// write to cache
+			$this->cache->hset($cacheKey, $result, self::CACHE_TTL);
 
 			return $result;
 		} catch (\Exception $e) {

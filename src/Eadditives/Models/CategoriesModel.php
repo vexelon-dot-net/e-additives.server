@@ -31,7 +31,7 @@ use \Eadditives\MyRequest;
 class CategoriesModel extends Model {
 
 	const CACHE_KEY = 'cats_';
-	const CACHE_TTL = 300;	// 5 minutes	
+	const CACHE_TTL = 600;	// 10 minutes	
 
 	/**
 	 * Get a list of categories.
@@ -93,16 +93,16 @@ class CategoriesModel extends Model {
 	public function getSingle($id, $criteria = array()) {
 		$criteria = $this->getDatabaseCriteria($criteria);
 
-		$sql = "SELECT c.id, p.name, p.description, p.last_update 
-			FROM AdditiveCategory as c
-			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
-			WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
-
 		// get cached result
 		$cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
 		if ($this->cache->exists($cacheKey)) {
 			return $this->cache->hget($cacheKey);
-		}		
+		}				
+
+		$sql = "SELECT c.id, p.name, p.description, p.last_update 
+			FROM AdditiveCategory as c
+			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+			WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
 
 		try {
 

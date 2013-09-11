@@ -34,7 +34,7 @@ class LocalesModel extends Model {
 	const LOCALE_BG = 'bg';
 
 	const CACHE_KEY = 'locale_';
-	const CACHE_TTL = 300;	// 5 minutes
+	const CACHE_TTL = 360;	// 6 minutes
 
 	/**
 	 * Get locale id by code name
