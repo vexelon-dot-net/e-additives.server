@@ -30,6 +30,9 @@ use \Eadditives\MyRequest;
  */
 class CategoriesModel extends Model {
 
+	const CACHE_KEY = 'cats_';
+	const CACHE_TTL = 300;	// 5 minutes	
+
 	/**
 	 * Get a list of categories.
 	 * @param  array $criteria Filtering criteria.
@@ -95,6 +98,12 @@ class CategoriesModel extends Model {
 			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
 			WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
 
+		// get cached result
+		$cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
+		if ($this->cache->exists($cacheKey)) {
+			return $this->cache->hget($cacheKey);
+		}		
+
 		try {
 
 			$statement = $this->dbConnection->executeQuery($sql, array(
@@ -109,7 +118,10 @@ class CategoriesModel extends Model {
 			$dt = new \DateTime($row['last_update']);
 			$result['last_update'] = $dt->format(\DateTime::ISO8601);
 			// add resource url
-			$result['url'] = BASE_URL . '/categories/' . $result['id'];					
+			$result['url'] = BASE_URL . '/categories/' . $result['id'];
+
+			// write to cache
+			$this->cache->hset($cacheKey, $result, self::CACHE_TTL);
 
 			return $result;
 

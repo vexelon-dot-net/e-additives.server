@@ -33,6 +33,8 @@ class NullCache implements CacheInterface {
 
 	function __construct() {}
 
+	public function genKey();
+
 	public function set($key, $value, $ttl = 0) {}
 
 	public function hset($key, array $values, $ttl = 0) {}
@@ -41,7 +43,9 @@ class NullCache implements CacheInterface {
 
 	public function hget($key) {}
 
-	public function exists($key) {}
+	public function exists($key) {
+		return false;
+	}
 
 	public function delete($key) {}
 }

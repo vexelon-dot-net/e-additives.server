@@ -29,6 +29,8 @@ namespace Eadditives\Cache;
  */
 interface CacheInterface {
 
+	public function genKey();
+
 	public function set($key, $value, $ttl = 0);
 
 	public function hset($key, array $values, $ttl = 0);
