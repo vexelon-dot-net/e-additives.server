@@ -126,8 +126,8 @@ class MyRequest {
 	
 	public function authorize() {
 		// header: User-Agent
-		$userAgent = $this->request->headers('User-Agent');
-		if (is_null($userAgent) || empty(trim($userAgent))) {
+		$userAgent = trim($this->request->headers('User-Agent'));
+		if (empty($userAgent)) {
 			throw new RequestException('Forbidden', MyResponse::HTTP_STATUS_FORBIDDEN);
 		}
 
