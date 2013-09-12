@@ -23,7 +23,6 @@ class MyRequestTest extends PHPUnit_Framework_TestCase {
 	 * @expectedException \Eadditives\RequestException
 	 */	
 	public function testNoHeaders() {
-
 		\Slim\Environment::mock(array(
 			'REQUEST_METHOD' => 'GET',
 		)); 
@@ -34,10 +33,6 @@ class MyRequestTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testHeadersOK() {
-
-		define('X_AUTH_KEY', '1234567890abcdef');
-		define('DEBUG', false);
-
 		\Slim\Environment::mock(array(
 			'REQUEST_METHOD' => 'GET',
 			'HTTP_USER_AGENT' => 'PHPUnit',
@@ -45,11 +40,37 @@ class MyRequestTest extends PHPUnit_Framework_TestCase {
 		)); 
 
 		$app = new \Slim\Slim();
-		//var_dump($app->request->headers());
 		$myRequest = new \Eadditives\MyRequest($app);
 		$myRequest->authorize();
 	}
 
+	/**
+	 * @expectedException \Eadditives\RequestException
+	 */	
+	public function testNoUserAgentHeader() {
+		\Slim\Environment::mock(array(
+			'HTTP_USER_AGENT' => '  ',
+		)); 
+
+		$app = new \Slim\Slim();
+		$myRequest = new \Eadditives\MyRequest($app);
+		$myRequest->authorize();
+	}	
+
+	/**
+	 * @expectedException \Eadditives\RequestException
+	 */	
+	public function testWrongHeaders() {
+		\Slim\Environment::mock(array(
+			'REQUEST_METHOD' => 'GET',
+			'HTTP_USER_AGENT' => 'PHPUnit',
+			'HTTP_X-Authorization' => 'EAD-TOKENS apikey=1234567890abcdef'
+		)); 
+
+		$app = new \Slim\Slim();
+		$myRequest = new \Eadditives\MyRequest($app);
+		$myRequest->authorize();
+	}	
 }
 
 ?>
