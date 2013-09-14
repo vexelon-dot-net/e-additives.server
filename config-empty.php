@@ -9,20 +9,20 @@ error_reporting(E_ALL & ~(E_WARNING | E_STRICT | E_NOTICE));
 
 // Database server configurations
 define('DB_SETTINGS', serialize(array(
-	'host' => '',
-	'user' => '',
-	'password' => '',
-	'database' => '',
-	'charset' => 'utf8',
-	'collate' => '')
+    'host' => '',
+    'user' => '',
+    'password' => '',
+    'database' => '',
+    'charset' => 'utf8',
+    'collate' => '')
 ));
 
 // Redis cache server configuration
 define('CACHE_SETTINGS', serialize(array(
-	'enabled' => false,
-	'scheme' => 'tcp',
-	'host' => '127.0.0.1',
-	'port' => 6379)
+    'enabled' => false,
+    'scheme' => 'tcp',
+    'host' => '127.0.0.1',
+    'port' => 6379)
 ));
 
 // X-Authorization key

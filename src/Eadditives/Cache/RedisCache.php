@@ -31,51 +31,51 @@ use Eadditives\Cache\CacheInterface;
  */
 class RedisCache implements CacheInterface {
 
-	protected $predisClient;
+    protected $predisClient;
 
-	function __construct($predisClient) {
-		$this->predisClient = $predisClient;
-	}
+    function __construct($predisClient) {
+        $this->predisClient = $predisClient;
+    }
 
-	public function genKey() {
-		$count = func_num_args();
-		if ($count > 0) {
-			$arg_list = func_get_args();
-			return md5(implode($arg_list));
-		}
-		return false;
-	}	
+    public function genKey() {
+        $count = func_num_args();
+        if ($count > 0) {
+            $arg_list = func_get_args();
+            return md5(implode($arg_list));
+        }
+        return false;
+    }   
 
-	public function set($key, $value, $ttl = 0) {
-		if ($ttl != 0) {
-			$this->predisClient->setex($key, $ttl, $value);
-		} else {
-			$this->predisClient->set($key, $value);
-		}
-	}
+    public function set($key, $value, $ttl = 0) {
+        if ($ttl != 0) {
+            $this->predisClient->setex($key, $ttl, $value);
+        } else {
+            $this->predisClient->set($key, $value);
+        }
+    }
 
-	public function hset($key, array $values, $ttl = 0) {
-		$this->predisClient->hmset($key, $values);
-		if ($ttl != 0) {
-			$this->predisClient->expire($key, $ttl);
-		}		
-	}
+    public function hset($key, array $values, $ttl = 0) {
+        $this->predisClient->hmset($key, $values);
+        if ($ttl != 0) {
+            $this->predisClient->expire($key, $ttl);
+        }       
+    }
 
-	public function get($key) {
-		return $this->predisClient->get($key);
-	}
+    public function get($key) {
+        return $this->predisClient->get($key);
+    }
 
-	public function hget($key) {
-		return $this->predisClient->hgetall($key);
-	}
+    public function hget($key) {
+        return $this->predisClient->hgetall($key);
+    }
 
-	public function exists($key) {
-		return $this->predisClient->exists($key);
-	}
+    public function exists($key) {
+        return $this->predisClient->exists($key);
+    }
 
-	public function delete($key) {
-		return $this->predisClient->del($key);
-	}
+    public function delete($key) {
+        return $this->predisClient->del($key);
+    }
 }
 
 ?>

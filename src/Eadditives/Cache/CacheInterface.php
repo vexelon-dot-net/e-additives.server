@@ -29,19 +29,19 @@ namespace Eadditives\Cache;
  */
 interface CacheInterface {
 
-	public function genKey();
+    public function genKey();
 
-	public function set($key, $value, $ttl = 0);
+    public function set($key, $value, $ttl = 0);
 
-	public function hset($key, array $values, $ttl = 0);
+    public function hset($key, array $values, $ttl = 0);
 
-	public function get($key);
+    public function get($key);
 
-	public function hget($key);
+    public function hget($key);
 
-	public function exists($key);
+    public function exists($key);
 
-	public function delete($key);
+    public function delete($key);
 }
 
 ?>

@@ -44,13 +44,13 @@ use \Eadditives\RequestException;
 
 // Index - Display list of available API calls
 $app->get('/', function () use ($app) {
-	$app->render(MyResponse::HTTP_STATUS_OK, array(
-		'additives_url' => BASE_URL . '/additives',
-		'additive_url' => BASE_URL . '/additives/{code}',
-		'additive_search_url' => BASE_URL . '/additives/search',
-		'categories_url' => BASE_URL . '/categories',
-		'category_url' => BASE_URL . '/categories/{id}'
-		));
+    $app->render(MyResponse::HTTP_STATUS_OK, array(
+        'additives_url' => BASE_URL . '/additives',
+        'additive_url' => BASE_URL . '/additives/{code}',
+        'additive_search_url' => BASE_URL . '/additives/search',
+        'categories_url' => BASE_URL . '/categories',
+        'category_url' => BASE_URL . '/categories/{id}'
+        ));
 });
 
 
@@ -60,38 +60,38 @@ $app->get('/', function () use ($app) {
  */
 $app->group('/additives', function() use ($app) {
 
-	// Get a list of food additives.
-	$app->get('/', function() use ($app) {
-		$request = new MyRequest($app);
-		$model = new AdditivesModel($app);
-		$response = new MyResponse($app);
-		$response->renderOK(
-			$model->getAll($request->getCriteria()));
-	});			
+    // Get a list of food additives.
+    $app->get('/', function() use ($app) {
+        $request = new MyRequest($app);
+        $model = new AdditivesModel($app);
+        $response = new MyResponse($app);
+        $response->renderOK(
+            $model->getAll($request->getCriteria()));
+    });         
 
-	// Search for food additives.
-	$app->get('/search', function() use ($app) {
-		$request = new MyRequest($app);
+    // Search for food additives.
+    $app->get('/search', function() use ($app) {
+        $request = new MyRequest($app);
 
-		$q = $request->getParam('q');
-		if (is_null($q) || trim($q) == '') {
-			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
-		}
+        $q = $request->getParam('q');
+        if (is_null($q) || trim($q) == '') {
+            throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+        }
 
-		$model = new AdditivesModel($app);
-		$response = new MyResponse($app);
-		$response->renderOK(
-			$model->search($q, $request->getCriteria()));
-	});
+        $model = new AdditivesModel($app);
+        $response = new MyResponse($app);
+        $response->renderOK(
+            $model->search($q, $request->getCriteria()));
+    });
 
-	// Get information about single additive.
-	$app->get('/:code', function($code) use ($app) {
-		$request = new MyRequest($app);
-		$model = new AdditivesModel($app);
-		$response = new MyResponse($app);
-		$response->renderOK(
-			$model->getSingle($code, $request->getCriteria()));
-	});		
+    // Get information about single additive.
+    $app->get('/:code', function($code) use ($app) {
+        $request = new MyRequest($app);
+        $model = new AdditivesModel($app);
+        $response = new MyResponse($app);
+        $response->renderOK(
+            $model->getSingle($code, $request->getCriteria()));
+    });     
 });
 
 /*
@@ -100,23 +100,23 @@ $app->group('/additives', function() use ($app) {
  */
 $app->group('/categories', function() use ($app) {
 
-	// Get a list of additives categories.
-	$app->get('/', function() use ($app) {
-		$request = new MyRequest($app);
-		$model = new CategoriesModel($app);
-		$response = new MyResponse($app);
-		$response->renderOK(
-			$model->getAll($request->getCriteria()));
-	});	
+    // Get a list of additives categories.
+    $app->get('/', function() use ($app) {
+        $request = new MyRequest($app);
+        $model = new CategoriesModel($app);
+        $response = new MyResponse($app);
+        $response->renderOK(
+            $model->getAll($request->getCriteria()));
+    }); 
 
-	// Get information about single category.
-	$app->get('/:id', function($id) use ($app) {
-		$request = new MyRequest($app);
-		$model = new CategoriesModel($app);
-		$response = new MyResponse($app);
-		$response->renderOK(
-			$model->getSingle($id, $request->getCriteria()));
-	});		
+    // Get information about single category.
+    $app->get('/:id', function($id) use ($app) {
+        $request = new MyRequest($app);
+        $model = new CategoriesModel($app);
+        $response = new MyResponse($app);
+        $response->renderOK(
+            $model->getSingle($id, $request->getCriteria()));
+    });     
 });
 
 ?>

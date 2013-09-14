@@ -6,13 +6,13 @@
 TAG="$1"
 
 usage() {
-        echo "Export e-additives release archive from tag"
-        echo "Usage: $0 [tag name]"
+    echo "Export e-additives release archive from tag"
+    echo "Usage: $0 [tag name]"
 }
 
 if [ -z $TAG ]; then
-        usage
-        exit
+    usage
+       exit
 fi
 
 echo exporting archive ...

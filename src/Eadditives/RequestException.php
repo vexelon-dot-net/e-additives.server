@@ -30,7 +30,6 @@ use \Eadditives;
  * @author  p.petrov
  */
 class RequestException extends \Exception {
-	
 }
 
 ?>

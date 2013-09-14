@@ -31,34 +31,34 @@ use \Slim;
  */
 class JsonView extends \Slim\View {
 
-	private $app;
+    private $app;
 
-	function __construct($app) {
-		parent::__construct();
-		$this->app = $app;
-	}
+    function __construct($app) {
+        parent::__construct();
+        $this->app = $app;
+    }
 
-	public function render($statusCode) {
-		$app = $this->app;
+    public function render($statusCode) {
+        $app = $this->app;
 
-		$content = json_encode($this->all());
+        $content = json_encode($this->all());
 
-		$jsonpCb = $app->request->params('callback');
-		
-		if (isset($jsonpCb)) { // $app->request->isAjax()) {
-			// Return JSONP
-			$app->log->debug('JSONP Callback:' . $jsonpCb);
-			$app->response()->header('Content-Type', 'application/javascript; charset=utf-8');
-			$content = $jsonpCb . '(' . $content . ')';
-		} else {
-			// Return JSON
-			$app->response()->header('Content-Type', 'application/json; charset=utf-8');
-		}
+        $jsonpCb = $app->request->params('callback');
+        
+        if (isset($jsonpCb)) { // $app->request->isAjax()) {
+            // Return JSONP
+            $app->log->debug('JSONP Callback:' . $jsonpCb);
+            $app->response()->header('Content-Type', 'application/javascript; charset=utf-8');
+            $content = $jsonpCb . '(' . $content . ')';
+        } else {
+            // Return JSON
+            $app->response()->header('Content-Type', 'application/json; charset=utf-8');
+        }
 
-		$app->response()->body($content);
-		$app->response()->status(intval($statusCode));
+        $app->response()->body($content);
+        $app->response()->status(intval($statusCode));
 
-		$app->stop();
-	}
+        $app->stop();
+    }
 
 }

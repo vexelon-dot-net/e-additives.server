@@ -30,105 +30,105 @@ use \Eadditives\MyRequest;
  */
 class CategoriesModel extends Model {
 
-	const CACHE_KEY = 'cats_';
-	const CACHE_TTL = 600;	// 10 minutes	
+    const CACHE_KEY = 'cats_';
+    const CACHE_TTL = 600;  // 10 minutes   
 
-	/**
-	 * Get a list of categories.
-	 * @param  array $criteria Filtering criteria.
-	 * @throws ModelException On any SQL error.
-	 * @return array 
-	 */	
-	public function getAll($criteria = array()) {
-		$criteria = $this->getDatabaseCriteria($criteria);
+    /**
+     * Get a list of categories.
+     * @param  array $criteria Filtering criteria.
+     * @throws ModelException On any SQL error.
+     * @return array 
+     */ 
+    public function getAll($criteria = array()) {
+        $criteria = $this->getDatabaseCriteria($criteria);
 
-		$sql = "SELECT c.id, c.last_update, p.name
-			FROM AdditiveCategory as c
-			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
-			WHERE p.locale_id = :locale_id";
+        $sql = "SELECT c.id, c.last_update, p.name
+            FROM AdditiveCategory as c
+            LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+            WHERE p.locale_id = :locale_id";
 
-		// apply sort criteria
-		if (!is_null($criteria[MyRequest::PARAM_SORT])) {
-			$this->validateCriteria($criteria, MyRequest::PARAM_SORT, array('id', 'name', 'last_update'));
-			$sql .= sprintf(" ORDER BY %s %s", 
-				$criteria[MyRequest::PARAM_SORT], 
-				$criteria[MyRequest::PARAM_ORDER]);
-		}
+        // apply sort criteria
+        if (!is_null($criteria[MyRequest::PARAM_SORT])) {
+            $this->validateCriteria($criteria, MyRequest::PARAM_SORT, array('id', 'name', 'last_update'));
+            $sql .= sprintf(" ORDER BY %s %s", 
+                $criteria[MyRequest::PARAM_SORT], 
+                $criteria[MyRequest::PARAM_ORDER]);
+        }
 
-		try {
+        try {
 
-			$statement = $this->dbConnection->executeQuery($sql, array(
-				'locale_id' => $criteria[MyRequest::PARAM_LOCALE]
-			));
-			$result = $statement->fetchAll();
+            $statement = $this->dbConnection->executeQuery($sql, array(
+                'locale_id' => $criteria[MyRequest::PARAM_LOCALE]
+            ));
+            $result = $statement->fetchAll();
 
-			$this->validateResult($result);
+            $this->validateResult($result);
 
-			// format results
-			$items = array();
-			foreach ($result as $row) {
-				// ISO-8601 datetime format
-				$dt = new \DateTime($row['last_update']);
-				$row['last_update'] = $dt->format(\DateTime::ISO8601);
-				// add resource url
-				$row['url'] = BASE_URL . '/categories/' . $row['id'];
-				// add updated row
-				$items[] = $row;
-			}
+            // format results
+            $items = array();
+            foreach ($result as $row) {
+                // ISO-8601 datetime format
+                $dt = new \DateTime($row['last_update']);
+                $row['last_update'] = $dt->format(\DateTime::ISO8601);
+                // add resource url
+                $row['url'] = BASE_URL . '/categories/' . $row['id'];
+                // add updated row
+                $items[] = $row;
+            }
 
-			return $items;			
+            return $items;          
 
-		} catch (\Exception $e) {
-			throw new ModelException('SQL Error!', $e->getCode(), $e);
-		}
-	}
+        } catch (\Exception $e) {
+            throw new ModelException('SQL Error!', $e->getCode(), $e);
+        }
+    }
 
-	/**
-	 * Get information about single category.
-	 * @param  string $id category id
-	 * @param  array $criteria Filtering criteria.
-	 * @throws ModelException On any SQL error.
-	 * @return array 
-	 */	
-	public function getSingle($id, $criteria = array()) {
-		$criteria = $this->getDatabaseCriteria($criteria);
+    /**
+     * Get information about single category.
+     * @param  string $id category id
+     * @param  array $criteria Filtering criteria.
+     * @throws ModelException On any SQL error.
+     * @return array 
+     */ 
+    public function getSingle($id, $criteria = array()) {
+        $criteria = $this->getDatabaseCriteria($criteria);
 
-		// get cached result
-		$cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
-		if ($this->cache->exists($cacheKey)) {
-			return $this->cache->hget($cacheKey);
-		}				
+        // get cached result
+        $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
+        if ($this->cache->exists($cacheKey)) {
+            return $this->cache->hget($cacheKey);
+        }               
 
-		$sql = "SELECT c.id, p.name, p.description, p.last_update 
-			FROM AdditiveCategory as c
-			LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
-			WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
+        $sql = "SELECT c.id, p.name, p.description, p.last_update 
+            FROM AdditiveCategory as c
+            LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+            WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
 
-		try {
+        try {
 
-			$statement = $this->dbConnection->executeQuery($sql, array(
-				'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
-				'category_id' => $id
-			));
-			$result = $statement->fetch();
+            $statement = $this->dbConnection->executeQuery($sql, array(
+                'locale_id' => $criteria[MyRequest::PARAM_LOCALE],
+                'category_id' => $id
+            ));
+            $result = $statement->fetch();
 
-			$this->validateResult($result);	
+            $this->validateResult($result); 
 
-			// ISO-8601 datetime format
-			$dt = new \DateTime($row['last_update']);
-			$result['last_update'] = $dt->format(\DateTime::ISO8601);
-			// add resource url
-			$result['url'] = BASE_URL . '/categories/' . $result['id'];
+            // ISO-8601 datetime format
+            $dt = new \DateTime($row['last_update']);
+            $result['last_update'] = $dt->format(\DateTime::ISO8601);
+            // add resource url
+            $result['url'] = BASE_URL . '/categories/' . $result['id'];
 
-			// write to cache
-			$this->cache->hset($cacheKey, $result, self::CACHE_TTL);
+            // write to cache
+            $this->cache->hset($cacheKey, $result, self::CACHE_TTL);
 
-			return $result;
+            return $result;
 
-		} catch (\Exception $e) {
-			throw new ModelException('SQL Error!', $e->getCode(), $e);
-		}
-	}	
+        } catch (\Exception $e) {
+            throw new ModelException('SQL Error!', $e->getCode(), $e);
+        }
+    }   
 
 }
 ?>

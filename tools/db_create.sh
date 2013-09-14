@@ -18,46 +18,46 @@ usage() {
 }
 
 if [ -z $USER ]; then
-	usage
-	exit
+    usage
+    exit
 fi
 if [ -z $PASS ]; then
-	usage
-	exit
+    usage
+    exit
 fi
 if [ -z $DBNAME ]; then
-	usage
-	exit
+    usage
+    exit
 fi
 
 if [ ! -e $MODEL_DATA ]; then
-	echo "ERROR: Model data file $MODEL_DATA not found!"
-	echo
-	exit
+    echo "ERROR: Model data file $MODEL_DATA not found!"
+    echo
+    exit
 fi
 
 echo "This script will *DROP* the current database! Continue(y/n) ?"
 read CHOICE
 if [ "x$CHOICE" = "xy" ];
 then
-	echo Drop current MySQL schema ...
-	mysql -u$USER -p$PASS -e "DROP SCHEMA IF EXISTS $DBNAME;"
-	echo Create new MySQL schema ...
-	mysql -u$USER -p$PASS -e "CREATE SCHEMA IF NOT EXISTS $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
-	echo Create MySQL schema structure ...
-	mysql -u$USER -p$PASS --default_character_set utf8 -D$DBNAME < $MODEL_DATA
-	echo Done.
+    echo Drop current MySQL schema ...
+    mysql -u$USER -p$PASS -e "DROP SCHEMA IF EXISTS $DBNAME;"
+    echo Create new MySQL schema ...
+    mysql -u$USER -p$PASS -e "CREATE SCHEMA IF NOT EXISTS $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
+    echo Create MySQL schema structure ...
+    mysql -u$USER -p$PASS --default_character_set utf8 -D$DBNAME < $MODEL_DATA
+    echo Done.
 fi
 
 if [ ! -e $DB_DATA ]; then
-	echo "ERROR: DB data file $DB_DATA not found!"
-	echo
-	exit
+    echo "ERROR: DB data file $DB_DATA not found!"
+    echo
+    exit
 fi
 if [ ! -e $DB_DATA_ADDT ]; then
-	echo "ERROR: DB additives data file $DB_DATA_ADDT not found!"
-	echo
-	exit
+    echo "ERROR: DB additives data file $DB_DATA_ADDT not found!"
+    echo
+    exit
 fi
 
 echo "Do you want to import initial database data? Existing data in the database will be deleted. Continue(y/n) ?"

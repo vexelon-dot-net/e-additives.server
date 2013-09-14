@@ -35,84 +35,84 @@ use \Eadditives\RequestException;
  */
 class JsonMiddleware extends \Slim\Middleware {
 
-	function __construct($app) {
-		$this->setApplication($app);
-		//$app = \Slim\Slim::getInstance();
+    function __construct($app) {
+        $this->setApplication($app);
+        //$app = \Slim\Slim::getInstance();
 
-		// Mirror request
-		// TODO: Allow only in DEBUG mode!
-		$app->get('/return', function() use ($app) {
-			$app->render(JsonView::HTTP_STATUS_OK, array(
-				'method'    => $app->request()->getMethod(),
-				'name'      => $app->request()->get('name'),
-				'headers'   => json_encode($app->request()->headers->all()),
-				'params'    => $app->request()->params(),
-			));
-		});
+        // Mirror request
+        // TODO: Allow only in DEBUG mode!
+        $app->get('/return', function() use ($app) {
+            $app->render(JsonView::HTTP_STATUS_OK, array(
+                'method'    => $app->request()->getMethod(),
+                'name'      => $app->request()->get('name'),
+                'headers'   => json_encode($app->request()->headers->all()),
+                'params'    => $app->request()->params(),
+            ));
+        });
 
-		// Generic error handler
-		$app->error(function(\Exception $e) use ($app) {
+        // Generic error handler
+        $app->error(function(\Exception $e) use ($app) {
 
-			$app->log->error($e->getMessage());
-			if (DEBUG) {
-				// log full stacktrace when in DEBUG mode
-				$app->log->debug($e);
-			}
-								
-			$response = new MyResponse($app);
-			
-			if ($e instanceof ModelException) {
-				// put SQL error code into error JSON response. 
-				$response->renderError($e->getMessage(), $e->getCode());	
-			} else if ($e instanceof RequestException) {
-				$response->render($e->getCode(), 
-					MyResponse::newErrorObject($e->getCode(), $e->getMessage()));
-			} else {
-				// in all other Exception cases just write general error text msg.
-				$response->renderError('Unknown server error! Contact administrator.', $e->getCode());	
-			}
-		});
+            $app->log->error($e->getMessage());
+            if (DEBUG) {
+                // log full stacktrace when in DEBUG mode
+                $app->log->debug($e);
+            }
+                                
+            $response = new MyResponse($app);
+            
+            if ($e instanceof ModelException) {
+                // put SQL error code into error JSON response. 
+                $response->renderError($e->getMessage(), $e->getCode());    
+            } else if ($e instanceof RequestException) {
+                $response->render($e->getCode(), 
+                    MyResponse::newErrorObject($e->getCode(), $e->getMessage()));
+            } else {
+                // in all other Exception cases just write general error text msg.
+                $response->renderError('Unknown server error! Contact administrator.', $e->getCode());  
+            }
+        });
 
-		// Not found handler (invalid routes, invalid method types)
-		$app->notFound(function() use ($app) {
-			$response = new MyResponse($app);
-			$response->renderError('Invalid route!');
-		});
+        // Not found handler (invalid routes, invalid method types)
+        $app->notFound(function() use ($app) {
+            $response = new MyResponse($app);
+            $response->renderError('Invalid route!');
+        });
 
-		// API keys/Maintenance check
-		$app->hook('slim.before', function() use ($app) {
-			$response = new MyResponse($app);
+        // API keys/Maintenance check
+        $app->hook('slim.before', function() use ($app) {
+            $response = new MyResponse($app);
 
-			/**
-			 * Server is in maintenance mode - SQL or general date updates.
-			 * It is active and running but only development has access to 
-			 * the functionalities. 
-			 */
-			if (MAINTENANCE_MODE) {
-				$response->render(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
-					MyResponse::newErrorObject(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
-						'The server is currently unavailable (because it is overloaded or down for maintenance).'));
-			}
+            /**
+             * Server is in maintenance mode - SQL or general date updates.
+             * It is active and running but only development has access to 
+             * the functionalities. 
+             */
+            if (MAINTENANCE_MODE) {
+                $response->render(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
+                    MyResponse::newErrorObject(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
+                        'The server is currently unavailable (because it is overloaded or down for maintenance).'));
+            }
 
-			/**
-			 * Perform server authorization using 
-			 * X-Authorization header sent by the client
-			 */
-			$request = new MyRequest($app);
-			$request->authorize();
-		});
+            /**
+             * Perform server authorization using 
+             * X-Authorization header sent by the client
+             */
+            $request = new MyRequest($app);
+            $request->authorize();
+        });
 
-		// Handle Empty response body
-		$app->hook('slim.after.router', function() use ($app) {
-			// XXX: is this correct?
-			if (strlen($app->response()->body()) == 0) {
-				$response = new MyResponse($app);
-				$response->renderError('Empty response!');                
-			}            
-		});
-	}
+        // Handle Empty response body
+        $app->hook('slim.after.router', function() use ($app) {
+            // XXX: is this correct?
+            if (strlen($app->response()->body()) == 0) {
+                $response = new MyResponse($app);
+                $response->renderError('Empty response!');                
+            }            
+        });
+    }
 
-	function call() {
-		return $this->app->call();
-	}
+    function call() {
+        return $this->app->call();
+    }
 }

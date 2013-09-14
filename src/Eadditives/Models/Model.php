@@ -32,85 +32,85 @@ use \Eadditives\RequestException;
  */
 class Model {
 
-	/**
-	 * @var array
-	 */
-	protected $defaultCriteria = array(
-		MyRequest::PARAM_LOCALE => LocalesModel::LOCALE_EN
-	);
+    /**
+     * @var array
+     */
+    protected $defaultCriteria = array(
+        MyRequest::PARAM_LOCALE => LocalesModel::LOCALE_EN
+    );
 
-	/**
-	 * @var mixed
-	 */
-	protected $app = null;
+    /**
+     * @var mixed
+     */
+    protected $app = null;
 
-	/**
-	 * @var mixed
-	 */
-	protected $dbConnection = null;
+    /**
+     * @var mixed
+     */
+    protected $dbConnection = null;
 
-	/**
-	 * @var mixed
-	 */
-	protected $cache = null;	
+    /**
+     * @var mixed
+     */
+    protected $cache = null;    
 
-	/**
-	 * @var mixed
-	 */
-	protected $log = null;
+    /**
+     * @var mixed
+     */
+    protected $log = null;
 
-	/**
-	 * Constructor
-	 * @param  mixed $dbConnection
-	 */
-	function __construct($app) {
-		$this->app = $app;
-		$this->dbConnection = $app->dbConnection;
-		$this->cache = $app->cache;
-		$this->log = $app->log;
-	}
-	
-	/**
-	 * 
-	 * @param  array $criteria Request criteria.
-	 * @throws ModelException On any SQL error.
-	 * @return array 
-	 */	
-	protected function getDatabaseCriteria(array $criteria) {
-		$newCriteria = array_merge($this->defaultCriteria, $criteria);
+    /**
+     * Constructor
+     * @param  mixed $dbConnection
+     */
+    function __construct($app) {
+        $this->app = $app;
+        $this->dbConnection = $app->dbConnection;
+        $this->cache = $app->cache;
+        $this->log = $app->log;
+    }
+    
+    /**
+     * 
+     * @param  array $criteria Request criteria.
+     * @throws ModelException On any SQL error.
+     * @return array 
+     */ 
+    protected function getDatabaseCriteria(array $criteria) {
+        $newCriteria = array_merge($this->defaultCriteria, $criteria);
 
-		$localesModel = new LocalesModel($this->app);
-		$locale = $localesModel->getSingle($newCriteria[MyRequest::PARAM_LOCALE]);
-		$newCriteria[MyRequest::PARAM_LOCALE] = $locale['id'];
+        $localesModel = new LocalesModel($this->app);
+        $locale = $localesModel->getSingle($newCriteria[MyRequest::PARAM_LOCALE]);
+        $newCriteria[MyRequest::PARAM_LOCALE] = $locale['id'];
 
-		// TODO: throw exception if locale is disabled!
+        // TODO: throw exception if locale is disabled!
 
-		return $newCriteria;
-	}
+        return $newCriteria;
+    }
 
-	/**
-	 * Checks if given criteria parameter value is correct
-	 * @param  array $criteria
-	 * @param $key
-	 * @param $values
-	 * @throws RequestException 
-	 */	
-	protected function validateCriteria(array $criteria, $key, array $values) {
-		if (!in_array($criteria[$key], $values)) {
-			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
-		}
-	}
+    /**
+     * Checks if given criteria parameter value is correct
+     * @param  array $criteria
+     * @param $key
+     * @param $values
+     * @throws RequestException 
+     */ 
+    protected function validateCriteria(array $criteria, $key, array $values) {
+        if (!in_array($criteria[$key], $values)) {
+            throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+        }
+    }
 
 
-	/**
-	 * Check SQL result
-	 * @param $result
-	 * @throws RequestException If result is null or empty.
-	 */	
-	protected function validateResult($result) {
-		if (empty($result)) {
-			throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
-		}
-	}
+    /**
+     * Check SQL result
+     * @param $result
+     * @throws RequestException If result is null or empty.
+     */ 
+    protected function validateResult($result) {
+        if (empty($result)) {
+            throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
+        }
+    }
 }
 ?>

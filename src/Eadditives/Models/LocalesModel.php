@@ -29,51 +29,51 @@ namespace Eadditives\Models;
  */
 class LocalesModel extends Model {
 
-	const LOCALE_ALL = 'all';
-	const LOCALE_EN = 'en';
-	const LOCALE_BG = 'bg';
+    const LOCALE_ALL = 'all';
+    const LOCALE_EN = 'en';
+    const LOCALE_BG = 'bg';
 
-	const CACHE_KEY = 'locale_';
-	const CACHE_TTL = 360;	// 6 minutes
+    const CACHE_KEY = 'locale_';
+    const CACHE_TTL = 360;  // 6 minutes
 
-	/**
-	 * Get locale id by code name
-	 * @param  string $code local code
-	 * @throws ModelException On any SQL error.  
-	 * @return array 
-	 */	
-	public function getSingle($code) {
+    /**
+     * Get locale id by code name
+     * @param  string $code local code
+     * @throws ModelException On any SQL error.  
+     * @return array 
+     */ 
+    public function getSingle($code) {
 
-		// get cached result
-		if ($this->cache->exists(self::CACHE_KEY . $code)) {
-			// return unserialize($this->cache->get(self::CACHE_KEY . $code));
-			return $this->cache->hget(self::CACHE_KEY . $code);
-		}		
+        // get cached result
+        if ($this->cache->exists(self::CACHE_KEY . $code)) {
+            // return unserialize($this->cache->get(self::CACHE_KEY . $code));
+            return $this->cache->hget(self::CACHE_KEY . $code);
+        }       
 
-		$sql = "SELECT l.id, l.enabled
-			FROM Locale as l
-			WHERE l.code=? LIMIT 1";
+        $sql = "SELECT l.id, l.enabled
+            FROM Locale as l
+            WHERE l.code=? LIMIT 1";
 
-		try {
+        try {
 
-			$statement = $this->dbConnection->executeQuery($sql, array($code));
-			$row = $statement->fetch();
+            $statement = $this->dbConnection->executeQuery($sql, array($code));
+            $row = $statement->fetch();
 
-			// write to cache
-			// $this->cache->set(self::CACHE_KEY . $code, serialize($row), self::CACHE_TTL);
-			$this->cache->hset(self::CACHE_KEY . $code, $row, self::CACHE_TTL);
+            // write to cache
+            // $this->cache->set(self::CACHE_KEY . $code, serialize($row), self::CACHE_TTL);
+            $this->cache->hset(self::CACHE_KEY . $code, $row, self::CACHE_TTL);
 
-			return $row;
+            return $row;
 
-		} catch (\Exception $e) {
-			throw new ModelException('SQL Error!', $e->getCode(), $e);
-		}		
-	}
+        } catch (\Exception $e) {
+            throw new ModelException('SQL Error!', $e->getCode(), $e);
+        }       
+    }
 
-	public static function isEnabled($localeRow) {
-		return !is_null($localeRow) && !is_null($localeRow['enabled'] 
-			&& boolval($localeRow['enabled']) === TRUE);
-	}
-	
+    public static function isEnabled($localeRow) {
+        return !is_null($localeRow) && !is_null($localeRow['enabled'] 
+            && boolval($localeRow['enabled']) === TRUE);
+    }
+    
 }
 ?>

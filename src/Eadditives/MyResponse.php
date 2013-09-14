@@ -30,50 +30,50 @@ use \Eadditives\Views\JsonView;
  * @author  p.petrov
  */
 class MyResponse {
-	
-	/**
-	 * HTTP status codes
-	 */
-	const HTTP_STATUS_OK = 200;
-	const HTTP_STATUS_UNAUTHORIZED = 401;
-	const HTTP_STATUS_FORBIDDEN = 403;
-	const HTTP_STATUS_NOT_FOUND = 404;
-	const HTTP_STATUS_ERROR = 500;
-	const HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE = 503;
+    
+    /**
+     * HTTP status codes
+     */
+    const HTTP_STATUS_OK = 200;
+    const HTTP_STATUS_UNAUTHORIZED = 401;
+    const HTTP_STATUS_FORBIDDEN = 403;
+    const HTTP_STATUS_NOT_FOUND = 404;
+    const HTTP_STATUS_ERROR = 500;
+    const HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE = 503;
 
-	protected $app;
+    protected $app;
 
-	function __construct($app) {
-		$this->app = $app;
-	}
+    function __construct($app) {
+        $this->app = $app;
+    }
 
-	function render($status, $results) {
-		//$this->app->response->headers->set('X-Alfa-Type', 'Broderbund');
-		$this->app->render($status, $results);    	
-	}
+    function render($status, $results) {
+        //$this->app->response->headers->set('X-Alfa-Type', 'Broderbund');
+        $this->app->render($status, $results);      
+    }
 
-	public function renderOK($results) {
-		$this->render(self::HTTP_STATUS_OK, $results);
-	}
+    public function renderOK($results) {
+        $this->render(self::HTTP_STATUS_OK, $results);
+    }
 
-	public function renderError($errorMessage, $errorCode = null) {
-		$this->app->render(self::HTTP_STATUS_ERROR, 
-			self::newErrorObject(self::HTTP_STATUS_ERROR, $errorMessage, $errorCode));
-	}
+    public function renderError($errorMessage, $errorCode = null) {
+        $this->app->render(self::HTTP_STATUS_ERROR, 
+            self::newErrorObject(self::HTTP_STATUS_ERROR, $errorMessage, $errorCode));
+    }
 
-	public static function newErrorObject($status, $errorMessage, $errorCode = null) {
-		$dt = new \DateTime();
-		$errorObj = array(
-			'timestamp' => $dt->getTimestamp(),
-			'status' => $status,
-			'msg' => $errorMessage);
+    public static function newErrorObject($status, $errorMessage, $errorCode = null) {
+        $dt = new \DateTime();
+        $errorObj = array(
+            'timestamp' => $dt->getTimestamp(),
+            'status' => $status,
+            'msg' => $errorMessage);
 
-		if (!is_null($errorCode)) {
-			$errorObj['code'] = $errorCode;
-		}
+        if (!is_null($errorCode)) {
+            $errorObj['code'] = $errorCode;
+        }
 
-		return $errorObj;
-	}
+        return $errorObj;
+    }
 }
 
 ?>
