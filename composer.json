@@ -4,7 +4,7 @@
     "description": "E-additives RESTful web service",
     "keywords": ["additives", "food", "health", "restful", "server"],
     "homepage": "https://github.com/vexelon-dot-net/e-additives.server",
-    "license": "GPL-2.0+",
+    "license": "AGPL-3.0",
     "authors": [ 
     {
         "name": "Petar Petrov",
