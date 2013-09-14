@@ -21,19 +21,19 @@ use \Eadditives\MyResponse;
 
 class MyResponseTest extends PHPUnit_Framework_TestCase {
 
-	public static function setUpBeforeClass() {
-		date_default_timezone_set('Europe/Sofia');
-	}	
-	
-	public function testNoHeaders() {
-		$error = MyResponse::newErrorObject(MyResponse::HTTP_STATUS_NOT_FOUND, 
-			"Not Found", MyResponse::HTTP_STATUS_NOT_FOUND);
+    public static function setUpBeforeClass() {
+        date_default_timezone_set('Europe/Sofia');
+    }   
+    
+    public function testNoHeaders() {
+        $error = MyResponse::newErrorObject(MyResponse::HTTP_STATUS_NOT_FOUND, 
+            "Not Found", MyResponse::HTTP_STATUS_NOT_FOUND);
 
-		$this->assertEquals(404, $error['code']);
-		$this->assertEquals(404, $error['status']);
-		$this->assertTrue(isset($error['timestamp']));
-		$this->assertEquals("Not Found", $error['msg']);
-	}	
+        $this->assertEquals(404, $error['code']);
+        $this->assertEquals(404, $error['status']);
+        $this->assertTrue(isset($error['timestamp']));
+        $this->assertEquals("Not Found", $error['msg']);
+    }   
 }
 
 ?>
