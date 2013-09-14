@@ -62,7 +62,7 @@ class CategoriesModel extends Model {
             ));
             $result = $statement->fetchAll();
 
-            $this->validateResult($result);
+            // $this->validateResult($result);
 
             // format results
             $items = array();

@@ -77,7 +77,7 @@ class AdditivesModel extends Model {
             ));
             $result = $statement->fetchAll();
 
-            $this->validateResult($result);     
+            // $this->validateResult($result);     
 
             // add urls
             $items = array();
@@ -134,7 +134,7 @@ class AdditivesModel extends Model {
                 'query' => '%' . $q . '%'));
             $result = $statement->fetchAll();
 
-            $this->validateResult($result);
+            // $this->validateResult($result);
 
             // add urls
             $items = array();
