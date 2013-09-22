@@ -78,8 +78,9 @@ $app->group('/additives', function() use ($app) {
 
         $q = $request->getParam('q');
         if (is_null($q)) {
-            // TODO: return HTTP 400
-            $response->renderError("", MyResponse::HTTP_STATUS_BAD_REQUEST);
+            // TODO: refactor call in MyResponse class
+            $response->render(MyResponse::HTTP_STATUS_BAD_REQUEST,
+                MyResponse::newErrorObject(MyResponse::HTTP_STATUS_BAD_REQUEST, 'Bad Request'));
         } else if (trim($q) == '') {
             $response->renderOK(array());
         } else {
