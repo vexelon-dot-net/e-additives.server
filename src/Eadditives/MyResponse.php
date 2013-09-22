@@ -35,6 +35,7 @@ class MyResponse {
      * HTTP status codes
      */
     const HTTP_STATUS_OK = 200;
+    const HTTP_STATUS_BAD_REQUEST = 400;
     const HTTP_STATUS_UNAUTHORIZED = 401;
     const HTTP_STATUS_FORBIDDEN = 403;
     const HTTP_STATUS_NOT_FOUND = 404;

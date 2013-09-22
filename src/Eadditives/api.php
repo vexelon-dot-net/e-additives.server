@@ -73,15 +73,19 @@ $app->group('/additives', function() use ($app) {
     $app->get('/search', function() use ($app) {
         $request = new MyRequest($app);
 
-        $q = $request->getParam('q');
-        if (is_null($q) || trim($q) == '') {
-            throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
-        }
-
         $model = new AdditivesModel($app);
         $response = new MyResponse($app);
-        $response->renderOK(
-            $model->search($q, $request->getCriteria()));
+
+        $q = $request->getParam('q');
+        if (is_null($q)) {
+            // TODO: return HTTP 400
+            $response->renderError("", MyResponse::HTTP_STATUS_BAD_REQUEST);
+        } else if (trim($q) == '') {
+            $response->renderOK(array());
+        } else {
+            $response->renderOK(
+                $model->search($q, $request->getCriteria()));
+        }
     });
 
     // Get information about single additive.
