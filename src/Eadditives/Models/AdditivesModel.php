@@ -108,10 +108,16 @@ class AdditivesModel extends Model {
     public function search($q, $criteria = array()) {
         $criteria = $this->getDatabaseCriteria($criteria);
 
-        $sql = "SELECT p.additive_id as id, a.code, p.value_str as name
-            FROM AdditiveProps as p
-            LEFT JOIN Additive as a ON a.id = p.additive_id
-            WHERE p.locale_id = :locale_id AND (p.key_name = 'name' AND p.value_str LIKE :query)";
+        // $sql = "SELECT p.additive_id as id, a.code, p.value_str as name
+        //     FROM AdditiveProps as p
+        //     RIGHT JOIN Additive as a ON a.id = p.additive_id
+        //     WHERE p.locale_id = :locale_id AND (p.key_name = 'name' AND p.value_str LIKE :query)";
+
+       $sql = "SELECT p.additive_id as id, a.code, p.value_str as name
+            FROM Additive as a
+            LEFT JOIN AdditiveProps as p ON p.additive_id = a.id
+            WHERE p.locale_id = :locale_id AND ((p.key_name = 'name' AND p.value_str LIKE :query) 
+                OR (p.key_name = 'name' AND a.code LIKE :query))";
 
         // apply category criteria
         if (!is_null($criteria[MyRequest::PARAM_CATEGORY])) {
@@ -163,7 +169,6 @@ class AdditivesModel extends Model {
         // if (!preg_match("/^[0-9]+([a-zA-Z]+){0,}$/", $code)) {
         //  throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
         // }
-
 
         // get cached result
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $code);
