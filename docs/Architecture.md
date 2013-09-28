@@ -5,7 +5,7 @@ Relative To: **Milestone-01**
 
 # Components
 
-The presented architecture can be described as a [3-tier](http://en.wikipedia.org/wiki/Multitier_architecture) domain based model. The goal of which is to allow for differnt technology and hardware based clients to connect to the server REST API and fetch/modify data.
+The presented architecture can be described as a [3-tier](http://en.wikipedia.org/wiki/Multitier_architecture) domain based model. The goal of which is to allow for differnt technology and hardware based clients to connect to the server HTTP API and fetch/modify data.
 
 Note, that **availability** and **backup** scenarios are currently **not covered**!
 

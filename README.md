@@ -5,7 +5,7 @@ e-additives.server
 
 The goal of the E-additives project is to implement a web platform that will provide detailed information about [food additives](http://en.wikipedia.org/wiki/Food_additive).
 
-The RESTful API implementation will provide [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) access to the data which may later be consumed by web or mobile apps.
+This project is a RESTful web service implementation that provides [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) access to the data which may later be consumed by web or mobile apps using a defined HTTP API.
 
 Check the [documentation](docs/).
 
@@ -82,7 +82,6 @@ Copy the `config-empty.php` to `config.php` and open the file in a text editor.
 Test using [CURL](http://curl.haxx.se/) or some [REST client](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm) tool.
 
 Read the [API docs](docs/API.md) to check what API calls are available and how to use them.
-
 
 # License
 
