@@ -53,12 +53,37 @@ $app->get('/', function () use ($app) {
         ));
 });
 
+/**
+ * Respond to HTTP 1.1 /OPTIONS
+ * Ref: http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+ * Ref: http://www.html5rocks.com/en/tutorials/cors/
+ */
+$app->options('/:any', function() use ($app) {
+    /**
+     * rfc2616: body is not defined by this specification, but might be defined 
+     *          by future extensions to HTTP.
+     *
+     * We just return an empty JSON object. We are not required to return body.
+     * This must be done for all API groups defined below.
+     * 
+     * Note that the headers were already configured in the .htaccess file! 
+     * Hence, we do not need to apply HTTP Allow-* headers here.
+     */
+    $app->render(MyResponse::HTTP_STATUS_OK, array());
+});
 
 /*
  * API: /additives
  *
  */
 $app->group('/additives', function() use ($app) {
+
+    /**
+     * Respond to HTTP 1.1 /OPTIONS
+     */
+    $app->options('/:any', function() use ($app) {
+        $app->render(MyResponse::HTTP_STATUS_OK, array());
+    });    
 
     // Get a list of food additives.
     $app->get('/', function() use ($app) {
@@ -104,6 +129,13 @@ $app->group('/additives', function() use ($app) {
  *
  */
 $app->group('/categories', function() use ($app) {
+
+    /**
+     * Respond to HTTP 1.1 /OPTIONS
+     */
+    $app->options('/:any', function() use ($app) {
+        $app->render(MyResponse::HTTP_STATUS_OK, array());
+    });     
 
     // Get a list of additives categories.
     $app->get('/', function() use ($app) {

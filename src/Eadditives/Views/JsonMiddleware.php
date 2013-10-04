@@ -94,9 +94,9 @@ class JsonMiddleware extends \Slim\Middleware {
             }
            /**
              * Perform server authorization using X-Authorization header sent by the client.
-             * Skip root resource.
+             * Skip root resource and 'OPTIONS' method.
              */
-            if ($app->request->getResourceUri() !== '/') {
+            if ($app->request->getResourceUri() !== '/' && !$app->request->isOptions()) {
                 $request = new MyRequest($app);
                 $request->authorize();
             }
