@@ -117,7 +117,7 @@ class CategoriesModel extends Model {
             $this->validateResult($result); 
 
             // ISO-8601 datetime format
-            $dt = new \DateTime($row['last_update']);
+            $dt = new \DateTime($result['last_update']);
             $result['last_update'] = $dt->format(\DateTime::ISO8601);
             // add resource url
             $result['url'] = BASE_URL . '/categories/' . $result['id'];
