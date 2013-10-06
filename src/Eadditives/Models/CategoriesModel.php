@@ -42,7 +42,8 @@ class CategoriesModel extends Model {
     public function getAll($criteria = array()) {
         $criteria = $this->getDatabaseCriteria($criteria);
 
-        $sql = "SELECT c.id, c.last_update, p.name
+        $sql = "SELECT c.id, c.last_update, p.name,
+            (SELECT COUNT(id) FROM Additive as a WHERE a.category_id=c.id) as additives
             FROM AdditiveCategory as c
             LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
             WHERE p.locale_id = :locale_id";
@@ -99,7 +100,8 @@ class CategoriesModel extends Model {
             return $this->cache->hget($cacheKey);
         }               
 
-        $sql = "SELECT c.id, p.name, p.description, p.last_update 
+        $sql = "SELECT c.id, p.name, p.description, p.last_update,
+            (SELECT COUNT(id) FROM Additive as a WHERE a.category_id=c.id) as additives
             FROM AdditiveCategory as c
             LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
             WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";

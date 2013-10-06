@@ -3,8 +3,6 @@ E-additives API
 
 HTTP API documentation.
 
-Relative to: [Milestone-01](https://github.com/vexelon-dot-net/e-additives.server/issues/milestones)
-
 ================================
 ### Authorization
 
@@ -136,12 +134,14 @@ Get a list of additives categories.
         "id": "1",
         "last_update": "2013-09-08T14:00:45+0300",
         "name": "colors",
+        "additives": "76",
         "url": "http://hostname/categories/1"
     },
     {
         "id": "2",
         "last_update": "2013-09-08T14:00:45+0300",
         "name": "preservatives",
+        "additives": "52",
         "url": "http://hostname/categories/2"
     },
 ]
@@ -168,6 +168,7 @@ Get information about single category.
     "name": "flavour enhancers",
     "description": "Flavor enhancers enhance a food's existing flavors. They may be extracted from natural sources (through distillation, solvent extraction, maceration, among other methods) or created artificially.",
     "last_update": "2013-09-08T20:13:32+0300",
+    "additives": "20",
     "url": "http://hostname/categories/6"
 }
 ```
