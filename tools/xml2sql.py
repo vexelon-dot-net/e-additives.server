@@ -113,13 +113,18 @@ def toSQL(dataList, outFile):
     f.write("# Additives Properties \n")
 
     lastKeyChar = ''
+    lastCodeSize = -1
     for k, v in itemsList['en'].items():
         # insert additive #############
         key = k[1:]
+        code = [str(x.group()) for x in re.finditer(r'\d+', k)]
+        code = ''.join(code)
+        codeSize = len(code)
         #if key not in additivesKeySet:
         curKeyChar = key[0:1]
-        if lastKeyChar != curKeyChar:
+        if lastKeyChar != curKeyChar or codeSize != lastCodeSize:
             lastKeyChar = curKeyChar
+            lastCodeSize = codeSize
             sql = "SELECT id FROM {} WHERE category='{}' INTO @category_id;"\
                 .format(TABLE_ADDITIVECATEGORY, "{}{}".format(curKeyChar, "".zfill(len(key) - 1)))
             f.write(sql)
