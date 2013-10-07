@@ -25,10 +25,11 @@ ATTRIB_FOOD = 'food'
 ATTRIB_WARN = 'warn'
 ATTRIB_INFO = 'info'
 # Database constants
-TABLE_ADDITIVE = "Additive"
-TABLE_ADDITIVEPROPS = "AdditiveProps"
-TABLE_ADDITIVECATEGORY = "AdditiveCategory"
-TABLE_ADDITIVELOCALE = "Locale"
+TABLE_PREFIX = "ead_"
+TABLE_ADDITIVE = TABLE_PREFIX + "Additive"
+TABLE_ADDITIVEPROPS = TABLE_PREFIX + "AdditiveProps"
+TABLE_ADDITIVECATEGORY = TABLE_PREFIX + "AdditiveCategory"
+TABLE_ADDITIVELOCALE = TABLE_PREFIX + "Locale"
 # XML 2 SQL column mappings
 COLUMNS_MAP = {\
     ATTRIB_NAME: {'name': "name", 'type': "value_str"}, \

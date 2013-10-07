@@ -32,6 +32,12 @@ use \Eadditives\RequestException;
  */
 class Model {
 
+    const TABLE_ADDITIVEPROPS = "ead_AdditiveProps";
+    const TABLE_ADDITIVE = "ead_Additive";
+    const TABLE_LOCALE = "ead_Locale";
+    const TABLE_ADDITIVECATEGORY = "ead_AdditiveCategory";
+    const TABLE_ADDITIVECATEGORYPROPS = "ead_AdditiveCategoryProps";
+
     /**
      * @var array
      */

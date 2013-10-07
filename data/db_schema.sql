@@ -4,11 +4,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 
 -- -----------------------------------------------------
--- Table `AdditiveCategory`
+-- Table `ead_AdditiveCategory`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `AdditiveCategory` ;
+DROP TABLE IF EXISTS `ead_AdditiveCategory` ;
 
-CREATE TABLE IF NOT EXISTS `AdditiveCategory` (
+CREATE TABLE IF NOT EXISTS `ead_AdditiveCategory` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `category` INT NOT NULL COMMENT 'Category identification constant.',
   `last_update` DATETIME NOT NULL,
@@ -19,11 +19,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Additive`
+-- Table `ead_Additive`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Additive` ;
+DROP TABLE IF EXISTS `ead_Additive` ;
 
-CREATE TABLE IF NOT EXISTS `Additive` (
+CREATE TABLE IF NOT EXISTS `ead_Additive` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `category_id` INT NOT NULL DEFAULT -1,
   `code` VARCHAR(45) NOT NULL,
@@ -35,18 +35,18 @@ CREATE TABLE IF NOT EXISTS `Additive` (
   INDEX `fk_Additive_1_idx` (`category_id` ASC),
   CONSTRAINT `fk_Additive_1`
     FOREIGN KEY (`category_id`)
-    REFERENCES `AdditiveCategory` (`id`)
+    REFERENCES `ead_AdditiveCategory` (`id`)
     ON DELETE RESTRICT
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Locale`
+-- Table `ead_Locale`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Locale` ;
+DROP TABLE IF EXISTS `ead_Locale` ;
 
-CREATE TABLE IF NOT EXISTS `Locale` (
+CREATE TABLE IF NOT EXISTS `ead_Locale` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `code` VARCHAR(45) NOT NULL COMMENT 'ISO 639-1 language code',
   `enabled` TINYINT(1) NOT NULL,
@@ -56,11 +56,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `AdditiveProps`
+-- Table `ead_AdditiveProps`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `AdditiveProps` ;
+DROP TABLE IF EXISTS `ead_AdditiveProps` ;
 
-CREATE TABLE IF NOT EXISTS `AdditiveProps` (
+CREATE TABLE IF NOT EXISTS `ead_AdditiveProps` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `additive_id` INT NOT NULL,
   `locale_id` INT NOT NULL,
@@ -75,23 +75,23 @@ CREATE TABLE IF NOT EXISTS `AdditiveProps` (
   INDEX `fk_AdditiveProps_2_idx` (`additive_id` ASC),
   CONSTRAINT `fk_AdditiveProps_Locales`
     FOREIGN KEY (`locale_id`)
-    REFERENCES `Locale` (`id`)
+    REFERENCES `ead_Locale` (`id`)
     ON DELETE RESTRICT
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_AdditiveProps_Additive`
     FOREIGN KEY (`additive_id`)
-    REFERENCES `Additive` (`id`)
+    REFERENCES `ead_Additive` (`id`)
     ON DELETE RESTRICT
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `AdditiveCategoryProps`
+-- Table `ead_AdditiveCategoryProps`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `AdditiveCategoryProps` ;
+DROP TABLE IF EXISTS `ead_AdditiveCategoryProps` ;
 
-CREATE TABLE IF NOT EXISTS `AdditiveCategoryProps` (
+CREATE TABLE IF NOT EXISTS `ead_AdditiveCategoryProps` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `category_id` INT NOT NULL,
   `locale_id` INT NOT NULL,
@@ -104,12 +104,12 @@ CREATE TABLE IF NOT EXISTS `AdditiveCategoryProps` (
   INDEX `fk_AdditiveCategoryProps_2_idx` (`locale_id` ASC),
   CONSTRAINT `fk_AdditiveCategoryProps_1`
     FOREIGN KEY (`category_id`)
-    REFERENCES `AdditiveCategory` (`id`)
+    REFERENCES `ead_AdditiveCategory` (`id`)
     ON DELETE RESTRICT
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_AdditiveCategoryProps_2`
     FOREIGN KEY (`locale_id`)
-    REFERENCES `Locale` (`id`)
+    REFERENCES `ead_Locale` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

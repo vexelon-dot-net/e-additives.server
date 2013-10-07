@@ -51,7 +51,7 @@ class LocalesModel extends Model {
         }       
 
         $sql = "SELECT l.id, l.enabled
-            FROM Locale as l
+            FROM ead_Locale as l
             WHERE l.code=? LIMIT 1";
 
         try {

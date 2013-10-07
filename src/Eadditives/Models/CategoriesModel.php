@@ -43,9 +43,9 @@ class CategoriesModel extends Model {
         $criteria = $this->getDatabaseCriteria($criteria);
 
         $sql = "SELECT c.id, c.last_update, p.name,
-            (SELECT COUNT(id) FROM Additive as a WHERE a.category_id=c.id) as additives
-            FROM AdditiveCategory as c
-            LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+            (SELECT COUNT(id) FROM ead_Additive as a WHERE a.category_id=c.id) as additives
+            FROM ead_AdditiveCategory as c
+            LEFT JOIN ead_AdditiveCategoryProps as p ON p.category_id = c.id
             WHERE p.locale_id = :locale_id";
 
         // apply sort criteria
@@ -101,9 +101,9 @@ class CategoriesModel extends Model {
         }               
 
         $sql = "SELECT c.id, p.name, p.description, p.last_update,
-            (SELECT COUNT(id) FROM Additive as a WHERE a.category_id=c.id) as additives
-            FROM AdditiveCategory as c
-            LEFT JOIN AdditiveCategoryProps as p ON p.category_id = c.id
+            (SELECT COUNT(id) FROM ead_Additive as a WHERE a.category_id=c.id) as additives
+            FROM ead_AdditiveCategory as c
+            LEFT JOIN ead_AdditiveCategoryProps as p ON p.category_id = c.id
             WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
 
         try {
