@@ -8,7 +8,7 @@
 <IfModule mod_headers.c>
 # "Always" in this context refers to whether headers you add will be sent during both a successful 
 # and unsucessful response.
-    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Origin "http://localhost"
     Header always set Access-Control-Allow-Methods "GET"
     Header always set Access-Control-Allow-Headers "Content-Type, X-Requested-With, X-Authorization"
 </IfModule>
