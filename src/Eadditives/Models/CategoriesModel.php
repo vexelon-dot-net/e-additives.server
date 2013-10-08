@@ -42,7 +42,7 @@ class CategoriesModel extends Model {
     public function getAll($criteria = array()) {
         $criteria = $this->getDatabaseCriteria($criteria);
 
-        $sql = "SELECT c.id, c.last_update, p.name,
+        $sql = "SELECT c.id, c.category, c.last_update, p.name,
             (SELECT COUNT(id) FROM ead_Additive as a WHERE a.category_id=c.id) as additives
             FROM ead_AdditiveCategory as c
             LEFT JOIN ead_AdditiveCategoryProps as p ON p.category_id = c.id
