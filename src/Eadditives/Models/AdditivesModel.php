@@ -176,7 +176,7 @@ class AdditivesModel extends Model {
             return $this->cache->hget($cacheKey);
         }   
 
-        $sql = "SELECT a.id, a.code, a.last_update,
+        $sql = "SELECT a.id, a.code, a.last_update, a.category_id,
             (SELECT value_str FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
             (SELECT value_text FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'status' AND locale_id = :locale_id) as status,
             (SELECT value_str FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'veg' AND locale_id = :locale_id) as veg,
