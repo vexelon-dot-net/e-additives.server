@@ -1,8 +1,9 @@
 {
     "name": "e-additives.server",
-    "type": "project",
     "description": "E-additives RESTful web service",
-    "keywords": ["additives", "food", "health", "restful", "server"],
+    "version": "0.9.0-dev",
+    "type": "project",
+    "keywords": ["additives", "food", "food additives", "health", "nutrition", "food substance", "restful"],
     "homepage": "https://github.com/vexelon-dot-net/e-additives.server",
     "license": "AGPL-3.0",
     "authors": [ 
