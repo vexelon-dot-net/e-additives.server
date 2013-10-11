@@ -29,7 +29,7 @@ Get a list of food additives.
 
 #### Example
 
-    GET /additives
+    GET /additives HTTP/1.1
     HTTP/1.1 200 OK
     
 ```json
@@ -63,7 +63,7 @@ Search food additives.
 
 #### Example
 
-    GET /additives/search?q=cu&sort=code&order=desc&locale=en
+    GET /additives/search?q=cu&sort=code&order=desc&locale=en HTTP/1.1
     HTTP/1.1 200 OK
     
 ```json
@@ -94,7 +94,7 @@ Get information about single additive.
 
 #### Example
 
-    GET /additives/100
+    GET /additives/100 HTTP/1.1
     HTTP/1.1 200 OK
 
 ```json
@@ -125,7 +125,7 @@ Get a list of additives categories.
 
 #### Example
 
-    GET /categories
+    GET /categories HTTP/1.1
     HTTP/1.1 200 OK
 
 ```json
@@ -159,7 +159,7 @@ Get information about single category.
 
 #### Example
 
-    GET /categories/6
+    GET /categories/6 HTTP/1.1
     HTTP/1.1 200 OK
 
 ```json
