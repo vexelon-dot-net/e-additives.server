@@ -77,7 +77,7 @@ class CategoriesModel extends Model {
                 $items[] = $row;
             }
 
-            return $items;          
+            return $items;
 
         } catch (\Exception $e) {
             throw new ModelException('SQL Error!', $e->getCode(), $e);
@@ -98,7 +98,7 @@ class CategoriesModel extends Model {
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
         if ($this->cache->exists($cacheKey)) {
             return $this->cache->hget($cacheKey);
-        }               
+        }
 
         $sql = "SELECT c.id, p.name, p.description, p.last_update,
             (SELECT COUNT(id) FROM ead_Additive as a WHERE a.category_id=c.id) as additives

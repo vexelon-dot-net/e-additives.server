@@ -25,6 +25,9 @@ define('CACHE_SETTINGS', serialize(array(
     'port' => 6379)
 ));
 
+// Enable entity tag (ETag) cache optimizations
+define('HTTP_CACHE', true);
+
 // X-Authorization key
 // Generate and add a key here. Use it on client side to make API calls to the server.
 define('X_AUTH_KEY', '');

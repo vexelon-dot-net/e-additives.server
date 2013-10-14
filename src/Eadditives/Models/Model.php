@@ -107,7 +107,6 @@ class Model {
         }
     }
 
-
     /**
      * Check SQL result
      * @param $result

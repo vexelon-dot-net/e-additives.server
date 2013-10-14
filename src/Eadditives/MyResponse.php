@@ -48,6 +48,12 @@ class MyResponse {
         $this->app = $app;
     }
 
+    public function etag($uniqueId) {
+        if (HTTP_CACHE && isset($uniqueId)) {
+            $this->app->etag($uniqueId);
+        }
+    }
+
     function render($status, $results) {
         //$this->app->response->headers->set('X-Alfa-Type', 'Broderbund');
         $this->app->render($status, $results);      
