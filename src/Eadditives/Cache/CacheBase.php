@@ -19,7 +19,7 @@
 
 namespace Eadditives\Cache;
 
-use Eadditives\Cache\CacheBase;
+use Eadditives\Cache\CacheInterface;
 
 /**
  * NullCache
@@ -29,23 +29,17 @@ use Eadditives\Cache\CacheBase;
  * @package Eadditives
  * @author  p.petrov
  */
-class NullCache extends CacheBase {
+abstract class CacheBase implements CacheInterface {
 
-    function __construct() {}
-
-    public function set($key, $value, $ttl = 0) {}
-
-    public function hset($key, array $values, $ttl = 0) {}
-
-    public function get($key) {}
-
-    public function hget($key) {}
-
-    public function exists($key) {
+    public function genKey() {
+        $count = func_num_args();
+        if ($count > 0) {
+            $arg_list = func_get_args();
+            return md5(implode($arg_list));
+        }
         return false;
     }
 
-    public function delete($key) {}
 }
 
 ?>

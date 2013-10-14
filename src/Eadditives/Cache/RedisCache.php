@@ -19,7 +19,7 @@
 
 namespace Eadditives\Cache;
 
-use Eadditives\Cache\CacheInterface;
+use Eadditives\Cache\CacheBase;
 
 /**
  * RedisCache
@@ -29,22 +29,13 @@ use Eadditives\Cache\CacheInterface;
  * @package Eadditives
  * @author  p.petrov
  */
-class RedisCache implements CacheInterface {
+class RedisCache extends CacheBase {
 
     protected $predisClient;
 
     function __construct($predisClient) {
         $this->predisClient = $predisClient;
     }
-
-    public function genKey() {
-        $count = func_num_args();
-        if ($count > 0) {
-            $arg_list = func_get_args();
-            return md5(implode($arg_list));
-        }
-        return false;
-    }   
 
     public function set($key, $value, $ttl = 0) {
         if ($ttl != 0) {
