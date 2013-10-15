@@ -22,9 +22,7 @@ namespace Eadditives\Cache;
 use Eadditives\Cache\CacheInterface;
 
 /**
- * NullCache
- *
- * Dummy cache interface. This will be used in case a cache server is not available.
+ * CacheBase
  *
  * @package Eadditives
  * @author  p.petrov
