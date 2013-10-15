@@ -66,6 +66,12 @@ class Model {
     protected $log = null;
 
     /**
+     * Last cached key & value
+     * @var array
+     */
+    protected $lastCached = array();
+
+    /**
      * Constructor
      * @param  mixed $dbConnection
      */
@@ -116,6 +122,10 @@ class Model {
         if (empty($result)) {
             throw new RequestException('Not Found', MyResponse::HTTP_STATUS_NOT_FOUND);
         }
+    }
+
+    protected function updateCache($key, $ttl) {
+        //TODO
     }
 }
 ?>

@@ -94,9 +94,17 @@ class CategoriesModel extends Model {
     public function getSingle($id, $criteria = array()) {
         $criteria = $this->getDatabaseCriteria($criteria);
 
+        $this->log->debug('cache hit');
+
         // get cached result
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
         if ($this->cache->exists($cacheKey)) {
+
+            //$this->app->etag($cacheKey);
+            // $this->app->expires('+10 seconds');
+            $dt = new \DateTime();
+            $this->app->lastModified($dt->getTimestamp());
+            $this->app->expires('+15 seconds');
             return $this->cache->hget($cacheKey);
         }
 
@@ -124,6 +132,14 @@ class CategoriesModel extends Model {
 
             // write to cache
             $this->cache->hset($cacheKey, $result, self::CACHE_TTL);
+
+            // !!!
+            // $this->app->etag($cacheKey);
+            // $this->app->expires('+10 seconds');
+            // $this->app->expires('+' . self::CACHE_TTL . ' seconds');
+            $dt = new \DateTime();
+            $this->app->lastModified($dt->getTimestamp());
+            $this->app->expires('+15 seconds');
 
             return $result;
 
