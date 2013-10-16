@@ -134,6 +134,8 @@ class CategoriesModel extends Model {
 
             return $result;
 
+        } catch (\Slim\Exception\Stop $e) {
+            throw $e;
         } catch (\Exception $e) {
             throw new ModelException('SQL Error!', $e->getCode(), $e);
         }

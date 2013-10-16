@@ -61,7 +61,15 @@ class JsonMiddleware extends \Slim\Middleware {
                                 
             $response = new MyResponse($app);
             
-            if ($e instanceof ModelException) {
+            if ($e instanceof \Slim\Exception\Stop) {
+                // Do Nothing ...
+                
+                /**
+                 * We should be getting this on (304) Not Modified.
+                 * And that is (normally) thrown if entity tag (ETag) header of the request matches the one that 
+                 * our Models produce.
+                 */
+            } else if ($e instanceof ModelException) {
                 // put SQL error code into error JSON response. 
                 $response->renderError($e->getMessage(), $e->getCode());    
             } else if ($e instanceof RequestException) {
