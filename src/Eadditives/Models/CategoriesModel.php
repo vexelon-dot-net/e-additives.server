@@ -100,11 +100,8 @@ class CategoriesModel extends Model {
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
         if ($this->cache->exists($cacheKey)) {
 
-            //$this->app->etag($cacheKey);
-            // $this->app->expires('+10 seconds');
-            $dt = new \DateTime();
-            $this->app->lastModified($dt->getTimestamp());
-            $this->app->expires('+15 seconds');
+            $lastmod = $this->cache->get($cacheKey . '_TIME');
+            $this->app->lastModified((int)$lastmod);
             return $this->cache->hget($cacheKey);
         }
 
@@ -132,12 +129,14 @@ class CategoriesModel extends Model {
 
             // write to cache
             $this->cache->hset($cacheKey, $result, self::CACHE_TTL);
-
+            
             // !!!
             // $this->app->etag($cacheKey);
             // $this->app->expires('+10 seconds');
             // $this->app->expires('+' . self::CACHE_TTL . ' seconds');
             $dt = new \DateTime();
+            $this->cache->set($cacheKey . '_TIME', $dt->getTimestamp(), self::CACHE_TTL);
+
             $this->app->lastModified($dt->getTimestamp());
             $this->app->expires('+15 seconds');
 
