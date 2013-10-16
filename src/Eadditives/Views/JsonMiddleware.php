@@ -89,13 +89,16 @@ class JsonMiddleware extends \Slim\Middleware {
 
         // API keys/Maintenance check
         $app->hook('slim.before', function() use ($app) {
-            $response = new MyResponse($app);
+            if (DEBUG) {
+                $app->log->debug('URI: ' . $app->request->getResourceUri());
+            }
             /**
              * Server is in maintenance mode - SQL or general date updates.
              * It is active and running but only development has access to 
              * the functionalities. 
              */
             if (MAINTENANCE_MODE) {
+                $response = new MyResponse($app);
                 $response->render(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
                     MyResponse::newErrorObject(MyResponse::HTTP_STATUS_ERROR_SERVICE_UNAVAILABLE, 
                         'The server is currently unavailable (because it is overloaded or down for maintenance).'));
