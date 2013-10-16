@@ -42,6 +42,22 @@ class CategoriesModel extends Model {
     public function getAll($criteria = array()) {
         $criteria = $this->getDatabaseCriteria($criteria);
 
+        // get cached result
+        $cacheKey = $this->cache->genKey(self::CACHE_KEY, implode($criteria));
+        if ($this->cache->exists($cacheKey)) {
+            $data = unserialize($this->cache->get($cacheKey));
+
+            // set HTTP entity tag (ETag) header
+            $uniqueId = '';
+            foreach ($data as $row) {
+                $dt = new \DateTime($row['last_update']);
+                $uniqueId .= $dt->getTimestamp();
+            }
+            $this->app->etag(md5($uniqueId));
+
+            return $data;
+        }             
+
         $sql = "SELECT c.id, c.category, c.last_update, p.name,
             (SELECT COUNT(id) FROM ead_Additive as a WHERE a.category_id=c.id) as additives
             FROM ead_AdditiveCategory as c
@@ -66,6 +82,7 @@ class CategoriesModel extends Model {
             // $this->validateResult($result);
 
             // format results
+            $uniqueId = '';
             $items = array();
             foreach ($result as $row) {
                 // ISO-8601 datetime format
@@ -75,10 +92,22 @@ class CategoriesModel extends Model {
                 $row['url'] = BASE_URL . '/categories/' . $row['id'];
                 // add updated row
                 $items[] = $row;
+                // result unique-id 
+                // XXX: large string performance?!
+                $uniqueId .= $dt->getTimestamp();                
+            }
+
+            // write to cache
+            if ($this->cache->set($cacheKey, serialize($items), self::CACHE_TTL)) {
+                 // set HTTP entity tag (ETag) header
+                $this->app->expires('+' . self::CACHE_TTL . ' seconds');
+                $this->app->etag(md5($uniqueId));
             }
 
             return $items;
 
+        } catch (\Slim\Exception\Stop $e) {
+            throw $e;
         } catch (\Exception $e) {
             throw new ModelException('SQL Error!', $e->getCode(), $e);
         }
@@ -128,8 +157,8 @@ class CategoriesModel extends Model {
             // write to cache
             if ($this->cache->hset($cacheKey, $result, self::CACHE_TTL)) {
                 // set HTTP entity tag (ETag) header
-                $this->app->etag(md5($result['last_update']));
                 $this->app->expires('+' . self::CACHE_TTL . ' seconds');
+                $this->app->etag(md5($result['last_update']));
             }
 
             return $result;

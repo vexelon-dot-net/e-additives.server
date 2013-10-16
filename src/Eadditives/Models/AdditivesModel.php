@@ -114,9 +114,9 @@ class AdditivesModel extends Model {
             // write to cache
             if ($this->cache->set($cacheKey, serialize($items), self::CACHE_TTL)) {
                  // set HTTP entity tag (ETag) header
+                $this->app->expires('+' . self::CACHE_TTL . ' seconds');
                 $this->app->etag(md5($uniqueId));
-                $this->app->expires('+' . self::CACHE_TTL . ' seconds');                
-            }            
+            }
 
             return $items;
 
@@ -236,8 +236,8 @@ class AdditivesModel extends Model {
             // write to cache
             if ($this->cache->hset($cacheKey, $result, self::CACHE_TTL)) {
                 // set HTTP entity tag (ETag) header
+                $this->app->expires('+' . self::CACHE_TTL . ' seconds');
                 $this->app->etag(md5($result['last_update']));
-                $this->app->expires('+' . self::CACHE_TTL . ' seconds');                
             }
 
             return $result;
