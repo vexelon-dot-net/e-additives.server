@@ -31,6 +31,7 @@ define('HTTP_CACHE', true);
 // X-Authorization key
 // Generate and add a key here. Use it on client side to make API calls to the server.
 define('X_AUTH_KEY', '');
+define('SKIP_AUTH', false); // IMPORTANT: If *true* Authorization will be *DISABLED*!
 
 // Location settings
 // Note: Add any sub paths required here. Omit slash at the end.
