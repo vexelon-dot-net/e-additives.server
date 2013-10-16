@@ -94,15 +94,14 @@ class CategoriesModel extends Model {
     public function getSingle($id, $criteria = array()) {
         $criteria = $this->getDatabaseCriteria($criteria);
 
-        $this->log->debug('cache hit');
-
         // get cached result
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
         if ($this->cache->exists($cacheKey)) {
-
-            $lastmod = $this->cache->get($cacheKey . '_TIME');
-            $this->app->lastModified((int)$lastmod);
-            return $this->cache->hget($cacheKey);
+            // $lastmod = $this->cache->get($cacheKey . '_TIME');
+            // $this->app->lastModified((int)$lastmod);
+            $data = $this->cache->hget($cacheKey);
+            $this->app->etag(md5($data['last_update']));
+            return $data;
         }
 
         $sql = "SELECT c.id, p.name, p.description, p.last_update,
@@ -128,17 +127,14 @@ class CategoriesModel extends Model {
             $result['url'] = BASE_URL . '/categories/' . $result['id'];
 
             // write to cache
-            $this->cache->hset($cacheKey, $result, self::CACHE_TTL);
-            
-            // !!!
-            // $this->app->etag($cacheKey);
-            // $this->app->expires('+10 seconds');
-            // $this->app->expires('+' . self::CACHE_TTL . ' seconds');
-            $dt = new \DateTime();
-            $this->cache->set($cacheKey . '_TIME', $dt->getTimestamp(), self::CACHE_TTL);
-
-            $this->app->lastModified($dt->getTimestamp());
-            $this->app->expires('+15 seconds');
+            if ($this->cache->hset($cacheKey, $result, self::CACHE_TTL)) {
+                $this->app->etag(md5($result['last_update']));
+                // $dt = new \DateTime();
+                // $this->cache->set($cacheKey . '_TIME', $dt->getTimestamp(), self::CACHE_TTL);
+                // $this->app->lastModified($dt->getTimestamp());
+                $this->app->expires('+15 seconds');
+                $this->app->expires('+' . self::CACHE_TTL . ' seconds');
+            }
 
             return $result;
 
