@@ -51,6 +51,22 @@ class AdditivesModel extends Model {
     public function getAll($criteria = array()) {
         $criteria = $this->getDatabaseCriteria($criteria);
 
+        // get cached result
+        $cacheKey = $this->cache->genKey(self::CACHE_KEY, implode($criteria));
+        if ($this->cache->exists($cacheKey)) {
+            $data = unserialize($this->cache->get($cacheKey));
+
+            // set HTTP entity tag (ETag) header
+            $uniqueId = '';
+            foreach ($data as $row) {
+                $dt = new \DateTime($row['last_update']);
+                $uniqueId .= $dt->getTimestamp();
+            }
+            $this->app->etag(md5($uniqueId));
+
+            return $data;
+        }           
+
         $sql = "SELECT a.code, a.last_update,
             (SELECT value_str FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
             FROM ead_Additive as a
@@ -80,6 +96,7 @@ class AdditivesModel extends Model {
             // $this->validateResult($result);     
 
             // add urls
+            $uniqueId = '';
             $items = array();
             foreach ($result as $row) {
                 // ISO-8601 datetime format
@@ -89,7 +106,17 @@ class AdditivesModel extends Model {
                 $row['url'] = BASE_URL . '/additives/' . $row['code'];
                 // add updated row
                 $items[] = $row;
+                // result unique-id 
+                // XXX: large string performance?!
+                $uniqueId .= $dt->getTimestamp();
             }
+            
+            // write to cache
+            if ($this->cache->set($cacheKey, serialize($items), self::CACHE_TTL)) {
+                 // set HTTP entity tag (ETag) header
+                $this->app->etag(md5($uniqueId));
+                $this->app->expires('+' . self::CACHE_TTL . ' seconds');                
+            }            
 
             return $items;
 
@@ -173,7 +200,9 @@ class AdditivesModel extends Model {
         // get cached result
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $code);
         if ($this->cache->exists($cacheKey)) {
-            return $this->cache->hget($cacheKey);
+            $data = $this->cache->hget($cacheKey);
+            $this->app->etag(md5($data['last_update']));
+            return $data;
         }   
 
         $sql = "SELECT a.id, a.code, a.last_update, a.category_id,
@@ -203,7 +232,11 @@ class AdditivesModel extends Model {
             $result['url'] = BASE_URL . '/additives/' . $result['code'];
 
             // write to cache
-            $this->cache->hset($cacheKey, $result, self::CACHE_TTL);
+            if ($this->cache->hset($cacheKey, $result, self::CACHE_TTL)) {
+                // set HTTP entity tag (ETag) header
+                $this->app->etag(md5($result['last_update']));
+                $this->app->expires('+' . self::CACHE_TTL . ' seconds');                
+            }
 
             return $result;
         } catch (\Exception $e) {

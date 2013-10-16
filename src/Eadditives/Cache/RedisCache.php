@@ -43,13 +43,15 @@ class RedisCache extends CacheBase {
         } else {
             $this->predisClient->set($key, $value);
         }
+        return true;
     }
 
     public function hset($key, array $values, $ttl = 0) {
         $this->predisClient->hmset($key, $values);
         if ($ttl != 0) {
             $this->predisClient->expire($key, $ttl);
-        }       
+        }
+        return true;
     }
 
     public function get($key) {

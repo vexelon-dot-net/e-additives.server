@@ -46,7 +46,6 @@ class LocalesModel extends Model {
 
         // get cached result
         if ($this->cache->exists(self::CACHE_KEY . $code)) {
-            // return unserialize($this->cache->get(self::CACHE_KEY . $code));
             return $this->cache->hget(self::CACHE_KEY . $code);
         }       
 
@@ -60,7 +59,6 @@ class LocalesModel extends Model {
             $row = $statement->fetch();
 
             // write to cache
-            // $this->cache->set(self::CACHE_KEY . $code, serialize($row), self::CACHE_TTL);
             $this->cache->hset(self::CACHE_KEY . $code, $row, self::CACHE_TTL);
 
             return $row;

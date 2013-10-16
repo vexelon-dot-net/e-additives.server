@@ -33,16 +33,20 @@ class NullCache extends CacheBase {
 
     function __construct() {}
 
-    public function set($key, $value, $ttl = 0) {}
+    public function set($key, $value, $ttl = 0) {
+        return false;
+    }
 
-    public function hset($key, array $values, $ttl = 0) {}
+    public function hset($key, array $values, $ttl = 0) {
+        return false;
+    }
 
     public function get($key) {
-    	return false;
+        return false;
     }
 
     public function hget($key) {
-    	return false;
+        return false;
     }
 
     public function exists($key) {
@@ -50,7 +54,7 @@ class NullCache extends CacheBase {
     }
 
     public function delete($key) { 
-    	return false;
+        return false;
     }
 }
 

@@ -97,8 +97,7 @@ class CategoriesModel extends Model {
         // get cached result
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $id);
         if ($this->cache->exists($cacheKey)) {
-            // $lastmod = $this->cache->get($cacheKey . '_TIME');
-            // $this->app->lastModified((int)$lastmod);
+            // set HTTP entity tag (ETag) header
             $data = $this->cache->hget($cacheKey);
             $this->app->etag(md5($data['last_update']));
             return $data;
@@ -128,11 +127,8 @@ class CategoriesModel extends Model {
 
             // write to cache
             if ($this->cache->hset($cacheKey, $result, self::CACHE_TTL)) {
+                // set HTTP entity tag (ETag) header
                 $this->app->etag(md5($result['last_update']));
-                // $dt = new \DateTime();
-                // $this->cache->set($cacheKey . '_TIME', $dt->getTimestamp(), self::CACHE_TTL);
-                // $this->app->lastModified($dt->getTimestamp());
-                $this->app->expires('+15 seconds');
                 $this->app->expires('+' . self::CACHE_TTL . ' seconds');
             }
 
