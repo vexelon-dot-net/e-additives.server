@@ -62,7 +62,7 @@ class AdditivesModel extends Model {
                 $dt = new \DateTime($row['last_update']);
                 $uniqueId .= $dt->getTimestamp();
             }
-            $this->app->etag(md5($uniqueId));
+            $this->setCacheHeaders($uniqueId);
 
             return $data;
         }           
@@ -113,9 +113,8 @@ class AdditivesModel extends Model {
             
             // write to cache
             if ($this->cache->set($cacheKey, serialize($items), self::CACHE_TTL)) {
-                 // set HTTP entity tag (ETag) header
-                $this->app->expires('+' . self::CACHE_TTL . ' seconds');
-                $this->app->etag(md5($uniqueId));
+                // set HTTP entity tag (ETag) header
+                $this->setCacheHeaders($uniqueId, self::CACHE_TTL);
             }
 
             return $items;
@@ -203,7 +202,10 @@ class AdditivesModel extends Model {
         $cacheKey = $this->cache->genKey(self::CACHE_KEY, $criteria[MyRequest::PARAM_LOCALE], $code);
         if ($this->cache->exists($cacheKey)) {
             $data = $this->cache->hget($cacheKey);
-            $this->app->etag(md5($data['last_update']));
+
+            // set HTTP entity tag (ETag) header
+            $this->setCacheHeaders($data['last_update']);
+            
             return $data;
         }   
 
@@ -236,8 +238,7 @@ class AdditivesModel extends Model {
             // write to cache
             if ($this->cache->hset($cacheKey, $result, self::CACHE_TTL)) {
                 // set HTTP entity tag (ETag) header
-                $this->app->expires('+' . self::CACHE_TTL . ' seconds');
-                $this->app->etag(md5($result['last_update']));
+                $this->setCacheHeaders($result['last_update'], self::CACHE_TTL);
             }
 
             return $result;

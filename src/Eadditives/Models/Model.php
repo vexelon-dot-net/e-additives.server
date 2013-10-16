@@ -124,8 +124,19 @@ class Model {
         }
     }
 
-    protected function updateCache($key, $ttl) {
-        //TODO
+    /**
+     * Set HTTP cache headers 
+     * IMPORTANT: If HTTP request and response ETag headers match, this method call
+     * will *halt* the execution of the app and throw \Slim\Exception\Stop
+     * @param string $etag String token to be used for [ETag] header
+     * @param integer $ttl  Time to live value for [Expires] header
+     * @throws \Slim\Exception\Stop 
+     */
+    protected function setCacheHeaders($etag, $ttl = null) {
+        if (!is_null($ttl)) {
+            $this->app->expires('+' . $ttl . ' seconds');
+        }
+        $this->app->etag(md5($etag));       
     }
 }
 ?>
