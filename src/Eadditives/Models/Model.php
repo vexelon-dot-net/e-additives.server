@@ -32,6 +32,15 @@ use \Eadditives\RequestException;
  */
 class Model {
 
+    /**
+     * This helps forcing cache invalidation
+     */
+    const GLOBAL_CACHE_KEY = 'gck1';
+
+    /**
+     * Names of SQL tables in schema
+     */
+    
     const TABLE_ADDITIVEPROPS = "ead_AdditiveProps";
     const TABLE_ADDITIVE = "ead_Additive";
     const TABLE_LOCALE = "ead_Locale";
@@ -136,7 +145,11 @@ class Model {
         if (!is_null($ttl)) {
             $this->app->expires('+' . $ttl . ' seconds');
         }
-        $this->app->etag(md5($etag));       
+        $salted = self::GLOBAL_CACHE_KEY . $etag;
+        if (defined('VERSION')) {
+            $salted .= VERSION;
+        }
+        $this->app->etag(md5($salted));
     }
 }
 ?>

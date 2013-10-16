@@ -7,6 +7,9 @@
 error_reporting(E_ALL & ~(E_WARNING | E_STRICT | E_NOTICE));
 @ini_set("display_errors", 0);
 
+// server version string
+define('VERSION', '');
+
 // Database server configurations
 define('DB_SETTINGS', serialize(array(
     'host' => '',
