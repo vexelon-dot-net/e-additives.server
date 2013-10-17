@@ -68,9 +68,11 @@ class AdditivesModel extends Model {
         }           
 
         $sql = "SELECT a.code, a.last_update,
-            (SELECT value_str FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
-            FROM ead_Additive as a
+            (SELECT value_str FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name
+            FROM __Additive as a
             WHERE visible = TRUE";
+
+        $sql = self::normalizeTables($sql);
 
         // apply category criteria
         if (!is_null($criteria[MyRequest::PARAM_CATEGORY])) {
@@ -141,11 +143,13 @@ class AdditivesModel extends Model {
         //     RIGHT JOIN Additive as a ON a.id = p.additive_id
         //     WHERE p.locale_id = :locale_id AND (p.key_name = 'name' AND p.value_str LIKE :query)";
 
-       $sql = "SELECT p.additive_id as id, a.code, p.value_str as name
-            FROM ead_Additive as a
-            LEFT JOIN ead_AdditiveProps as p ON p.additive_id = a.id
+        $sql = "SELECT p.additive_id as id, a.code, p.value_str as name
+            FROM __Additive as a
+            LEFT JOIN __AdditiveProps as p ON p.additive_id = a.id
             WHERE p.locale_id = :locale_id AND ((p.key_name = 'name' AND p.value_str LIKE :query) 
                 OR (p.key_name = 'name' AND a.code LIKE :query))";
+
+        $sql = self::normalizeTables($sql);
 
         // apply category criteria
         if (!is_null($criteria[MyRequest::PARAM_CATEGORY])) {
@@ -210,15 +214,17 @@ class AdditivesModel extends Model {
         }   
 
         $sql = "SELECT a.id, a.code, a.last_update, a.category_id,
-            (SELECT value_str FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
-            (SELECT value_text FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'status' AND locale_id = :locale_id) as status,
-            (SELECT value_str FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'veg' AND locale_id = :locale_id) as veg,
-            (SELECT value_text FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'function' AND locale_id = :locale_id) as function,
-            (SELECT value_text FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'foods' AND locale_id = :locale_id) as foods,
-            (SELECT value_text FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'notice' AND locale_id = :locale_id) as notice,
-            (SELECT value_big_text FROM ead_AdditiveProps WHERE additive_id = a.id AND key_name = 'info' AND locale_id = :locale_id) as info
-            FROM ead_Additive as a 
+            (SELECT value_str FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'name' AND locale_id = :locale_id) as name,
+            (SELECT value_text FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'status' AND locale_id = :locale_id) as status,
+            (SELECT value_str FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'veg' AND locale_id = :locale_id) as veg,
+            (SELECT value_text FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'function' AND locale_id = :locale_id) as function,
+            (SELECT value_text FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'foods' AND locale_id = :locale_id) as foods,
+            (SELECT value_text FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'notice' AND locale_id = :locale_id) as notice,
+            (SELECT value_big_text FROM __AdditiveProps WHERE additive_id = a.id AND key_name = 'info' AND locale_id = :locale_id) as info
+            FROM __Additive as a 
             WHERE a.code = :code";
+
+        $sql = self::normalizeTables($sql);
 
         try {
 

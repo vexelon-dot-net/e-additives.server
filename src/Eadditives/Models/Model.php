@@ -48,6 +48,27 @@ class Model {
     const TABLE_ADDITIVECATEGORYPROPS = "ead_AdditiveCategoryProps";
 
     /**
+     * SQL tables aliases. These are used within the models queries.
+     * @var array
+     */
+    protected $tableAliases = array('__Locale', 
+        '__AdditiveProps', 
+        '__Additive', 
+        '__AdditiveCategory', 
+        '__AdditiveCategoryProps');
+
+    /**
+     * SQL table names. These will be used to replace the table aliases
+     * in the models queries.
+     * @var array
+     */
+    protected $tableNames = array(self::TABLE_LOCALE, 
+        self::TABLE_ADDITIVEPROPS, 
+        self::TABLE_ADDITIVE, 
+        self::TABLE_ADDITIVECATEGORY, 
+        self::TABLE_ADDITIVECATEGORYPROPS);
+
+    /**
      * @var array
      */
     protected $defaultCriteria = array(
@@ -89,6 +110,10 @@ class Model {
         $this->dbConnection = $app->dbConnection;
         $this->cache = $app->cache;
         $this->log = $app->log;
+    }
+
+    protected function normalizeTables($query) {
+        return str_replace($this->tableAliases, $this->tableNames, $query);
     }
     
     /**

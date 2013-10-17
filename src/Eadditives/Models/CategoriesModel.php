@@ -59,10 +59,12 @@ class CategoriesModel extends Model {
         }             
 
         $sql = "SELECT c.id, c.category, c.last_update, p.name,
-            (SELECT COUNT(id) FROM ead_Additive as a WHERE a.category_id=c.id) as additives
-            FROM ead_AdditiveCategory as c
-            LEFT JOIN ead_AdditiveCategoryProps as p ON p.category_id = c.id
+            (SELECT COUNT(id) FROM __Additive as a WHERE a.category_id=c.id) as additives
+            FROM __AdditiveCategory as c
+            LEFT JOIN __AdditiveCategoryProps as p ON p.category_id = c.id
             WHERE p.locale_id = :locale_id";
+
+        $sql = self::normalizeTables($sql);
 
         // apply sort criteria
         if (!is_null($criteria[MyRequest::PARAM_SORT])) {
@@ -134,10 +136,12 @@ class CategoriesModel extends Model {
         }
 
         $sql = "SELECT c.id, p.name, p.description, p.last_update,
-            (SELECT COUNT(id) FROM ead_Additive as a WHERE a.category_id=c.id) as additives
-            FROM ead_AdditiveCategory as c
-            LEFT JOIN ead_AdditiveCategoryProps as p ON p.category_id = c.id
+            (SELECT COUNT(id) FROM __Additive as a WHERE a.category_id=c.id) as additives
+            FROM __AdditiveCategory as c
+            LEFT JOIN __AdditiveCategoryProps as p ON p.category_id = c.id
             WHERE c.id = :category_id AND p.locale_id = :locale_id LIMIT 1";
+
+        $sql = self::normalizeTables($sql);
 
         try {
 
