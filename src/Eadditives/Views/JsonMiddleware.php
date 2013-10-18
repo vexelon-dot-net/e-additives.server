@@ -113,6 +113,15 @@ class JsonMiddleware extends \Slim\Middleware {
                 $request = new MyRequest($app);
                 $request->authorize();
             }
+            /**
+             * Only XHR type of requests are allowed
+             */
+            // if (!$app->request->isXhr()) {
+            //     $response = new MyResponse($app);
+            //     $response->render(MyResponse::HTTP_STATUS_PRECONDITION_FAILED, 
+            //         MyResponse::newErrorObject(MyResponse::HTTP_STATUS_PRECONDITION_FAILED, 
+            //             'Precondition failed!'));
+            // }
         });
 
         // Handle Empty response body
