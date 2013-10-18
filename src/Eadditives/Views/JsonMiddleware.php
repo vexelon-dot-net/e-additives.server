@@ -90,6 +90,7 @@ class JsonMiddleware extends \Slim\Middleware {
         // API keys/Maintenance check
         $app->hook('slim.before', function() use ($app) {
             if (DEBUG) {
+                // $app->log->debug('SERVER: ' . print_r($_SERVER, true));
                 $app->log->debug('URI: ' . $app->request->getResourceUri());
             }
             /**
