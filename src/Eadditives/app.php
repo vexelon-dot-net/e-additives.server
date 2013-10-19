@@ -76,9 +76,13 @@ if ($cacheSettings['enabled']) {
 
             //TODO: add prefix parameter based on user sessions
             $prefix = 'd34db33f';
-            if (isset($app->apiKey) && strlen($app->apiKey) >= 7) {
-                //XXX: Why 7? Read goo.gl/OGYRnM :)
-                $prefix = substr($app->apiKey, -7);
+            if (isset($app->apiKey)) {
+                if (strlen($app->apiKey) >= 7) {
+                    //XXX: Why 7? Read goo.gl/OGYRnM :)
+                    $prefix = substr($app->apiKey, -7);
+                } else {
+                    $prefix .= $app->apiKey;
+                }
             }
             $prefix .= ':';
 
