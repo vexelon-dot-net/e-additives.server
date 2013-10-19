@@ -136,10 +136,8 @@ class MyRequest {
 
         try {
             $tokens = $this->parseXAuthorization($authorization);
-
-            // TODO: Further develop API keys management!
-
-            if ($tokens['apiKey'] != X_AUTH_KEY) {
+            $apiKeys = unserialize(X_AUTH_KEY);
+            if (!in_array($tokens['apiKey'], $apiKeys)) {
                 throw new \Exception('Invalid API key!');
             }
 

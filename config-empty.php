@@ -31,9 +31,10 @@ define('CACHE_SETTINGS', serialize(array(
 // Enable entity tag (ETag) cache optimizations
 define('HTTP_CACHE', true);
 
-// X-Authorization key
-// Generate and add a key here. Use it on client side to make API calls to the server.
-define('X_AUTH_KEY', '');
+// X-Authorization keys
+// Generate and add a keys here. Use them on client side to make API calls to the server.
+define('X_AUTH_KEY', serialize(array()
+));
 define('SKIP_AUTH', false); // IMPORTANT: If *true* Authorization will be *DISABLED*!
 
 // Location settings
