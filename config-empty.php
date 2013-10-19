@@ -8,7 +8,7 @@ error_reporting(E_ALL & ~(E_WARNING | E_STRICT | E_NOTICE));
 @ini_set("display_errors", 0);
 
 // server version string
-define('VERSION', '0.9.1');
+define('VERSION', '0.9.2-dev');
 
 // Database server configurations
 define('DB_SETTINGS', serialize(array(
