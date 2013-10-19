@@ -15,7 +15,6 @@
 
 <php>
 	<const name="DEBUG" value="true" />
-	<const name="X_AUTH_KEY" value="1234567890abcdef" />
 </php>
 
 <testsuites>

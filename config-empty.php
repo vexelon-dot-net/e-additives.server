@@ -34,8 +34,7 @@ define('HTTP_CACHE', true);
 // X-Authorization keys
 // Generate and add a keys here. Use them on client side to make API calls to the server.
 // Note: API key must be at lest 7 characters long.
-define('X_AUTH_KEY', serialize(array()
-));
+define('X_AUTH_KEY', serialize(array()));
 define('SKIP_AUTH', false); // IMPORTANT: If *true* Authorization will be *DISABLED*!
 
 // Location settings
