@@ -1,7 +1,7 @@
 {
     "name": "e-additives.server",
     "description": "E-additives RESTful web service",
-    "version": "0.9.1-dev",
+    "version": "0.9.1",
     "type": "project",
     "keywords": ["additives", "food", "food additives", "health", "nutrition", "food substance", "restful"],
     "homepage": "https://github.com/vexelon-dot-net/e-additives.server",
