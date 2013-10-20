@@ -51,7 +51,7 @@ class Model {
      * SQL tables aliases. These are used within the models queries.
      * @var array
      */
-    protected $tableAliases = array('__Locale', 
+    static protected $tableAliases = array('__Locale', 
         '__AdditiveProps', 
         '__Additive', 
         '__AdditiveCategory', 
@@ -62,7 +62,7 @@ class Model {
      * in the models queries.
      * @var array
      */
-    protected $tableNames = array(self::TABLE_LOCALE, 
+    static protected $tableNames = array(self::TABLE_LOCALE, 
         self::TABLE_ADDITIVEPROPS, 
         self::TABLE_ADDITIVE, 
         self::TABLE_ADDITIVECATEGORY, 
@@ -111,11 +111,7 @@ class Model {
         $this->cache = $app->cache;
         $this->log = $app->log;
     }
-
-    protected function normalizeTables($query) {
-        return str_replace($this->tableAliases, $this->tableNames, $query);
-    }
-    
+  
     /**
      * 
      * @param  array $criteria Request criteria.
@@ -176,5 +172,9 @@ class Model {
         }
         $this->app->etag(md5($salted));
     }
+
+    public static function normalizeTables($query) {
+        return str_replace(self::$tableAliases, self::$tableNames, $query);
+    }    
 }
 ?>
