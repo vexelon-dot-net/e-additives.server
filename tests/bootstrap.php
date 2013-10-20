@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors',1);
 error_reporting(E_ALL | E_STRICT);
 
@@ -17,3 +18,5 @@ AutoLoader::registerDirectory(rtrim(dirname(__FILE__), '/'));
 
 // Autoloader for local tests folder
 AutoLoader::registerDirectory(rtrim(dirname(__FILE__), '/') . '/../vendor/slim/slim/');
+
+?>
