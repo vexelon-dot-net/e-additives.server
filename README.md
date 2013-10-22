@@ -59,14 +59,13 @@ Configure Apache server on local machine for tests. Open your Apache Virtual Hos
             Allow from all
             DirectoryIndex index.php
     </Directory>
-		
+    
 If your are under Windows you can also use [XAMPP](http://www.apachefriends.org/en/xampp.html).
 
 Copy the `.htaccess-template` to `.htaccess` and edit the file to adjust `RewriteBase` to match your Apache directory configuration, e.g.,
 
     RewriteBase /ead.server.api
 
-  
 ## Configure Application
 
 Copy the `config-empty.php` to `config.php` and open the file in a text editor.

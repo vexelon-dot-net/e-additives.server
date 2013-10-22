@@ -20,7 +20,7 @@
         "ext-phar": "*",
         "ext-pdo_mysql": "*",
         "ext-mbstring": "*",
-        "slim/slim": "2.3.2",
+        "slim/slim": "2.3.*",
         "doctrine/common": "2.4.*@dev",
         "doctrine/dbal": "2.4.*@dev",
         "predis/predis": "0.8.*@dev"
