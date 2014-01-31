@@ -5,17 +5,17 @@ Relative To: **Milestone-01**
 
 # Components
 
-The presented architecture can be described as a [3-tier](http://en.wikipedia.org/wiki/Multitier_architecture) domain based model. The goal of which is to allow for differnt technology and hardware based clients to connect to the server HTTP API and fetch/modify data.
+The presented architecture can be described as a [3-tier](http://en.wikipedia.org/wiki/Multitier_architecture) domain based model. It allows for different technology and hardware based clients to connect to the server HTTP API and fetch/modify data.
 
 Note, that **availability** and **backup** scenarios are currently **not covered**!
 
 ![alt text](https://raw.github.com/petarov/e-additives.server/master/docs/eadditives_architecture.png "Components")
 
-Purpose of the _Redis_ server is to cache results queries from the SQL database. It will not store data physically.
+Purpose of the _Redis_ server is to cache results queried from the SQL database. It only caches data into memory. No data is stored physically on the hard drive.
 
 # Technology Stack
 
-Performance is a function of many factors - hardware specs, components configuration, ISP stabilty, etc. The technology stack presented here aims to achieve relatively fast performance given the API requirements and our available hosting hardware.
+Performance is a function of many factors, i.e., network speed, hardware specs, components configuration, etc. The technology stack presented here aims to achieve relatively fast performance given the API requirements and the available (quite modest) hosting hardware.
 
 ![alt text](https://raw.github.com/petarov/e-additives.server/master/docs/eadditives_components_stack.png "Deployment Stack")
 
@@ -32,7 +32,7 @@ Technology | Comments
 
 ![alt text](https://raw.github.com/petarov/e-additives.server/master/docs/eadditives_database.png "Database Schema")
 
-Database schema is relatively simple. There are currently 3 tables:
+Database schema is relatively simple. We only want to store food additives and categories information. Properties for each additives are stored into a separate key/value table. 
 
 Table | Description
 ------|------------
