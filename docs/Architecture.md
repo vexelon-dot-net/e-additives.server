@@ -32,12 +32,12 @@ Technology | Comments
 
 ![alt text](https://raw.github.com/petarov/e-additives.server/master/docs/eadditives_database.png "Database Schema")
 
-Database schema is relatively simple. We only want to store food additives and categories information. Properties for each additives are stored into a separate key/value table. 
+Database schema is relatively simple. We only want to store food additives and categories information. Properties for each additive are stored into a separate key/value table. 
 
 Table | Description
 ------|------------
-**Additive** | Holds info about additive code and last updates.
-**AdditiveProps** | Currently the longest table. Holds **key/value** additive properties. Each property is assigned to an **Additive** and **Locale**
-**Locale** | Available service localizations. Locales can be disabled which means they will be temporary invisible for clients. There is a database constraint that will NOT allow a locale to be deleted until additive properties for that locale still exist.
-**AdditiveCategory** | Additives are grouped into categories, e.g., colors, antioxidants, etc.
-**AdditiveCategoryProps** | Name and texts for each locale of the existing additive categories.
+**Additive** | Holds info about additive code and last update.
+**AdditiveProps** | Holds **key/value** additive properties. Each property is related to an **Additive** and **Locale**
+**Locale** | Available localizations. Locales can be disabled which means they will be temporary invisible for API clients. There is a database constraint that will NOT allow a locale to be deleted until additive properties for that locale are still present.
+**AdditiveCategory** | Additives are grouped into categories, e.g., colors, antioxidants, etc. This table contains a list of categories.
+**AdditiveCategoryProps** | Name and texts of the existing additive categories for each of the available locales.
