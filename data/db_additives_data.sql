@@ -1,3 +1,5 @@
+### Set Default database collation
+SET NAMES 'utf8' COLLATE 'utf8_general_ci';
 # Get Locales 
 SELECT id FROM ead_Locale WHERE code='en' INTO @locale_id_en;
 SELECT id FROM ead_Locale WHERE code='bg' INTO @locale_id_bg;
