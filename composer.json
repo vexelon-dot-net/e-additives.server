@@ -18,7 +18,7 @@
         "ext-mcrypt": "*",
         "ext-openssl": "*",
         "ext-phar": "*",
-        "ext-pdo_mysql": "*",
+        "ext-pdo_pgsql": "*",
         "ext-mbstring": "*",
         "slim/slim": "2.3.*",
         "doctrine/common": "2.4.*@dev",
