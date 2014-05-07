@@ -50,8 +50,10 @@ class LocalesModel extends Model {
         }       
 
         $sql = "SELECT l.id, l.enabled
-            FROM ead_Locale as l
+            FROM __Locale as l
             WHERE l.code=? LIMIT 1";
+
+        $sql = self::normalizeTables($sql);
 
         try {
 

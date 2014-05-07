@@ -41,11 +41,11 @@ class Model {
      * Names of SQL tables in schema
      */
     
-    const TABLE_ADDITIVEPROPS = "ead_AdditiveProps";
-    const TABLE_ADDITIVE = "ead_Additive";
-    const TABLE_LOCALE = "ead_Locale";
-    const TABLE_ADDITIVECATEGORY = "ead_AdditiveCategory";
-    const TABLE_ADDITIVECATEGORYPROPS = "ead_AdditiveCategoryProps";
+    const TABLE_ADDITIVEPROPS = "\"ead_AdditiveProps\"";
+    const TABLE_ADDITIVE = "\"ead_Additive\"";
+    const TABLE_LOCALE = "\"ead_Locale\"";
+    const TABLE_ADDITIVECATEGORY = "\"ead_AdditiveCategory\"";
+    const TABLE_ADDITIVECATEGORYPROPS = "\"ead_AdditiveCategoryProps\"";
 
     /**
      * SQL tables aliases. These are used within the models queries.

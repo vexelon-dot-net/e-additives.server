@@ -31,7 +31,7 @@ if (SHOW_SQL) {
 }
 
 $dbConnectionParams = array(
-    'driver' => 'pdo_mysql',
+    'driver' => $databaseSettings['driver'],
     'host' => $databaseSettings['host'],
     'dbname' => $databaseSettings['database'],
     'user' => $databaseSettings['user'],
