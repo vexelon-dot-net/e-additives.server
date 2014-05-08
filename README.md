@@ -41,8 +41,8 @@ Install dependencies via composer:
 Create database structure and Import data:
 
     $ cd data
-    $ psql *database* < `pg_db_schema.sql`
-    $ psql *database* < `pg_db_app_data.sql`
+    $ psql your-database < `pg_db_schema.sql`
+    $ psql your-database < `pg_db_app_data.sql`
 
 Please have a look at the `pg_db_schema.sql` and adjust the user rights and owner of the postgres database.
     
@@ -75,13 +75,13 @@ the request uri. The following configuration assumes a `php5-fpm` type of setup.
                     fastcgi_index index.php;
 
                     fastcgi_split_path_info ^((?U).+\.php)(/?.+)$;
-                    fastcgi_param SCRIPT_FILENAME /<path-to-e-additives.server>$fast$
+                    fastcgi_param SCRIPT_FILENAME /<path-to-e-additives.server>$fastcgi_script_name;
                     fastcgi_param SCRIPT_NAME /api$fastcgi_script_name;
 
                     # send headers only if there are no errors
                     add_header Access-Control-Allow-Origin "<your-domain>";
                     add_header Access-Control-Allow-Methods "GET";
-                    add_header Access-Control-Allow-Headers "Content-Type, X-Requested-With, X-Authorization"
+                    add_header Access-Control-Allow-Headers "Content-Type, X-Requested-With, X-Authorization";
             }
 
             location ~ /\.ht {
