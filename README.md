@@ -15,7 +15,7 @@ Required software components:
 
   * Apache >= 2.2
   * PHP >= 5.3.0
-  * MySQL >= 5.5
+  * PostgreSQL >= 9.1
   * Redis >= 2.2
 
 # Getting Started
@@ -27,7 +27,7 @@ Install required PHP extensions and enable them in `php.ini`:
   * mcrypt.so
   * openssl.so
   * phar.so
-  * php_pdo_mysql.so
+  * php_pdo_pgsql.so
   * php_mbstring.so
 
 Install composer:
@@ -40,14 +40,57 @@ Install dependencies via composer:
 
 Create database structure and Import data:
 
-    $ cd tools
-    $ ./db_create.sh [user] [password] [database name]
+    $ cd data
+    $ psql *database* < `pg_db_schema.sql`
+    $ psql *database* < `pg_db_app_data.sql`
 
-Alternatively one can use [MySQL Workbench](http://dev.mysql.com/downloads/tools/workbench/) to import the scripts located in `data/` folder.
+Please have a look at the `pg_db_schema.sql` and adjust the user rights and owner of the postgres database.
     
 # Configuration
 
-## Configure Apache
+## Configure Nginx
+
+Configuring Nginx can be tricky mainly because of how the [Slim](https://github.com/codeguy/Slim) framework resolves 
+the request uri. The following configuration assumes a `php5-fpm` type of setup.
+
+```bash
+    server {
+            listen 80;
+            listen [::]:80;
+
+            server_name <your-domain>;
+            index index.html index.php;
+            root /<path-to-e-additives.web>;
+
+            # remove trailing slashes
+            rewrite ^/(.*)/$ /$1 permanent;
+
+            # rewrite api request uri
+            rewrite ^/api(.*)$ /index.php last;
+
+            location ~ ^.+\.php {
+                    include fastcgi_params;
+
+                    fastcgi_pass unix:/var/run/php5-fpm.sock;
+                    fastcgi_index index.php;
+
+                    fastcgi_split_path_info ^((?U).+\.php)(/?.+)$;
+                    fastcgi_param SCRIPT_FILENAME /<path-to-e-additives.server>$fast$
+                    fastcgi_param SCRIPT_NAME /api$fastcgi_script_name;
+
+                    # send headers only if there are no errors
+                    add_header Access-Control-Allow-Origin "<your-domain>";
+                    add_header Access-Control-Allow-Methods "GET";
+                    add_header Access-Control-Allow-Headers "Content-Type, X-Requested-With, X-Authorization"
+            }
+
+            location ~ /\.ht {
+                    deny  all;
+            }
+    }
+```
+
+## Configure Apache (Obsolete)
 
 Configure Apache server on local machine for tests. Open your Apache Virtual Hosts configurations, e.g. `/etc/httpd/conf/extra/httpd-vhosts.conf`, and add the following:
 
