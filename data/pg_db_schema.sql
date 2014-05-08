@@ -343,8 +343,13 @@ ALTER TABLE ONLY "ead_Additive"
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
+
+-- TODO: Please adjust the privileges to the schema and database here, e.g.,
+-- GRANT ALL ON SCHEMA public TO <your-role>;
+-- REASSIGN OWNED BY root TO <your-role>;
+
+--GRANT ALL ON SCHEMA public TO postgres;
+--GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
