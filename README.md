@@ -13,10 +13,10 @@ Check the [documentation](docs/).
 
 Required software components:
 
-  * Apache >= 2.2
-  * PHP >= 5.3.0
-  * PostgreSQL >= 9.1
-  * Redis >= 2.2
+  * Nginx 1.4.x
+  * PHP 5.3.x
+  * PostgreSQL 9.x
+  * Redis 2.2.x
 
 # Getting Started
 
