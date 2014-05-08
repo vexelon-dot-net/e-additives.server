@@ -53,9 +53,9 @@ class Model {
      */
     static protected $tableAliases = array('__Locale', 
         '__AdditiveProps', 
-        '__Additive', 
+        '__AdditiveCategoryProps',
         '__AdditiveCategory', 
-        '__AdditiveCategoryProps');
+        '__Additive');
 
     /**
      * SQL table names. These will be used to replace the table aliases
@@ -64,9 +64,9 @@ class Model {
      */
     static protected $tableNames = array(self::TABLE_LOCALE, 
         self::TABLE_ADDITIVEPROPS, 
-        self::TABLE_ADDITIVE, 
-        self::TABLE_ADDITIVECATEGORY, 
-        self::TABLE_ADDITIVECATEGORYPROPS);
+        self::TABLE_ADDITIVECATEGORYPROPS,
+        self::TABLE_ADDITIVECATEGORY,
+        self::TABLE_ADDITIVE);
 
     /**
      * @var array
