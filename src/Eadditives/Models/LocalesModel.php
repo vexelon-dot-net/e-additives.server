@@ -60,6 +60,8 @@ class LocalesModel extends Model {
             $statement = $this->dbConnection->executeQuery($sql, array($code));
             $row = $statement->fetch();
 
+            $this->validateResult($row); 
+
             // write to cache
             $this->cache->hset(self::CACHE_KEY . $code, $row, self::CACHE_TTL);
 
