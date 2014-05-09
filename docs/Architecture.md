@@ -22,11 +22,10 @@ Performance is a function of many factors, i.e., network speed, hardware specs, 
 Technology | Comments
 ------|------------
 **Linux** | No _Windowses_ allowed.
-**Apache 2.2** | Apache running in [prefork](http://httpd.apache.org/docs/2.2/mod/prefork.html) mode.
-**PHP 5.3** | A list of required extensions is available in the [README.md](../README.md)
-**Redis 2.2** | [Redis](http://redis.io/) is configured as [cache-only](http://redis.io/topics/config). There is **no persistance** enabled. We are only interested in temporary caching database fetched items and using them on client READ requests.
-**MySQL 5.5** | We will be using the ACID compliant [InnoDB](http://dev.mysql.com/doc/refman/5.5/en/innodb-storage-engine.html) engine.
-
+**Nginx 1.4.x** | Nginx with php5-fpm.
+**PHP 5.3+** | A list of required extensions is available in the [README.md](../README.md)
+**Redis 2.2.x** | [Redis](http://redis.io/) is configured as [cache-only](http://redis.io/topics/config). There is **no persistance** enabled. We are only interested in temporary caching database fetched items and using them on client READ requests.
+**PostgreSQL 9.x** | [The world's most advanced open source database](http://www.postgresql.org/). Enough said.
 
 # Database Schema
 
