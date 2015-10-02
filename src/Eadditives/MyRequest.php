@@ -32,6 +32,7 @@ use \Eadditives\Models\LocalesModel;
 class MyRequest {
 
     const X_AUTH_HEADER = "X-Authorization";
+    const X_AUTH_HEADER_MASHAPE = "X-Mashape-Proxy-Secret";
     const X_AUTH_SCHEME = "EAD-TOKENS";
 
     const PARAM_CATEGORY = 'category';
@@ -131,21 +132,28 @@ class MyRequest {
             throw new RequestException('Forbidden', MyResponse::HTTP_STATUS_FORBIDDEN);
         }
 
-        // header: X-Authorization
-        $authorization = $this->request->headers(self::X_AUTH_HEADER);
+        $apiKeys = unserialize(X_AUTH_KEY);
+        $tokens = array();
 
         try {
-            $tokens = $this->parseXAuthorization($authorization);
-            $apiKeys = unserialize(X_AUTH_KEY);
-            if (!in_array($tokens['apiKey'], $apiKeys)) {
+            // header: X-Mashape-Proxy
+            $authorizationMashape = $this->request->headers(self::X_AUTH_HEADER_MASHAPE);
+            if (!is_null($authorizationMashape)) {
+                $tokenMashape = trim(str_replace(self::X_AUTH_HEADER_MASHAPE . ':', '', $authorizationMashape));
+                $tokens['apiKey'] = $tokenMashape;
+            } else {
+                // header: X-Authorization
+                $authorization = $this->request->headers(self::X_AUTH_HEADER);
+                $tokens = $this->parseXAuthorization($authorization);
+            }
+            // verify keys
+            if (!isset($tokens['apiKey']) || !in_array($tokens['apiKey'], $apiKeys)) {
                 throw new \Exception('Invalid API key!');
             }
-
             // save API key info in app
             $this->app->container->singleton('apiKey', function() use ($tokens) {
                 return $tokens['apiKey'];
             });
-
         } catch (\Exception $e) {
             throw new RequestException('Authorization required', MyResponse::HTTP_STATUS_UNAUTHORIZED, $e);
         }

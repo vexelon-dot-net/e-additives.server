@@ -6,7 +6,9 @@ error_reporting(E_ALL | E_STRICT);
 // X-Authorization keys
 // Generate and add a keys here. Use them on client side to make API calls to the server.
 define('X_AUTH_KEY', serialize(array(
-    '1234567890abcdef')
+    '1234567890abcdef',
+    'aWRlIHRvIG1ha2UgQVBJIGNhbGxzIHR'
+    )
 ));
 
 // Register AutoLoader for src/Eadditives

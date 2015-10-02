@@ -44,6 +44,18 @@ class MyRequestTest extends PHPUnit_Framework_TestCase {
         $myRequest->authorize();
     }
 
+    public function testMashapeHeadersOK() {
+        \Slim\Environment::mock(array(
+            'REQUEST_METHOD' => 'GET',
+            'HTTP_USER_AGENT' => 'PHPUnit',
+            'HTTP_X-Mashape_Proxy-Secret' => 'aWRlIHRvIG1ha2UgQVBJIGNhbGxzIHR'
+        )); 
+
+        $app = new \Slim\Slim();
+        $myRequest = new \Eadditives\MyRequest($app);
+        $myRequest->authorize();
+    }    
+
     /**
      * @expectedException \Eadditives\RequestException
      */ 
